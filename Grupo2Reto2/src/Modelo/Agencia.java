@@ -28,9 +28,7 @@ public class Agencia {
 		if(Integer.parseInt(numeroEmpleados)<0) {
 			this.numeroEmpleados="0";
 		}
-		
-		
-		
+			
 	}
 	
 	
@@ -64,9 +62,5 @@ public class Agencia {
 	public void setLogo(String logo) {
 		this.logo = logo;
 	}
-	
-	
-	
-	
 	
 }
