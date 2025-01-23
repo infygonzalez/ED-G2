@@ -1,5 +1,7 @@
 package Modelo;
 
+import java.util.Scanner;
+
 public class Agencia {
 
 	private String idAgencia;
@@ -7,7 +9,7 @@ public class Agencia {
 	private String colorMarca;
 	private String numeroEmpleados;
 	private String logo;
-	
+	private Scanner teclado = new Scanner(System.in);
 	
 	public Agencia() {
 		idAgencia="";
@@ -31,6 +33,17 @@ public class Agencia {
 			
 	}
 	
+	public void crearAgencia() {
+		//ID DE LA AGENCIA CREADO POR PROGRAMA, NO ELECCIÓN
+		System.out.println("Introduzca el nombre de la agencia: ");
+		nombre=teclado.next();
+		System.out.println("Introduzca el color de la marca: ");
+		colorMarca=teclado.next();
+		System.out.println("Introduzca el rango de empleados: ");
+		numeroEmpleados=teclado.next();
+		System.out.println("Introduzca el URL del logo: ");
+		logo=teclado.next();
+	}
 	
 	public String getIdAgencia() {
 		return idAgencia;

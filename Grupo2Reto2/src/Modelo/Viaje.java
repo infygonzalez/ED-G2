@@ -40,6 +40,8 @@ public class Viaje {
 	
 	
 	
+	
+	
 	public String getIdViaje() {
 		return idViaje;
 	}
