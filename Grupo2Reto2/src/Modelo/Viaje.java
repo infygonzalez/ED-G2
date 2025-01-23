@@ -32,14 +32,8 @@ public class Viaje {
 		this.duracion=duracion;
 		this.descServicio=descServicio;
 		
-		if(Integer.parseInt(duracion)<0) {
-			duracion="0";
-		}
+		
 	}
-	
-	
-	
-	
 	
 	
 	public String getIdViaje() {
@@ -83,6 +77,12 @@ public class Viaje {
 	}
 	public void setDescServicio(String descServicio) {
 		this.descServicio = descServicio;
+	}
+
+	@Override
+	public String toString() {
+		return "Viaje [idViaje=" + idViaje + ", nombre=" + nombre + ", descripcion=" + descripcion + ", tipoViaje="
+				+ tipoViaje + ", fechas=" + fechas + ", duracion=" + duracion + ", descServicio=" + descServicio + "]";
 	}
 
 }
