@@ -1,26 +1,22 @@
 package Modelo;
 
-public class Vuelo {
-
+public class Vuelo extends Evento{
+	
 	private String codigoVuelo;
-	private String precio;
-	private String fecSalida;
 	private String horaSalida;
 	private String duracion;
 
 	Vuelo(){
+		super();
 		codigoVuelo="";
-		precio="";
-		fecSalida="";
 		horaSalida="";
 		duracion="";
 	}
 
-	Vuelo(String codigoVuelo, String precio, String fecSalida, String horaSalida,String duracion){
-
+	Vuelo(String idEvento, String nombreEvento, String precio,String fecha, String codigoVuelo, String horaSalida,String duracion){
+		
+		super(idEvento,nombreEvento,precio,fecha);
 		this.codigoVuelo=codigoVuelo;
-		this.precio=precio;
-		this.fecSalida=fecSalida;
 		this.horaSalida=horaSalida;
 		this.duracion=duracion;
 
@@ -32,22 +28,6 @@ public class Vuelo {
 
 	public void setCodigoVuelo(String codigoVuelo) {
 		this.codigoVuelo = codigoVuelo;
-	}
-
-	public String getPrecio() {
-		return precio;
-	}
-
-	public void setPrecio(String precio) {
-		this.precio = precio;
-	}
-
-	public String getFecSalida() {
-		return fecSalida;
-	}
-
-	public void setFecSalida(String fecSalida) {
-		this.fecSalida = fecSalida;
 	}
 
 	public String getHoraSalida() {
@@ -68,8 +48,8 @@ public class Vuelo {
 
 	@Override
 	public String toString() {
-		return "Vuelo [codigoVuelo=" + codigoVuelo + ", precio=" + precio + ", fecSalida=" + fecSalida + ", horaSalida="
-				+ horaSalida + ", duracion=" + duracion + "]";
+		return super.toString()+"Vuelo [codigoVuelo=" + codigoVuelo + ", horaSalida=" + horaSalida + ", duracion=" + duracion + "]";
 	}
-	
+
+
 }

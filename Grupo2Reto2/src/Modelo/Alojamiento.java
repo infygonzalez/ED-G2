@@ -1,32 +1,28 @@
 package Modelo;
 
-public class Alojamiento {
-
-
+public class Alojamiento extends Evento{
+	
 	private String nombreHotel;
 	private String ciudad;
-	private String precio;
-	private String fecEntrada;
 	private String fecSalida;
 	private String tipoHab="Doble";
 
 	Alojamiento(){
+		super();
 		nombreHotel="";
 		ciudad="";
-		precio="";
-		fecEntrada="";
 		fecSalida="";
 		tipoHab="";
 	}
 
-	Alojamiento(String nombreHotel, String ciudad, String precio, String fecEntrada,String fecSalida,String tipHab){
-
+	Alojamiento(String idEvento, String nombreEvento, String precio,String fecha,String nombreHotel, String ciudad,String fecSalida,String tipHab ){
+		
+		super(idEvento,nombreEvento,precio,fecha);
 		this.nombreHotel=nombreHotel;
 		this.ciudad=ciudad;
-		this.precio=precio;
-		this.fecEntrada=fecEntrada;
 		this.fecSalida=fecSalida;
 		this.tipoHab=tipHab;
+
 	}
 
 	public String getNombreHotel() {
@@ -45,22 +41,6 @@ public class Alojamiento {
 		this.ciudad = ciudad;
 	}
 
-	public String getPrecio() {
-		return precio;
-	}
-
-	public void setPrecio(String precio) {
-		this.precio = precio;
-	}
-
-	public String getFecEntrada() {
-		return fecEntrada;
-	}
-
-	public void setFecEntrada(String fecEntrada) {
-		this.fecEntrada = fecEntrada;
-	}
-
 	public String getFecSalida() {
 		return fecSalida;
 	}
@@ -76,5 +56,12 @@ public class Alojamiento {
 	public void setTipoHab(String tipoHab) {
 		this.tipoHab = tipoHab;
 	}
+
+	@Override
+	public String toString() {
+		return super.toString()+"Alojamiento [nombreHotel=" + nombreHotel + ", ciudad=" + ciudad + ", fecSalida=" + fecSalida
+				+ ", tipoHab=" + tipoHab + "]";
+	}
+
 
 }

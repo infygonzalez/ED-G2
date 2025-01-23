@@ -1,9 +1,9 @@
 package Modelo;
 
 public class Pais{
+	
 	private String codigoPais;
 	private String descripPais;
-	
 	
 	public Pais() {
 		codigoPais="";
