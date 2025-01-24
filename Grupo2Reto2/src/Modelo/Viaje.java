@@ -18,7 +18,7 @@ public class Viaje {
 	
 
 	
-	
+		
 	Viaje (){
 		idViaje="";
 		nombreViaje="";
@@ -111,12 +111,30 @@ public class Viaje {
 		this.agencia = agencia;
 	}
 
+	public Pais getPais() {
+		return pais;
+	}
+
+	public void setPais(Pais pais) {
+		this.pais = pais;
+	}
+
+	public ArrayList<Evento> getEvento() {
+		return evento;
+	}
+
+	public void setEvento(ArrayList<Evento> evento) {
+		this.evento = evento;
+	}
+
 	@Override
 	public String toString() {
 		return "Viaje [idViaje=" + idViaje + ", nombreViaje=" + nombreViaje + ", descripcion=" + descripcion
 				+ ", tipoViaje=" + tipoViaje + ", fechas=" + fechas + ", duracion=" + duracion + ", descServicio="
-				+ descServicio + ", agencia=" + agencia + "]";
+				+ descServicio + ", agencia=" + agencia + ", pais=" + pais + ", evento=" + evento + "]";
 	}
+
+	
 
 	
 	
