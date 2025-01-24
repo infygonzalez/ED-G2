@@ -20,6 +20,7 @@ public class Agencia {
 		ArrayList<Viaje> viajes = new ArrayList<Viaje>();
 	}
 	
+	
 	public Agencia(String idAgencia, String nombre, String colorMarca, String numeroEmpleados, String logo, ArrayList<Viaje> viajes) {
 		
 		this.idAgencia=idAgencia;

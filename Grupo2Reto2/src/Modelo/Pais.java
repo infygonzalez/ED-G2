@@ -4,15 +4,19 @@ public class Pais{
 	
 	private String codigoPais;
 	private String descripPais;
+	private Viaje viaje;
+	
 	
 	public Pais() {
 		codigoPais="";
 		descripPais="";
+		viaje = new Viaje();
 	}
 	
-	public Pais(String codigoPais, String descripPais) {
+	public Pais(String codigoPais, String descripPais, Viaje viaje) {
 		this.codigoPais=codigoPais;
 		this.descripPais=descripPais;
+		this.viaje=viaje;
 	}
 
 	public String getCodigoPais() {
@@ -31,10 +35,20 @@ public class Pais{
 		this.descripPais = descripPais;
 	}
 
+	public Viaje getViaje() {
+		return viaje;
+	}
+
+	public void setViaje(Viaje viaje) {
+		this.viaje = viaje;
+	}
+
 	@Override
 	public String toString() {
-		return "Pais [codigoPais=" + codigoPais + ", descripPais=" + descripPais + "]";
+		return "Pais [codigoPais=" + codigoPais + ", descripPais=" + descripPais + ", viaje=" + viaje + "]";
 	}
+
+	
 	
 }
 

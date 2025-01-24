@@ -14,11 +14,13 @@ public class Viaje {
 	private String descServicio;
 	private Agencia agencia;
 	private Pais pais;
-	private ArrayList<Evento> evento;
+	private ArrayList<Alojamiento> alojamiento;
+	private ArrayList<Vuelo> vuelo;
+	private ArrayList<Otros> otros;
 	
 
 	
-		
+	
 	Viaje (){
 		idViaje="";
 		nombreViaje="";
@@ -29,10 +31,13 @@ public class Viaje {
 		descServicio="";
 		agencia = new Agencia();
 		pais=new Pais();
-		ArrayList<Evento> evento = new ArrayList<Evento>();
+		ArrayList<Alojamiento> alojamiento = new ArrayList<Alojamiento>();
+		ArrayList<Vuelo> vuelo = new ArrayList<Vuelo>();
+		ArrayList<Otros> otros = new ArrayList<Otros>();
 	}
 	
-	Viaje(String idViaje, String nombreViaje, String descripcion, String tipoViaje, String fechas, String duracion, String descServicio, Agencia agencia, Pais pais, ArrayList<Evento> evento){
+	
+	Viaje(String idViaje, String nombreViaje, String descripcion, String tipoViaje, String fechas, String duracion, String descServicio, Agencia agencia, Pais pais, ArrayList<Alojamiento> alojamiento, ArrayList<Vuelo> vuelo, ArrayList<Otros> otros){
 		
 		this.idViaje=idViaje;
 		this.nombreViaje=nombreViaje;
@@ -43,7 +48,9 @@ public class Viaje {
 		this.descServicio=descServicio;
 		this.agencia= agencia;
 		this.pais=pais;
-		this.evento=evento;
+		this.alojamiento=alojamiento;
+		this.vuelo=vuelo;
+		this.otros=otros;
 		
 	}
 
@@ -119,25 +126,37 @@ public class Viaje {
 		this.pais = pais;
 	}
 
-	public ArrayList<Evento> getEvento() {
-		return evento;
+	public ArrayList<Alojamiento> getAlojamiento() {
+		return alojamiento;
 	}
 
-	public void setEvento(ArrayList<Evento> evento) {
-		this.evento = evento;
+	public void setAlojamiento(ArrayList<Alojamiento> alojamiento) {
+		this.alojamiento = alojamiento;
+	}
+
+	public ArrayList<Vuelo> getVuelo() {
+		return vuelo;
+	}
+
+	public void setVuelo(ArrayList<Vuelo> vuelo) {
+		this.vuelo = vuelo;
+	}
+
+	public ArrayList<Otros> getOtros() {
+		return otros;
+	}
+
+	public void setOtros(ArrayList<Otros> otros) {
+		this.otros = otros;
 	}
 
 	@Override
 	public String toString() {
 		return "Viaje [idViaje=" + idViaje + ", nombreViaje=" + nombreViaje + ", descripcion=" + descripcion
 				+ ", tipoViaje=" + tipoViaje + ", fechas=" + fechas + ", duracion=" + duracion + ", descServicio="
-				+ descServicio + ", agencia=" + agencia + ", pais=" + pais + ", evento=" + evento + "]";
+				+ descServicio + ", agencia=" + agencia + ", pais=" + pais + ", alojamiento=" + alojamiento + ", vuelo="
+				+ vuelo + ", otros=" + otros + "]";
 	}
 
-	
-
-	
-	
-	
 }
 	

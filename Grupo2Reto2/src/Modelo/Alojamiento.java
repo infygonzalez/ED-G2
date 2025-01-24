@@ -1,28 +1,74 @@
 package Modelo;
 
-public class Alojamiento extends Evento{
+public class Alojamiento {
 	
+	private String idEvento;
+	private String nombreEvento;
+	private String precio;
+	private String fecha;
 	private String nombreHotel;
 	private String ciudad;
 	private String fecSalida;
 	private String tipoHab="Doble";
+	private Viaje viaje;
 
 	Alojamiento(){
-		super();
+		idEvento="";
+		nombreEvento="";
+		precio="";
+		fecha="";
 		nombreHotel="";
 		ciudad="";
 		fecSalida="";
 		tipoHab="";
+		viaje = new Viaje();
 	}
 
-	Alojamiento(String idEvento, String nombreEvento, String precio,String fecha,String nombreHotel, String ciudad,String fecSalida,String tipHab ){
+	
+	Alojamiento(String idEvento, String nombreEvento, String precio,String fecha,String nombreHotel, String ciudad,String fecSalida,String tipHab, Viaje viaje ){
 		
-		super(idEvento,nombreEvento,precio,fecha);
+		this.idEvento=idEvento;
+		this.nombreEvento=nombreEvento;
+		this.precio=precio;
+		this.fecha=fecha;
 		this.nombreHotel=nombreHotel;
 		this.ciudad=ciudad;
 		this.fecSalida=fecSalida;
 		this.tipoHab=tipHab;
+		this.viaje=viaje;
 
+	}
+
+	public String getIdEvento() {
+		return idEvento;
+	}
+
+	public void setIdEvento(String idEvento) {
+		this.idEvento = idEvento;
+	}
+
+	public String getNombreEvento() {
+		return nombreEvento;
+	}
+
+	public void setNombreEvento(String nombreEvento) {
+		this.nombreEvento = nombreEvento;
+	}
+
+	public String getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(String precio) {
+		this.precio = precio;
+	}
+
+	public String getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
 	}
 
 	public String getNombreHotel() {
@@ -57,11 +103,20 @@ public class Alojamiento extends Evento{
 		this.tipoHab = tipoHab;
 	}
 
-	@Override
-	public String toString() {
-		return super.toString()+"Alojamiento [nombreHotel=" + nombreHotel + ", ciudad=" + ciudad + ", fecSalida=" + fecSalida
-				+ ", tipoHab=" + tipoHab + "]";
+	public Viaje getViaje() {
+		return viaje;
 	}
 
+	public void setViaje(Viaje viaje) {
+		this.viaje = viaje;
+	}
 
+	@Override
+	public String toString() {
+		return "Alojamiento [idEvento=" + idEvento + ", nombreEvento=" + nombreEvento + ", precio=" + precio
+				+ ", fecha=" + fecha + ", nombreHotel=" + nombreHotel + ", ciudad=" + ciudad + ", fecSalida="
+				+ fecSalida + ", tipoHab=" + tipoHab + ", viaje=" + viaje + "]";
+	}
+
+	
 }
