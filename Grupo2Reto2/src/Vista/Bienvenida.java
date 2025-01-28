@@ -23,7 +23,7 @@ public class Bienvenida extends JFrame {
     }
 
     public Bienvenida() {
-        // Configuración de la ventana principal
+      
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(0, 0, 1920, 1080);
 
@@ -32,16 +32,16 @@ public class Bienvenida extends JFrame {
 
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        contentPane.setLayout(null); // Usar layout null para posicionar manualmente
+        contentPane.setLayout(null); 
         setContentPane(contentPane);
 
-        // Botón con imagen de fondo
+     
         JButton btnNewButton = new JButton("");
         btnNewButton.setIcon(new ImageIcon(Bienvenida.class.getResource("/img/fondoJFrame.jpg")));
         btnNewButton.setBounds(0, 0, screenSize.width, screenSize.height);
         contentPane.add(btnNewButton);
 
-        // Listener para abrir la ventana Login
+       
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 abrirVentanaLogin();
@@ -50,7 +50,7 @@ public class Bienvenida extends JFrame {
         });
     }
 
-    // Método para abrir la ventana Login
+
     private void abrirVentanaLogin() {
         Login loginWindow = new Login();
         loginWindow.setVisible(true);
