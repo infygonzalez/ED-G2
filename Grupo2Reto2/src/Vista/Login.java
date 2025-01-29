@@ -19,7 +19,7 @@ public class Login extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtUsuario;
-	private JTextField textContraseña;
+	private JTextField textClave;
 	
 
 	/**
@@ -55,20 +55,20 @@ public class Login extends JFrame {
 		contentPane.add(txtUsuario);
 		txtUsuario.setColumns(10);
 		
-		textContraseña = new JTextField();
-		textContraseña.setBounds(252, 152, 125, 20);
-		contentPane.add(textContraseña);
-		textContraseña.setColumns(10);
+		textClave = new JTextField();
+		textClave.setBounds(252, 152, 125, 20);
+		contentPane.add(textClave);
+		textClave.setColumns(10);
 		
 		JLabel lblUsuario = new JLabel("Introduce el usuario:");
 		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblUsuario.setBounds(74, 112, 157, 14);
 		contentPane.add(lblUsuario);
 		
-		JLabel lblContraseña = new JLabel("Introduce la contraseña:");
-		lblContraseña.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblContraseña.setBounds(54, 152, 177, 14);
-		contentPane.add(lblContraseña);
+		JLabel lblClave = new JLabel("Introduce la contraseña:");
+		lblClave.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblClave.setBounds(54, 152, 177, 14);
+		contentPane.add(lblClave);
 		
 		JButton btnNewButton = new JButton("Iniciar Sesion");
 		btnNewButton.setBounds(90, 212, 105, 23);
@@ -80,7 +80,7 @@ public class Login extends JFrame {
 		
 		JLabel lblError = new JLabel("Usuario o Contraseña equivocada");
 		lblError.setForeground(new Color(255, 0, 0));
-		lblError.setBounds(113, 187, 225, 14);
+		lblError.setBounds(125, 187, 217, 14);
 		contentPane.add(lblError);
 		lblError.setVisible(false);
 		
@@ -90,17 +90,25 @@ public class Login extends JFrame {
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(txtUsuario.getText().equals("admin")&& textContraseña.getText().equals("admin")) {
+				if(txtUsuario.getText().equals("admin")&& textClave.getText().equals("admin")||validacionTexto( txtUsuario.getText(),26)==true && validacionTexto( textClave.getText(),26)) {
 					
 				}
 				else{
 					lblError.setVisible(true);
 					txtUsuario.setText("");
-					textContraseña.setText("");
+					textClave.setText("");
 					
 				}
 			}});
 		
 		
 	}
+	
+	public boolean validacionTexto(String texto, int numeroCaracteres) {
+	    if (texto.length() > numeroCaracteres) {
+	        return false;
+	    } else {
+	        return true;
+	    }
+		}
 }
