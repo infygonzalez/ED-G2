@@ -1,6 +1,7 @@
 package Vista;
 
 import java.awt.EventQueue;
+import Modelo.GestorAgencia;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -41,6 +42,7 @@ public class Login extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	public Login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -90,25 +92,25 @@ public class Login extends JFrame {
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(txtUsuario.getText().equals("admin")&& textClave.getText().equals("admin")||validacionTexto( txtUsuario.getText(),26)==true && validacionTexto( textClave.getText(),26)) {
-					
+				String nombre = txtUsuario.getText();
+				String clave = textClave.getText();
+				comprobarCositas(nombre, clave);
+				
+				
 				}
-				else{
-					lblError.setVisible(true);
-					txtUsuario.setText("");
-					textClave.setText("");
-					
-				}
-			}});
+
+			
+			});
 		
 		
 	}
-	
-	public boolean validacionTexto(String texto, int numeroCaracteres) {
-	    if (texto.length() > numeroCaracteres) {
-	        return false;
-	    } else {
-	        return true;
-	    }
-		}
+	public void comprobarCositas(String nombre, String clave) {
+		GestorAgencia gestorAgencia = new GestorAgencia();
+		if(gestorAgencia.verificarDatos(nombre, clave)==true) {
+			System.out.println("bien");
+		}else{
+			
+		};
+		
+	}
 }

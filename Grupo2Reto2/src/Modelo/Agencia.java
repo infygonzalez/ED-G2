@@ -9,6 +9,9 @@ public class Agencia {
 	private String colorMarca;
 	private String numeroEmpleados;
 	private String logo;
+	private String clave;
+	
+
 	private ArrayList<Viaje>viajes;
 	
 	public Agencia() {
@@ -78,6 +81,15 @@ public class Agencia {
 
 	public void setViajes(ArrayList<Viaje> viajes) {
 		this.viajes = viajes;
+	}
+	
+	public String getClave() {
+		return clave;
+	}
+
+
+	public void setClave(String clave) {
+		this.clave = clave;
 	}
 
 	@Override
