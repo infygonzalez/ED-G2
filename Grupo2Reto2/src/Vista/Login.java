@@ -109,7 +109,7 @@ public class Login extends JFrame {
 		if(gestorAgencia.verificarDatos(nombre, clave)==true) {
 			System.out.println("bien");
 		}else{
-			
+			System.out.println("mal");
 		};
 		
 	}
