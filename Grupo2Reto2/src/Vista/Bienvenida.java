@@ -28,7 +28,7 @@ public class Bienvenida extends JFrame {
       
     	
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(0, 0, 1920, 1080);
+        setBounds(0, 0, 1080, 600);
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setSize(screenSize);
@@ -36,17 +36,18 @@ public class Bienvenida extends JFrame {
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
+        contentPane.setLayout(null);
         
         JLabel lblNewLabel = new JLabel("Pulse para continuar");
+        lblNewLabel.setBounds(293, 230, 434, 198);
         lblNewLabel.setForeground(new Color(0, 0, 0));
         lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 40));
-        lblNewLabel.setBounds(790, 400, 434, 198);
         contentPane.add(lblNewLabel);
         
         ImageIcon image = new ImageIcon(getClass().getResource("/img/fondoBienvenida.jpeg"));
         
-        JLabel lblNewLabel_1 = new JLabel( new ImageIcon(image.getImage().getScaledInstance(1920, 1080, Image.SCALE_DEFAULT)));
-        lblNewLabel_1.setBounds(0, 0, 1920, 1080);
+        JLabel lblNewLabel_1 = new JLabel( new ImageIcon(image.getImage().getScaledInstance(1080, 600, Image.SCALE_DEFAULT)));
+        lblNewLabel_1.setBounds(0, 0, 1080, 600);
         lblNewLabel_1.addMouseListener(new MouseAdapter() {
         	@Override
         	public void mouseClicked(MouseEvent e) {
@@ -56,7 +57,6 @@ public class Bienvenida extends JFrame {
         		
         	}
         });
-        contentPane.setLayout(null);
         contentPane.add(lblNewLabel_1);
         
       

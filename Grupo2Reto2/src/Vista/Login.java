@@ -77,6 +77,15 @@ public class Login extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnNuevaAgencia = new JButton("Nueva agencia");
+		btnNuevaAgencia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 dispose();
+				nuevaAgencia nuevaAgencia = new nuevaAgencia();
+				 nuevaAgencia.setVisible(true);
+				
+				
+			}
+		});
 		btnNuevaAgencia.setBounds(233, 212, 105, 23);
 		contentPane.add(btnNuevaAgencia);
 		
@@ -94,7 +103,7 @@ public class Login extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String nombre = txtUsuario.getText();
 				String clave = textClave.getText();
-				comprobarCositas(nombre, clave);
+				inicioSesion(nombre, clave);
 				
 				
 				}
@@ -104,13 +113,17 @@ public class Login extends JFrame {
 		
 		
 	}
-	public void comprobarCositas(String nombre, String clave) {
+	
+	public void inicioSesion(String nombre, String clave) {
 		GestorAgencia gestorAgencia = new GestorAgencia();
-		if(gestorAgencia.verificarDatos(nombre, clave)==true) {
+		if(gestorAgencia.verificarDatos(nombre, clave)) {
 			System.out.println("bien");
+			Bienvenida bienvenida = new Bienvenida();
+			 bienvenida.setVisible(true);
+			
+			
 		}else{
 			System.out.println("mal");
 		};
-		
 	}
 }

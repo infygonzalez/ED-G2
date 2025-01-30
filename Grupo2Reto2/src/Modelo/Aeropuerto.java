@@ -4,14 +4,12 @@ public class Aeropuerto {
 	
 	private String codigoAero;
 	private String lugarAero;
-	private Vuelo vuelo;
 	
 	
 	
 	public Aeropuerto() {
 		codigoAero="";
 		lugarAero="";
-		vuelo = new Vuelo();
 		
 	}
 
@@ -39,19 +37,13 @@ public class Aeropuerto {
 		this.lugarAero = lugarAero;
 	}
 
-	public Vuelo getVuelo() {
-		return vuelo;
-	}
-
-	public void setVuelo(Vuelo vuelo) {
-		this.vuelo = vuelo;
-	}
+	
 
 
 
 	@Override
 	public String toString() {
-		return "Aeropuerto [codigoAero=" + codigoAero + ", lugarAero=" + lugarAero + ", vuelo=" + vuelo + "]";
+		return "Aeropuerto [codigoAero=" + codigoAero + ", lugarAero=" + lugarAero + "]";
 	}
 	
 	

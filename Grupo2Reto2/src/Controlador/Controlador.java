@@ -11,4 +11,9 @@ public class Controlador {
 	GestorAgencia gestorAgencia = new GestorAgencia();
 	gestorAgencia.verificarDatos( nombre,clave);
 	}
+	
+	public void crearAgencia(Agencia agencia) {
+		GestorAgencia gestorAgencia = new GestorAgencia();
+		gestorAgencia.crearAgencia(agencia);
+	}
 }
