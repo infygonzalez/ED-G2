@@ -118,8 +118,9 @@ public class Login extends JFrame {
 		GestorAgencia gestorAgencia = new GestorAgencia();
 		if(gestorAgencia.verificarDatos(nombre, clave)) {
 			System.out.println("bien");
-			Bienvenida bienvenida = new Bienvenida();
-			 bienvenida.setVisible(true);
+			MenuPrincipal menuPrincipal = new MenuPrincipal();
+			 menuPrincipal.setVisible(true);
+			 dispose();
 			
 			
 		}else{

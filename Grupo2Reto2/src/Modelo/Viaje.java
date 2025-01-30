@@ -22,7 +22,7 @@ public class Viaje {
 
 	
 	
-	Viaje (){
+	public Viaje (){
 		idViaje="";
 		nombreViaje="";
 		descripcion="";
