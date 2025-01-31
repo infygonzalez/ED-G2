@@ -27,11 +27,11 @@ public class GestorViajes {
                 Viaje viaje = new Viaje();
                 viaje.setNombreViaje(resultSet.getString("Nombre"));
                 viaje.setDescripcion(resultSet.getString("Descripcion"));
-                viaje.setTipoViaje(resultSet.getString("Tipo viajes"));
-                viaje.setFechaIda(resultSet.getString("Fecha ida"));
-                viaje.setFechaVuelta(resultSet.getString("Fecha Vuelta"));
+                viaje.setTipoViaje(resultSet.getString("TipoViaje"));
+                viaje.setFechaIda(resultSet.getString("FechaIda"));
+                viaje.setFechaVuelta(resultSet.getString("FechaVuelta"));
                 viaje.setDuracion(resultSet.getString("Duracion"));
-                viaje.setDescServicio(resultSet.getString("Servicios no incluidos"));
+                viaje.setDescServicio(resultSet.getString("Descripcionservicio"));
                 viajes.add(viaje);
             }
         } catch (SQLException sqle) {

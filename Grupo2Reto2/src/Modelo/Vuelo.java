@@ -23,7 +23,6 @@ public class Vuelo {
 		codigoVuelo="";
 		hora="";
 		duracion="";
-		vueloIda =new Vuelo();
 		viaje = new Viaje();
 		aeropuertoOrigen= new Aeropuerto();
 		aeropuertoDestino= new Aeropuerto();

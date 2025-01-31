@@ -91,7 +91,7 @@ public class Login extends JFrame {
 		
 		JLabel lblError = new JLabel("Usuario o Contraseña equivocada");
 		lblError.setForeground(new Color(255, 0, 0));
-		lblError.setBounds(125, 187, 217, 14);
+		lblError.setBounds(120, 187, 217, 14);
 		contentPane.add(lblError);
 		lblError.setVisible(false);
 		
@@ -104,6 +104,11 @@ public class Login extends JFrame {
 				String nombre = txtUsuario.getText();
 				String clave = textClave.getText();
 				inicioSesion(nombre, clave);
+				GestorAgencia gestorAgencia = new GestorAgencia();
+				if(gestorAgencia.verificarDatos(nombre,clave)==false){
+					lblError.setVisible(true);
+				}
+				
 				
 				
 				}
@@ -124,7 +129,8 @@ public class Login extends JFrame {
 			
 			
 		}else{
-			System.out.println("mal");
+			
+			
 		};
 	}
 }

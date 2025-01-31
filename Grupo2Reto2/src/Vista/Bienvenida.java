@@ -58,14 +58,7 @@ public class Bienvenida extends JFrame {
         	}
         });
         contentPane.add(lblNewLabel_1);
-        
-      
-
-     
-        
        
-       
-    
     }
 
 
