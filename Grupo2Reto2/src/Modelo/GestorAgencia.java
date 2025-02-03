@@ -27,6 +27,7 @@ public class GestorAgencia {
              
             if (resultSet.isBeforeFirst() &&resultSet.next()) {
                 agencia = new Agencia();
+                agencia.setIdAgencia(resultSet.getString("idAgencia"));
                 agencia.setNombre(resultSet.getString("nombre"));
                 agencia.setColorMarca(resultSet.getString("colorMarca"));
                 agencia.setNumeroEmpleados(resultSet.getString("numeroEmpleados"));

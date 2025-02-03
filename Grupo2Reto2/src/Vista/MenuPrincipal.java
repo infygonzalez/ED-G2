@@ -159,7 +159,7 @@ public class MenuPrincipal extends JFrame {
 	
 	public Viaje viajeSeleccionado(Agencia agencia) {
         if (tablaViajes.getSelectedRow() != -1) {
-            String ViajeIDSeleccionado = tablaViajes.getValueAt(tablaViajes.getSelectedRow(), 0).toString();
+            String ViajeIDSeleccionado = tablaViajes.getValueAt(tablaViajes.getSelectedRow(),0).toString();
             ArrayList<Viaje> viajes = agencia.getViajes();
             for (int i = 0; i < viajes.size(); i++) {
                 if (viajes.get(i).getIdViaje().equals(ViajeIDSeleccionado)) {
@@ -175,7 +175,7 @@ public class MenuPrincipal extends JFrame {
 		 ArrayList<Viaje> viajes = controlador.mostrarViajes(agencia,paises);
 		 for(Viaje viaje :viajes ) {
 			 String[] fila= new String[7];
-			 fila[0]= viaje.getNombreViaje();
+			 fila[0]= viaje.getIdViaje();
 			 fila[1]= viaje.getDescripcion();
 			 fila[2]= viaje.getTipoViaje();
 			 fila[3]= viaje.getFechaIda();

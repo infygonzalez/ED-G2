@@ -61,7 +61,7 @@ public class GestorViajes {
             Class.forName(DBUtils.DRIVER);
             conexion = DriverManager.getConnection(DBUtils.URL, DBUtils.USER, DBUtils.PASSWORD);
             String sql = SQLQuerys.SELECT_TODOS_VIAJES;
-            sentencia = conexion.prepareStatement(sql);
+            sentencia = conexion.prepareStatement(sql);          
             sentencia.setString(1, agencia.getIdAgencia());
             resultSet = sentencia.executeQuery();
             viajes = new ArrayList<Viaje>();
@@ -69,7 +69,7 @@ public class GestorViajes {
             while (resultSet.next()) {
                 Viaje viaje = new Viaje();
                 viaje.setAgencia(agencia);
-                viaje.setNombreViaje(resultSet.getString("Nombre"));
+                viaje.setIdViaje(resultSet.getString("idViajes"));
                 viaje.setDescripcion(resultSet.getString("Descripcion"));
                 viaje.setTipoViaje(resultSet.getString("TipoViaje"));
                 viaje.setFechaIda(resultSet.getString("FechaIda"));
