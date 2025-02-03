@@ -60,6 +60,30 @@ public class Login extends JFrame {
 		contentPane.add(lblClave);
 		
 		JButton btnIniciarSesion = new JButton("Iniciar Sesion");
+		btnIniciarSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+		         if (txtUsuario.getText().equals("") && textClave.getText().equals("")) {
+	                    JOptionPane.showMessageDialog(null, "Nombre de agencia y contraseña incorrectos.", "Error",
+	                            JOptionPane.ERROR_MESSAGE);
+
+	                } else if (txtUsuario.getText().equals("")) {
+	                    JOptionPane.showMessageDialog(null, "Nombre de agencia incorrecto.", "Error",
+	                            JOptionPane.ERROR_MESSAGE);
+	                } else if (textClave.getText().equals("")) {
+	                    JOptionPane.showMessageDialog(null, "Contraseña incorrecta.", "Error", JOptionPane.ERROR_MESSAGE);
+	                } else {
+	                    Agencia agenciaLogin = controlador.login(txtUsuario.getText(), textClave.getText());
+	                    if (agenciaLogin == null) {
+	                        JOptionPane.showMessageDialog(null, "Nombre de agencia y contraseña incorrectos.", "Error",
+	                                JOptionPane.ERROR_MESSAGE);
+	                    } else {
+	                        MenuPrincipal ventana = new MenuPrincipal(agenciaLogin);
+	                        ventana.setVisible(true);
+	                        dispose();
+	                    }
+	                }
+			}
+		});
 		btnIniciarSesion.setBounds(90, 212, 105, 23);
 		contentPane.add(btnIniciarSesion);
 		
@@ -86,30 +110,7 @@ public class Login extends JFrame {
 		
 		
 		
-		btnIniciarSesion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-                if (txtUsuario.getText().equals("") && textClave.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Nombre de agencia y contraseña incorrectos.", "Error",
-                            JOptionPane.ERROR_MESSAGE);
-
-                } else if (txtUsuario.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Nombre de agencia incorrecto.", "Error",
-                            JOptionPane.ERROR_MESSAGE);
-                } else if (textClave.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Contraseña incorrecta.", "Error", JOptionPane.ERROR_MESSAGE);
-                } else {
-                    Agencia agenciaLogin = controlador.login(txtUsuario.getText(), textClave.getText());
-                    if (agenciaLogin == null) {
-                        JOptionPane.showMessageDialog(null, "Nombre de agencia y contraseña incorrectos.", "Error",
-                                JOptionPane.ERROR_MESSAGE);
-                    } else {
-                        MenuPrincipal ventana = new MenuPrincipal(agenciaLogin);
-                        ventana.setVisible(true);
-                        dispose();
-                    }
-                }
-            }
-        });
+	
 		
 		
 	}

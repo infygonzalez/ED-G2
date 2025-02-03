@@ -3,7 +3,8 @@ package Modelo;
 import java.util.ArrayList;
 
 public class Agencia {
-
+	
+	private String idAgencia;
 	private String nombre;
 	private String colorMarca;
 	private String numeroEmpleados;
@@ -15,6 +16,7 @@ public class Agencia {
 	private ArrayList<Viaje>viajes;
 	
 	public Agencia() {
+		idAgencia="";
 		nombre="";
 		colorMarca="";
 		numeroEmpleados="";
@@ -25,8 +27,9 @@ public class Agencia {
 	}
 	
 	
-	public Agencia(String nombre, String colorMarca, String numeroEmpleados, String tipoAgencia,String logo, String clave,ArrayList<Viaje> viajes) {
+	public Agencia(String idAgencia,String nombre, String colorMarca, String numeroEmpleados, String tipoAgencia,String logo, String clave,ArrayList<Viaje> viajes) {
 		
+		this.idAgencia=idAgencia;
 		this.nombre=nombre;
 		this.colorMarca=colorMarca;
 		this.numeroEmpleados=numeroEmpleados;
@@ -37,6 +40,16 @@ public class Agencia {
 			
 	}
 
+
+
+	public String getIdAgencia() {
+		return idAgencia;
+	}
+
+
+	public void setIdAgencia(String idAgencia) {
+		this.idAgencia = idAgencia;
+	}
 
 
 	public String getNombre() {
@@ -111,10 +124,13 @@ public class Agencia {
 
 	@Override
 	public String toString() {
-		return "Agencia [nombre=" + nombre + ", colorMarca=" + colorMarca
+		return "Agencia [idAgencia=" + idAgencia + ", nombre=" + nombre + ", colorMarca=" + colorMarca
 				+ ", numeroEmpleados=" + numeroEmpleados + ", tipoAgencia=" + tipoAgencia + ", logo=" + logo
 				+ ", clave=" + clave + ", viajes=" + viajes + "]";
 	}
+
+
+
 
 	
 }

@@ -24,10 +24,10 @@ public class Controlador {
 		gestorAgencia.crearAgencia(agencia);
 	}
 	
-	public ArrayList<Viaje> mostrarViajes(ArrayList<Pais> paises) {
+	public ArrayList<Viaje> mostrarViajes(Agencia agencia,ArrayList<Pais> paises) {
 		ArrayList<Viaje>viajes= new ArrayList<Viaje>();
 		GestorViajes gestorViajes = new GestorViajes();
-		viajes=gestorViajes.mostrarViajes(paises);
+		viajes=gestorViajes.mostrarViajes(agencia, paises);
 		return viajes;	
 	}
 	

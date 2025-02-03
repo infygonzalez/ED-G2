@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Modelo.Agencia;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -34,7 +37,7 @@ public class nuevoViaje extends JFrame {
 	private JLabel lblErrorServ;
 	private JLabel lblErrorNombre_4;
 
-	public nuevoViaje() {
+	public nuevoViaje(Agencia agencia) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 700, 821);
 		contentPane = new JPanel();

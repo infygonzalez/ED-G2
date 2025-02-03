@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Viaje {
 	
-	
 	private String idViaje;
 	private String nombreViaje;
 	private String descripcion;

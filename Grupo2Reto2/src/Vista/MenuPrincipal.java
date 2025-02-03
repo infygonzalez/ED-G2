@@ -135,7 +135,7 @@ public class MenuPrincipal extends JFrame {
 	                }
 			    });
 	            		
-		rellenarViajes();
+		rellenarViajes(agencia);
 		
 		
 		lblCerrarSesiopn.addMouseListener(new MouseAdapter() {
@@ -160,19 +160,19 @@ public class MenuPrincipal extends JFrame {
 	public Viaje viajeSeleccionado(Agencia agencia) {
         if (tablaViajes.getSelectedRow() != -1) {
             String ViajeIDSeleccionado = tablaViajes.getValueAt(tablaViajes.getSelectedRow(), 0).toString();
-            ArrayList<Viaje> viajesArray = agencia.getViajes();
-            for (int i = 0; i < viajesArray.size(); i++) {
-                if (viajesArray.get(i).getIdViaje().equals(ViajeIDSeleccionado)) {
-                    return viajesArray.get(i);
+            ArrayList<Viaje> viajes = agencia.getViajes();
+            for (int i = 0; i < viajes.size(); i++) {
+                if (viajes.get(i).getIdViaje().equals(ViajeIDSeleccionado)) {
+                    return viajes.get(i);
                 }
             }
         }
         return null;
     }
-	private void rellenarViajes() {
+	private void rellenarViajes(Agencia agencia) {
 		 modelo.setRowCount(0);
 		 ArrayList<Pais> paises = controlador.mostrarPais();
-		 ArrayList<Viaje> viajes = controlador.mostrarViajes(paises);
+		 ArrayList<Viaje> viajes = controlador.mostrarViajes(agencia,paises);
 		 for(Viaje viaje :viajes ) {
 			 String[] fila= new String[7];
 			 fila[0]= viaje.getNombreViaje();

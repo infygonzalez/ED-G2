@@ -52,7 +52,7 @@ public class GestorViajes {
         return paises;
     }
 	
-	public ArrayList<Viaje> mostrarViajes(ArrayList<Pais> paises) {
+	public ArrayList<Viaje> mostrarViajes(Agencia agencia,ArrayList<Pais> paises) {
         Connection conexion = null;
         PreparedStatement sentencia = null;
         ResultSet resultSet = null;
@@ -62,11 +62,13 @@ public class GestorViajes {
             conexion = DriverManager.getConnection(DBUtils.URL, DBUtils.USER, DBUtils.PASSWORD);
             String sql = SQLQuerys.SELECT_TODOS_VIAJES;
             sentencia = conexion.prepareStatement(sql);
+            sentencia.setString(1, agencia.getIdAgencia());
             resultSet = sentencia.executeQuery();
             viajes = new ArrayList<Viaje>();
 
             while (resultSet.next()) {
                 Viaje viaje = new Viaje();
+                viaje.setAgencia(agencia);
                 viaje.setNombreViaje(resultSet.getString("Nombre"));
                 viaje.setDescripcion(resultSet.getString("Descripcion"));
                 viaje.setTipoViaje(resultSet.getString("TipoViaje"));
@@ -77,7 +79,6 @@ public class GestorViajes {
                 	if(pais.getCodigoPais().equals(resultSet.getString("codigoPais"))){
                 		viaje.setPais(pais);
                 	}else {
-                		System.out.println("Pais no existente en BD");
                 	}
                 	
                 }
