@@ -14,6 +14,8 @@ public class SQLQuerys {
 		public static final String SELECT_TODOS_VUELOS = "SELECT * FROM vuelo";
 		public static final String SELECT_TODOS_ALOJAMIENTO = "SELECT * FROM alojamiento";
 		public static final String SELECT_TODOS_OTROS = "SELECT * FROM otros";
+		public static final String SELECT_TODOS_PAISES = "SELECT * FROM pais";
+		
 		
 		
 	

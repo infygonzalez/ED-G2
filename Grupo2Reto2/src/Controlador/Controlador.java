@@ -8,6 +8,7 @@ import Modelo.GestorAgencia;
 import Modelo.GestorEventos;
 import Modelo.GestorViajes;
 import Modelo.Otros;
+import Modelo.Pais;
 import Modelo.Viaje;
 import Modelo.Vuelo;
 
@@ -23,13 +24,19 @@ public class Controlador {
 		gestorAgencia.crearAgencia(agencia);
 	}
 	
-	public ArrayList<Viaje> mostrarViajes() {
+	public ArrayList<Viaje> mostrarViajes(ArrayList<Pais> paises) {
 		ArrayList<Viaje>viajes= new ArrayList<Viaje>();
 		GestorViajes gestorViajes = new GestorViajes();
-		viajes=gestorViajes.mostrarViajes();
-		return viajes;
-			
+		viajes=gestorViajes.mostrarViajes(paises);
+		return viajes;	
 	}
+	
+	public ArrayList<Pais> mostrarPais() {
+		ArrayList<Pais>paises= new ArrayList<Pais>();
+		GestorViajes gestorViajes = new GestorViajes();
+		paises=gestorViajes.mostrarPais();
+		return paises;
+}
 
 	public ArrayList<Vuelo> mostrarVuelos() {
 		ArrayList<Vuelo>vuelos= new ArrayList<Vuelo>();
@@ -53,4 +60,6 @@ public class Controlador {
 		
 		return otros;
 	}
+	
+
 }

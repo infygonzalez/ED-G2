@@ -9,8 +9,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Controlador.Controlador;
+import Modelo.Agencia;
 import Modelo.Alojamiento;
 import Modelo.Otros;
+import Modelo.Pais;
 import Modelo.Viaje;
 import Modelo.Vuelo;
 
@@ -29,9 +31,9 @@ public class MenuPrincipal extends JFrame {
 	private JPanel contentPane;
 	private DefaultTableModel modelo;
 	private DefaultTableModel modelo1;
-	private JTable table;
+	private JTable tablaViajes;
 	private JScrollPane spEventos;
-	private JTable table_1;
+	private JTable tablaEventos;
 	private Controlador controlador=new Controlador();
 	private JLabel lblViajes;
 	private JLabel lblEventos;
@@ -52,6 +54,7 @@ public class MenuPrincipal extends JFrame {
 		});
 	}
 
+	
 	/**
 	 * Create the frame.
 	 */
@@ -83,11 +86,11 @@ public class MenuPrincipal extends JFrame {
 		 modelo.addColumn("Fecha ida");
 		 modelo.addColumn("Fecha vuelta");
 		 modelo.addColumn("Duracion");
-		 modelo.addColumn("Serv no inc.");
+		 modelo.addColumn("Pais");
 		 
-		 table = new JTable(modelo);
-		 table.setDefaultEditor(Object.class, null);
-		 spViajes.setViewportView(table);
+		 tablaViajes = new JTable(modelo);
+		 tablaViajes.setDefaultEditor(Object.class, null);
+		 spViajes.setViewportView(tablaViajes);
 		 
 		 
 			
@@ -97,9 +100,9 @@ public class MenuPrincipal extends JFrame {
 		 modelo1.addColumn("Fecha");
 		 modelo1.addColumn("Precio");
 			
-		table_1 = new JTable(modelo1);
-		table_1.setDefaultEditor(Object.class, null);
-		spEventos.setViewportView(table_1);
+		tablaEventos = new JTable(modelo1);
+		tablaEventos.setDefaultEditor(Object.class, null);
+		spEventos.setViewportView(tablaEventos);
 		
 		lblViajes = new JLabel("Viajes");
 		lblViajes.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -155,7 +158,8 @@ public class MenuPrincipal extends JFrame {
 	
 	private void rellenarViajes() {
 		 modelo.setRowCount(0);
-		 ArrayList<Viaje> viajes = controlador.mostrarViajes();
+		 ArrayList<Pais> paises = controlador.mostrarPais();
+		 ArrayList<Viaje> viajes = controlador.mostrarViajes(paises);
 		 for(Viaje viaje :viajes ) {
 			 String[] fila= new String[7];
 			 fila[0]= viaje.getNombreViaje();
@@ -164,26 +168,24 @@ public class MenuPrincipal extends JFrame {
 			 fila[3]= viaje.getFechaIda();
 			 fila[4]= viaje.getFechaVuelta();
 			 fila[5]= viaje.getDuracion();
-			 fila[6]= viaje.getDescServicio();
-			 System.out.println(viaje.getIdViaje());
-			 modelo.addRow(fila);
-			 
+			 fila[6]= viaje.getPais().getDescripPais();
+			 modelo.addRow(fila); 
 		 }
 	}
 		
 		 private void rellenarEventos() {
 			 modelo1.setRowCount(0);
-			 //ArrayList<Vuelo> vuelos = controlador.mostrarVuelos();
+			 ArrayList<Vuelo> vuelos = controlador.mostrarVuelos();
 			 ArrayList<Alojamiento> alojamientos = controlador.mostrarAlojamientos();
 			 ArrayList<Otros> otros = controlador.mostrarOtros();
-			 /*for(Vuelo vuelo :vuelos ) {
+			 for(Vuelo vuelo :vuelos ) {
 				 String[] fila= new String[4];
 				 fila[0]= vuelo.getNombreEvento();
 				 fila[1]= "Vuelo";
 				 fila[2]= vuelo.getFecha();
 				 fila[3]= vuelo.getPrecio();
 				 modelo1.addRow(fila);
-			 }*/
+			 }
 			 for(Alojamiento alojamiento :alojamientos ) {
 				 String[] fila= new String[4];
 				 fila[0]= alojamiento.getNombreEvento();
@@ -200,10 +202,11 @@ public class MenuPrincipal extends JFrame {
 				 fila[3]= otro.getPrecio();
 				 modelo1.addRow(fila);
 			 }
-			 
+		 }	 
 		 
-		 
+		
 		 
 	 
-	}
+
 }
+
