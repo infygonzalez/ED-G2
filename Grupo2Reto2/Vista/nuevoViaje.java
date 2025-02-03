@@ -34,25 +34,6 @@ public class nuevoViaje extends JFrame {
 	private JLabel lblErrorServ;
 	private JLabel lblErrorNombre_4;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					nuevoViaje frame = new nuevoViaje();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public nuevoViaje() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 700, 821);
@@ -178,7 +159,7 @@ public class nuevoViaje extends JFrame {
 		
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MenuPrincipal menuPrincipal = new MenuPrincipal();
+				MenuPrincipal menuPrincipal = new MenuPrincipal(agencia);
 				 menuPrincipal.setVisible(true);
 				 dispose();
 			}

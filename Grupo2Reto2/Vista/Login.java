@@ -1,12 +1,18 @@
 package Vista;
 
 import java.awt.EventQueue;
+
+import Modelo.Agencia;
 import Modelo.GestorAgencia;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controlador.Controlador;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -21,27 +27,8 @@ public class Login extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtUsuario;
 	private JTextField textClave;
-	
+	private Controlador controlador=new Controlador();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login frame = new Login();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	
 	public Login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -72,9 +59,9 @@ public class Login extends JFrame {
 		lblClave.setBounds(54, 152, 177, 14);
 		contentPane.add(lblClave);
 		
-		JButton btnNewButton = new JButton("Iniciar Sesion");
-		btnNewButton.setBounds(90, 212, 105, 23);
-		contentPane.add(btnNewButton);
+		JButton btnIniciarSesion = new JButton("Iniciar Sesion");
+		btnIniciarSesion.setBounds(90, 212, 105, 23);
+		contentPane.add(btnIniciarSesion);
 		
 		JButton btnNuevaAgencia = new JButton("Nueva agencia");
 		btnNuevaAgencia.addActionListener(new ActionListener() {
@@ -99,38 +86,31 @@ public class Login extends JFrame {
 		
 		
 		
-		btnNewButton.addActionListener(new ActionListener() {
+		btnIniciarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String nombre = txtUsuario.getText();
-				String clave = textClave.getText();
-				inicioSesion(nombre, clave);
-				GestorAgencia gestorAgencia = new GestorAgencia();
-				if(gestorAgencia.verificarDatos(nombre,clave)==false){
-					lblError.setVisible(true);
-				}
-				
-				
-				
-				}
+                if (txtUsuario.getText().equals("") && textClave.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Nombre de agencia y contraseña incorrectos.", "Error",
+                            JOptionPane.ERROR_MESSAGE);
 
-			
-			});
+                } else if (txtUsuario.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Nombre de agencia incorrecto.", "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                } else if (textClave.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Contraseña incorrecta.", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    Agencia agenciaLogin = controlador.login(txtUsuario.getText(), textClave.getText());
+                    if (agenciaLogin == null) {
+                        JOptionPane.showMessageDialog(null, "Nombre de agencia y contraseña incorrectos.", "Error",
+                                JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        MenuPrincipal ventana = new MenuPrincipal(agenciaLogin);
+                        ventana.setVisible(true);
+                        dispose();
+                    }
+                }
+            }
+        });
 		
 		
-	}
-	
-	public void inicioSesion(String nombre, String clave) {
-		GestorAgencia gestorAgencia = new GestorAgencia();
-		if(gestorAgencia.verificarDatos(nombre, clave)) {
-			System.out.println("bien");
-			MenuPrincipal menuPrincipal = new MenuPrincipal();
-			 menuPrincipal.setVisible(true);
-			 dispose();
-			
-			
-		}else{
-			
-			
-		};
 	}
 }

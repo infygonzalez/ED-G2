@@ -9,7 +9,7 @@ public class SQLQuerys {
 		public static final String ENDBLOCK = "')";
 	
 	//SELECTS
-		public static final String SELECT_USUARIO_CLAVE = "SELECT nombre, clave FROM agencia WHERE nombre = ? AND clave = ?";
+		public static final String SELECT_USUARIO_CLAVE = "SELECT * FROM agencia WHERE nombre = ? AND clave = ?";
 		public static final String SELECT_TODOS_VIAJES = "SELECT * FROM viajes";
 		public static final String SELECT_TODOS_VUELOS = "SELECT * FROM vuelo";
 		public static final String SELECT_TODOS_ALOJAMIENTO = "SELECT * FROM alojamiento";

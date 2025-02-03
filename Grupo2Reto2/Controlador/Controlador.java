@@ -14,9 +14,9 @@ import Modelo.Vuelo;
 
 public class Controlador {
 
-	public void verificarDatos(String nombre,String clave) {
+	public Agencia login(String nombre,String clave) {
 	GestorAgencia gestorAgencia = new GestorAgencia();
-	gestorAgencia.verificarDatos( nombre,clave);
+	return gestorAgencia.login( nombre,clave);
 	}
 	
 	public void crearAgencia(Agencia agencia) {
