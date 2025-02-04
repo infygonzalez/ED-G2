@@ -147,7 +147,6 @@ public class nuevoEvento extends JFrame {
 		
 		
 		
-		
 	}
 	
 	public void verAlojamiento(JPanel Alojamiento) {
@@ -195,6 +194,7 @@ public class nuevoEvento extends JFrame {
 		dcFechaAlojamiento.setBounds(224, 142, 118, 20);
 		Alojamiento.add(dcFechaAlojamiento);
 	
+		
 		
 	}
 	
@@ -253,10 +253,12 @@ public class nuevoEvento extends JFrame {
 		vuelo.add(lblDuracion);
 		
 		JComboBox cbAropuertoO = new JComboBox();
+		cbAropuertoO.setModel(new DefaultComboBoxModel(new String[] {"", "Alicante ", "Asturias ", "barcelona", "Córdoba ", "Gerona ", "Granada ", "Ibiza ", "La Coruña LCG", "Lanzarote ", "Madrid", "MAHON", "Murcia ", "Pamplona ", "Salamanca ", "Santa Cruz de la Palma ", "Santiago de Compostela ", "Valencia ", "Vigo ", "Zaragoza", "Badajoz ", "Bilbao", "VITORIA", "Tenerife Norte ", "Tenerife Sur ", "SANTANDER", "SAN SEBASTIAN", "REUS", "PALMA DE MALLORCA", "MALAGA", "JEREZ DE LA FRONTERA", "GRAN CANARIA ", "FUERTEVENTURA", "HIERRO ", "LA GOMERA", "Montreal, Québec ", " CANADA Ottawa, Ontario YOW", "CANADA Toronto, Ontario YTO", "CANADA VANCOUVER  ", "Boston ", "Houston ", "Miami", "LOS ANGELES", "Nueva York ", "DETROIT", "Philadelphia PHL ", "SAN FRANCISCO", "Seattle ", "WASHINGTON", " REPUBLICA DOMINICANA (Santo Domingo) ", "JAMAICA (kingston)", "Buenos Aires ", "BRASIL (Rio de Janeiro )", " BRASIL (Sao Paulo )", "COLOMBIA Bogotá ", "PERU ( Lima)", "VENEZUELA ( CARACAS)", "AUSTRIA (Viena )", "REPUBLICA CHECA (Praga )", "FINLANDIA (Helsinki )", "FRANCIA (lyon)", "FRANCIA,París (aeropuerto Charles de Gaulle)", "FRANCIA ,Le Bourget,", "FRANCIA (ORLY)", "FRANCIA (Marsella)", "ALEMANIA (Berlín )", "ALEMANIA (Dusseldorf )", "ALEMANIA (Frankfurt )", "ALEMANIA (Munich )", "ALEMANIA (hamburgo)", "GRECIA ( Atenas)", "IRLANDA (DUBLIN)", " ITALIA (Milán )", "BOSTON", "DETROIT", " San Francisco", " México D.F.", "MÉXICO (ACAPULCO)", "BRASIL (brasilia)", "Washington", "ALEMANIA (Stuttgart) ", "SAN FRANCISCO", "DINAMARCA ", "BELGICA (Bruselas )", "HOLANDA Amsterdam ", "NORUEGA (oslo)", "POLONIA (Varsovia ) WAW ", "PORTUGAL (lisboa)", "SUECIA (Estocolmo)", " RUSIA (Moscú ) MOW ", "SUIZA (Ginebra )", "SUIZA (Zurich)", "TURQUIA (ESTAMBUL)", "LONDRES (GATWICK)", "LONDRES Heathrow", "LONDRES ( Stanted)", " EGIPTO El Cairo ", "KENIA ( Nairobi)", " MARRUECOS (Casablanca) ", "MARRUECOS (Marrakech)", "Túnez ", "JORDANIA (Ammán ) AMM", "TAILANDIA Bagkok ", " AUSTRALIA Melbourne ", "AUSTRALIA (SIYNEY)"}));
 		cbAropuertoO.setBounds(225, 63, 118, 22);
 		vuelo.add(cbAropuertoO);
 		
 		JComboBox cbAeropuertoD = new JComboBox();
+		cbAeropuertoD.setModel(new DefaultComboBoxModel(new String[] {"", "Alicante ", "Asturias ", "barcelona", "Córdoba ", "Gerona ", "Granada ", "Ibiza ", "La Coruña LCG", "Lanzarote ", "Madrid", "MAHON", "Murcia ", "Pamplona ", "Salamanca ", "Santa Cruz de la Palma ", "Santiago de Compostela ", "Valencia ", "Vigo ", "Zaragoza", "Badajoz ", "Bilbao", "VITORIA", "Tenerife Norte ", "Tenerife Sur ", "SANTANDER", "SAN SEBASTIAN", "REUS", "PALMA DE MALLORCA", "MALAGA", "JEREZ DE LA FRONTERA", "GRAN CANARIA ", "FUERTEVENTURA", "HIERRO ", "LA GOMERA", "Montreal, Québec ", " CANADA Ottawa, Ontario YOW", "CANADA Toronto, Ontario YTO", "CANADA VANCOUVER  ", "Boston ", "Houston ", "Miami", "LOS ANGELES", "Nueva York ", "DETROIT", "Philadelphia PHL ", "SAN FRANCISCO", "Seattle ", "WASHINGTON", " REPUBLICA DOMINICANA (Santo Domingo) ", "JAMAICA (kingston)", "Buenos Aires ", "BRASIL (Rio de Janeiro )", " BRASIL (Sao Paulo )", "COLOMBIA Bogotá ", "PERU ( Lima)", "VENEZUELA ( CARACAS)", "AUSTRIA (Viena )", "REPUBLICA CHECA (Praga )", "FINLANDIA (Helsinki )", "FRANCIA (lyon)", "FRANCIA,París (aeropuerto Charles de Gaulle)", "FRANCIA ,Le Bourget,", "FRANCIA (ORLY)", "FRANCIA (Marsella)", "ALEMANIA (Berlín )", "ALEMANIA (Dusseldorf )", "ALEMANIA (Frankfurt )", "ALEMANIA (Munich )", "ALEMANIA (hamburgo)", "GRECIA ( Atenas)", "IRLANDA (DUBLIN)", " ITALIA (Milán )", "BOSTON", "DETROIT", " San Francisco", " México D.F.", "MÉXICO (ACAPULCO)", "BRASIL (brasilia)", "Washington", "ALEMANIA (Stuttgart) ", "SAN FRANCISCO", "DINAMARCA ", "BELGICA (Bruselas )", "HOLANDA Amsterdam ", "NORUEGA (oslo)", "POLONIA (Varsovia ) WAW ", "PORTUGAL (lisboa)", "SUECIA (Estocolmo)", " RUSIA (Moscú ) MOW ", "SUIZA (Ginebra )", "SUIZA (Zurich)", "TURQUIA (ESTAMBUL)", "LONDRES (GATWICK)", "LONDRES Heathrow", "LONDRES ( Stanted)", " EGIPTO El Cairo ", "KENIA ( Nairobi)", " MARRUECOS (Casablanca) ", "MARRUECOS (Marrakech)", "Túnez ", "JORDANIA (Ammán ) AMM", "TAILANDIA Bagkok ", " AUSTRALIA Melbourne ", "AUSTRALIA (SIYNEY)"}));
 		cbAeropuertoD.setBounds(225, 114, 118, 22);
 		vuelo.add(cbAeropuertoD);
 		
@@ -376,7 +378,9 @@ public class nuevoEvento extends JFrame {
 		dcVueloVuelta.setBounds(576, 161, 118, 20);
 		vuelo.add(dcVueloVuelta);
 		
-		
+
+		cbAropuertoOV.setSelectedItem(cbAeropuertoD);
+		cbAeropuertoDV.setSelectedItem(cbAropuertoO);
 		
 		lblAeropuertoOV.setVisible(false);
 		lblFechaVuelta.setVisible(false);

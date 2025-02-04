@@ -18,13 +18,14 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import com.toedter.calendar.JDateChooser;
 
 public class nuevoViaje extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textNombreViaje;
-	private JComboBox comboBox;
+	private JComboBox cbTipoViaje;
 	private JLabel lblInicioViaje;
 	private JLabel lblFinViaje;
 	private JLabel lblDuracion;
@@ -32,6 +33,7 @@ public class nuevoViaje extends JFrame {
 	private JLabel lblDescrip;
 	private JTextPane textDescrip;
 	private JTextPane textServicios;
+	private JTextField txtDuracion;
 
 	public nuevoViaje(Agencia agencia) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,12 +59,12 @@ public class nuevoViaje extends JFrame {
 		lblTipoViaje.setBounds(77, 144, 118, 14);
 		contentPane.add(lblTipoViaje);
 		
-		comboBox = new JComboBox();
-		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Simple"}));
-		comboBox.setToolTipText("\r\n");
-		comboBox.setBounds(250, 141, 179, 22);
-		contentPane.add(comboBox);
+		cbTipoViaje = new JComboBox();
+		cbTipoViaje.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		cbTipoViaje.setModel(new DefaultComboBoxModel(new String[] {"Simple"}));
+		cbTipoViaje.setToolTipText("\r\n");
+		cbTipoViaje.setBounds(250, 141, 179, 22);
+		contentPane.add(cbTipoViaje);
 		
 		lblInicioViaje = new JLabel("Inicio del viaje");
 		lblInicioViaje.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -107,10 +109,28 @@ public class nuevoViaje extends JFrame {
 		textServicios.setBounds(250, 604, 281, 96);
 		contentPane.add(textServicios);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"", "ALEMANIA", "ARGENTINA", "AUSTRIA", " BÉLGICA", "BRASIL", "CANADA", "CROACIA", "REPUBLICA CHECA", "CUBA", "CHINA", "CHIPRE", "DINAMARCA", "EGIPTO", "ESPAÑA", "ESTADOS UNIDOS", "ESTONIA", "FINLANDIA", "FRANCIA", "GRECIA", "GUATEMALA", "HONG-KONG", "HUNGRIA", "INDIA", "INDONESIA", "IRLANDA", "ISLANDIA", "ISRAEL", "ITALIA", "jAMAICA", "JAPÓN", "KENIA", "LUXEMBURGO", "MALDIVAS", "MALTA", "MARRUECOS", "MEXICO", "MÓNACO", "NORUEGA", "PAISES BAJOS", "PANAMÁ", "PERÚ", "POLONIA", "PORTUGAL", "PUERTO RICO", "QATAR", "REINO UNIDO", "RUMANIA", "RUSIA", " SEYCHELLES", "SINGAPUR", "SUDÁFRICA", "SUECIA", "SUIZA", "TAILANDIA", "TANZANIA (INCLUYE ZANZIBAR)", "TÚNEZ", "TURQUIA", "VENEZUELA", "VIETNAM"}));
-		comboBox_1.setBounds(250, 395, 179, 22);
-		contentPane.add(comboBox_1);
+		JComboBox cbPais = new JComboBox();
+		cbPais.setModel(new DefaultComboBoxModel(new String[] {"", "ALEMANIA", "ARGENTINA", "AUSTRIA", " BÉLGICA", "BRASIL", "CANADA", "CROACIA", "REPUBLICA CHECA", "CUBA", "CHINA", "CHIPRE", "DINAMARCA", "EGIPTO", "ESPAÑA", "ESTADOS UNIDOS", "ESTONIA", "FINLANDIA", "FRANCIA", "GRECIA", "GUATEMALA", "HONG-KONG", "HUNGRIA", "INDIA", "INDONESIA", "IRLANDA", "ISLANDIA", "ISRAEL", "ITALIA", "jAMAICA", "JAPÓN", "KENIA", "LUXEMBURGO", "MALDIVAS", "MALTA", "MARRUECOS", "MEXICO", "MÓNACO", "NORUEGA", "PAISES BAJOS", "PANAMÁ", "PERÚ", "POLONIA", "PORTUGAL", "PUERTO RICO", "QATAR", "REINO UNIDO", "RUMANIA", "RUSIA", " SEYCHELLES", "SINGAPUR", "SUDÁFRICA", "SUECIA", "SUIZA", "TAILANDIA", "TANZANIA (INCLUYE ZANZIBAR)", "TÚNEZ", "TURQUIA", "VENEZUELA", "VIETNAM"}));
+		cbPais.setBounds(250, 395, 179, 22);
+		contentPane.add(cbPais);
+		
+		JDateChooser dcInicioViaje = new JDateChooser();
+		dcInicioViaje.setBounds(250, 207, 179, 20);
+		contentPane.add(dcInicioViaje);
+		
+		JDateChooser dcFinViaje = new JDateChooser();
+		dcFinViaje.setBounds(250, 269, 179, 20);
+		contentPane.add(dcFinViaje);
+		
+		txtDuracion = new JTextField();
+		txtDuracion.setBounds(250, 330, 179, 20);
+		contentPane.add(txtDuracion);
+		txtDuracion.setColumns(10);
+		
+		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnGuardar.setBounds(212, 749, 89, 23);
+		contentPane.add(btnGuardar);
 
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -120,8 +140,6 @@ public class nuevoViaje extends JFrame {
 			}
 		});
 	}
-	
-	
 		}
 
 
