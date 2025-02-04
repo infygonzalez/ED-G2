@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class GestorEventos {
 
-	public ArrayList<Vuelo> mostrarVuelos() {
+	public ArrayList<Vuelo> mostrarVuelos(Viaje viaje) {
 		Connection conexion = null;
         PreparedStatement sentencia = null;
         ResultSet resultSet = null;
@@ -19,11 +19,14 @@ public class GestorEventos {
             conexion = DriverManager.getConnection(DBUtils.URL, DBUtils.USER, DBUtils.PASSWORD);
             String sql = SQLQuerys.SELECT_TODOS_VUELOS;
             sentencia = conexion.prepareStatement(sql);
+            sentencia.setString(1, viaje.getIdViaje());
             resultSet = sentencia.executeQuery();
             vuelos = new ArrayList<Vuelo>();
 
             while (resultSet.next()) {
                 Vuelo vuelo = new Vuelo();
+                vuelo.setViaje(viaje);
+            	vuelo.setIdEvento(resultSet.getString("idEvento"));
                 vuelo.setCodigoVuelo(resultSet.getString("codigoVuelo"));
                 vuelo.setFecha(resultSet.getString("fecSalida"));
                 vuelo.setPrecio(resultSet.getString("precio"));
@@ -56,7 +59,7 @@ public class GestorEventos {
 	
 	
 
-	public ArrayList<Alojamiento> mostrarAlojamientos() {
+	public ArrayList<Alojamiento> mostrarAlojamientos(Viaje viaje) {
 		Connection conexion = null;
         PreparedStatement sentencia = null;
         ResultSet resultSet = null;
@@ -66,11 +69,14 @@ public class GestorEventos {
             conexion = DriverManager.getConnection(DBUtils.URL, DBUtils.USER, DBUtils.PASSWORD);
             String sql = SQLQuerys.SELECT_TODOS_ALOJAMIENTO;
             sentencia = conexion.prepareStatement(sql);
+            sentencia.setString(1, viaje.getIdViaje());
             resultSet = sentencia.executeQuery();
             alojamientos = new ArrayList<Alojamiento>();
 
             while (resultSet.next()) {
             	Alojamiento alojamiento = new Alojamiento();
+            	alojamiento.setViaje(viaje);
+            	alojamiento.setIdEvento(resultSet.getString("idEvento"));
             	alojamiento.setNombreEvento(resultSet.getString("nombreHotel"));
             	alojamiento.setFecha(resultSet.getString("fecSalida"));
             	alojamiento.setPrecio(resultSet.getString("precio"));
@@ -101,7 +107,7 @@ public class GestorEventos {
 		return alojamientos;
 	}
 	
-	public ArrayList<Otros> mostrarOtros() {
+	public ArrayList<Otros> mostrarOtros(Viaje viaje) {
 		Connection conexion = null;
         PreparedStatement sentencia = null;
         ResultSet resultSet = null;
@@ -111,15 +117,18 @@ public class GestorEventos {
             conexion = DriverManager.getConnection(DBUtils.URL, DBUtils.USER, DBUtils.PASSWORD);
             String sql = SQLQuerys.SELECT_TODOS_OTROS;
             sentencia = conexion.prepareStatement(sql);
+            sentencia.setString(1, viaje.getIdViaje());
             resultSet = sentencia.executeQuery();
             otros = new ArrayList<Otros>();
 
             while (resultSet.next()) {
-            	Otros otros1 = new Otros();
-            	otros1.setNombreEvento(resultSet.getString("nombre"));
-            	otros1.setFecha(resultSet.getString("fecSalida"));
-            	otros1.setPrecio(resultSet.getString("precio"));
-                otros.add(otros1);
+            	Otros otro = new Otros();
+            	otro.setViaje(viaje);
+            	otro.setIdEvento(resultSet.getString("idEvento"));
+            	otro.setNombreEvento(resultSet.getString("nombre"));
+            	otro.setFecha(resultSet.getString("fecSalida"));
+            	otro.setPrecio(resultSet.getString("precio"));
+                otros.add(otro);
             }
         } catch (SQLException sqle) {
             System.out.println("Error con la base de datos" + sqle.getMessage());

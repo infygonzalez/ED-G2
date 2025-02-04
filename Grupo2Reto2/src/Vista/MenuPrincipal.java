@@ -26,6 +26,8 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MenuPrincipal extends JFrame {
 
@@ -40,6 +42,7 @@ public class MenuPrincipal extends JFrame {
 	private JLabel lblViajes;
 	private JLabel lblEventos;
 	private JScrollPane spViajes;
+	
 
 	
 	public MenuPrincipal(Agencia agencia) {
@@ -99,11 +102,26 @@ public class MenuPrincipal extends JFrame {
 		contentPane.add(lblEventos);
 		 
 		JButton btnNuevoViaje = new JButton("Nuevo Viaje");
+		btnNuevoViaje.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 dispose();
+					nuevoViaje nuevoViaje = new nuevoViaje(agencia);
+					 nuevoViaje.setVisible(true);
+			}
+		});
 		btnNuevoViaje.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnNuevoViaje.setBounds(821, 159, 114, 48);
 		contentPane.add(btnNuevoViaje);
 		
 		JButton btnNuevoEvento = new JButton("Nuevo Evento");
+		btnNuevoEvento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				nuevoEvento nuevoEvento = new nuevoEvento(agencia);
+				nuevoEvento.setVisible(true);
+				
+			}
+		});
 		btnNuevoEvento.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnNuevoEvento.setBounds(821, 364, 114, 48);
 		contentPane.add(btnNuevoEvento);
@@ -117,9 +135,16 @@ public class MenuPrincipal extends JFrame {
 		lblCerrarSesiopn.setBounds(856, 43, 79, 14);
 		contentPane.add(lblCerrarSesiopn);
 		
-		JButton btnEliminarViaje = new JButton("New button");
-		btnEliminarViaje.setBounds(538, 68, 89, 23);
+		JButton btnEliminarViaje = new JButton("Eliminar Viaje");
+		btnEliminarViaje.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnEliminarViaje.setBounds(529, 68, 106, 23);
 		contentPane.add(btnEliminarViaje);
+    	btnEliminarViaje.setVisible(false);
+
 		
 		JButton btnNewButton_1 = new JButton("New button");
 		btnNewButton_1.setBounds(538, 284, 89, 23);
@@ -129,7 +154,7 @@ public class MenuPrincipal extends JFrame {
 			    public void valueChanged(ListSelectionEvent event) {
 			    	Viaje viajeSeleccionado = viajeSeleccionado(agencia);
 	                if (viajeSeleccionado != null) {
-	                    btnEliminarViaje.setVisible(true);
+	                	btnEliminarViaje.setVisible(true);
 	                    rellenarEventos(viajeSeleccionado);
 	                }
 	                }
@@ -138,7 +163,7 @@ public class MenuPrincipal extends JFrame {
 		rellenarViajes(agencia);
 		
 		
-		lblCerrarSesiopn.addMouseListener(new MouseAdapter() {
+		lblCerrarSesiopn.addMouseListener(new MouseAdapter() { 
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Login loginWindow = new Login();
@@ -168,13 +193,18 @@ public class MenuPrincipal extends JFrame {
             }
         }
         return null;
+        
     }
 	private void rellenarViajes(Agencia agencia) {
 		 modelo.setRowCount(0);
 		 ArrayList<Pais> paises = controlador.mostrarPais();
 		 ArrayList<Viaje> viajes = controlador.mostrarViajes(agencia,paises);
+		 agencia.setViajes(viajes);
 		 for(Viaje viaje :viajes ) {
 			 String[] fila= new String[7];
+			 viaje.setAlojamiento(controlador.mostrarAlojamientos(viaje));
+			 viaje.setVuelo(controlador.mostrarVuelos(viaje));
+			 viaje.setOtros(controlador.mostrarOtros(viaje));
 			 fila[0]= viaje.getIdViaje();
 			 fila[1]= viaje.getDescripcion();
 			 fila[2]= viaje.getTipoViaje();

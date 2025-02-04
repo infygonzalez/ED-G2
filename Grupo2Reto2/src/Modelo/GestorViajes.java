@@ -78,7 +78,6 @@ public class GestorViajes {
                 for (Pais pais: paises) {
                 	if(pais.getCodigoPais().equals(resultSet.getString("codigoPais"))){
                 		viaje.setPais(pais);
-                	}else {
                 	}
                 	
                 }

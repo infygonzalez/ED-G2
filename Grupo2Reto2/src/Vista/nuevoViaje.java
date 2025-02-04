@@ -32,10 +32,6 @@ public class nuevoViaje extends JFrame {
 	private JLabel lblDescrip;
 	private JTextPane textDescrip;
 	private JTextPane textServicios;
-	private JLabel lblErrorNombre;
-	private JLabel lblErrorDescrip;
-	private JLabel lblErrorServ;
-	private JLabel lblErrorNombre_4;
 
 	public nuevoViaje(Agencia agencia) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -98,14 +94,9 @@ public class nuevoViaje extends JFrame {
 		lblServiciosNoInclu.setBounds(77, 631, 118, 14);
 		contentPane.add(lblServiciosNoInclu);
 		
-		JButton btnGuardar = new JButton("Guardar");
-		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnGuardar.setBounds(501, 748, 89, 23);
-		contentPane.add(btnGuardar);
-		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnCancelar.setBounds(171, 748, 89, 23);
+		btnCancelar.setBounds(442, 748, 89, 23);
 		contentPane.add(btnCancelar);
 		
 		textDescrip = new JTextPane();
@@ -116,50 +107,11 @@ public class nuevoViaje extends JFrame {
 		textServicios.setBounds(250, 604, 281, 96);
 		contentPane.add(textServicios);
 		
-		lblErrorNombre = new JLabel("Nombre no valido");
-		lblErrorNombre.setForeground(new Color(255, 0, 0));
-		lblErrorNombre.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblErrorNombre.setBounds(501, 85, 137, 14);
-		contentPane.add(lblErrorNombre);
-		lblErrorNombre.setVisible(false);
-		
-		lblErrorDescrip = new JLabel("Demasiado largo");
-		lblErrorDescrip.setForeground(Color.RED);
-		lblErrorDescrip.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblErrorDescrip.setBounds(541, 484, 137, 14);
-		contentPane.add(lblErrorDescrip);
-		lblErrorDescrip.setVisible(false);
-		
-		lblErrorServ = new JLabel("Demasido largo");
-		lblErrorServ.setForeground(Color.RED);
-		lblErrorServ.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblErrorServ.setBounds(541, 648, 137, 14);
-		contentPane.add(lblErrorServ);
-		lblErrorServ.setVisible(false);
-		
-		lblErrorNombre_4 = new JLabel("Nombre no valido");
-		lblErrorNombre_4.setForeground(Color.RED);
-		lblErrorNombre_4.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblErrorNombre_4.setBounds(501, 270, 137, 14);
-		contentPane.add(lblErrorNombre_4);
-		lblErrorNombre_4.setVisible(false);
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"", "ALEMANIA", "ARGENTINA", "AUSTRIA", " BÉLGICA", "BRASIL", "CANADA", "CROACIA", "REPUBLICA CHECA", "CUBA", "CHINA", "CHIPRE", "DINAMARCA", "EGIPTO", "ESPAÑA", "ESTADOS UNIDOS", "ESTONIA", "FINLANDIA", "FRANCIA", "GRECIA", "GUATEMALA", "HONG-KONG", "HUNGRIA", "INDIA", "INDONESIA", "IRLANDA", "ISLANDIA", "ISRAEL", "ITALIA", "jAMAICA", "JAPÓN", "KENIA", "LUXEMBURGO", "MALDIVAS", "MALTA", "MARRUECOS", "MEXICO", "MÓNACO", "NORUEGA", "PAISES BAJOS", "PANAMÁ", "PERÚ", "POLONIA", "PORTUGAL", "PUERTO RICO", "QATAR", "REINO UNIDO", "RUMANIA", "RUSIA", " SEYCHELLES", "SINGAPUR", "SUDÁFRICA", "SUECIA", "SUIZA", "TAILANDIA", "TANZANIA (INCLUYE ZANZIBAR)", "TÚNEZ", "TURQUIA", "VENEZUELA", "VIETNAM"}));
+		comboBox_1.setBounds(250, 395, 179, 22);
+		contentPane.add(comboBox_1);
 
-		
-		
-		
-		btnGuardar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(validacionTexto(textDescrip.getText(),255)==false && 
-						validacionTexto(textServicios.getText(),255)==false &&
-						validacionTexto(textNombreViaje.getText(),70)) {
-					
-				}
-				
-			}
-		});
-		
-		
-		
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MenuPrincipal menuPrincipal = new MenuPrincipal(agencia);
@@ -169,13 +121,7 @@ public class nuevoViaje extends JFrame {
 		});
 	}
 	
-	public boolean validacionTexto(String texto, int numeroCaracteres) {
-	    if (texto.length() > numeroCaracteres) {
-	        lblErrorDescrip.setVisible(true);
-	        return false;
-	    } else {
-	        return true;
-	    }
+	
 		}
-}
+
 

@@ -38,25 +38,25 @@ public class Controlador {
 		return paises;
 }
 
-	public ArrayList<Vuelo> mostrarVuelos() {
+	public ArrayList<Vuelo> mostrarVuelos(Viaje viaje) {
 		ArrayList<Vuelo>vuelos= new ArrayList<Vuelo>();
 		GestorEventos gestorEventos = new GestorEventos();
-		vuelos=gestorEventos.mostrarVuelos();
+		vuelos=gestorEventos.mostrarVuelos(viaje);
 		
 		return vuelos;
 	}
 
-	public ArrayList<Alojamiento> mostrarAlojamientos() {
+	public ArrayList<Alojamiento> mostrarAlojamientos(Viaje viaje) {
 		ArrayList<Alojamiento>alojamientos= new ArrayList<Alojamiento>();
 		GestorEventos gestorEventos = new GestorEventos();
-		alojamientos=gestorEventos.mostrarAlojamientos();
+		alojamientos=gestorEventos.mostrarAlojamientos(viaje);
 		
 		return alojamientos;
 	}
-	public ArrayList<Otros> mostrarOtros() {
+	public ArrayList<Otros> mostrarOtros(Viaje viaje) {
 		ArrayList<Otros>otros= new ArrayList<Otros>();
 		GestorEventos gestorEventos = new GestorEventos();
-		otros=gestorEventos.mostrarOtros();
+		otros=gestorEventos.mostrarOtros(viaje);
 		
 		return otros;
 	}
