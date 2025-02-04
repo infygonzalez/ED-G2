@@ -42,13 +42,14 @@ public class MenuPrincipal extends JFrame {
 	private JLabel lblViajes;
 	private JLabel lblEventos;
 	private JScrollPane spViajes;
+	private JButton btnGenerarOferta;
 	
 
 	
 	public MenuPrincipal(Agencia agencia) {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 961, 580);
+		setBounds(100, 100, 961, 617);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -146,9 +147,14 @@ public class MenuPrincipal extends JFrame {
     	btnEliminarViaje.setVisible(false);
 
 		
-		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setBounds(538, 284, 89, 23);
-		contentPane.add(btnNewButton_1);
+		JButton btnEliminarEvento = new JButton("Eliminar Evento");
+		btnEliminarEvento.setBounds(529, 284, 106, 23);
+		contentPane.add(btnEliminarEvento);
+		
+		btnGenerarOferta = new JButton("GenerarOferta");
+		btnGenerarOferta.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnGenerarOferta.setBounds(10, 514, 255, 53);
+		contentPane.add(btnGenerarOferta);
 		
 		tablaViajes.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			    public void valueChanged(ListSelectionEvent event) {

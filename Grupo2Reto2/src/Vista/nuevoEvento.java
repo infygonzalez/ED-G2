@@ -146,7 +146,7 @@ public class nuevoEvento extends JFrame {
 		});
 		
 		
-		
+		verVuelo(vuelo);
 	}
 	
 	public void verAlojamiento(JPanel Alojamiento) {
