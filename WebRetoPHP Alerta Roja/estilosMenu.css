@@ -1,0 +1,193 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Open Sans;
+}
+
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column; 
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  overflow-x: hidden;
+}
+
+header {
+  background-color: rgb(13, 138, 138);
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.fotoHeader {
+  width: 15vh;
+  height: auto;
+}
+span#textoUsuario{
+  align-content: center;
+  font-style: italic;
+  font-size: xx-large;
+  margin-right: 15px;
+}
+.usuario {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  font-size: 18px;
+}
+.usuario button{
+  padding: 0.5vh;
+  font-family: Open Sans;
+  font-style: italic;
+  background-color: transparent;
+  box-shadow: 0 4px 6px rgb(0, 0, 0);
+}
+
+#nmbreUsuario{
+  font-style: italic;
+  font-weight: bold;
+}
+
+.botonCerrar {
+  align-self: flex-end;
+  padding: 0.5vh;
+}
+
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5vh;
+  flex-direction: row;
+  gap: 3vh;
+  list-style: none;
+  justify-content: center;
+}
+
+nav li a {
+  padding: 1vh;
+  border-radius: 3px;
+  text-decoration: none;
+  color: black;
+  border: 1px solid black;
+  background-image:linear-gradient(to right,rgba(168, 168, 199, 0.425), rgba(159, 187, 159, 0.425));
+}
+
+
+.contenedor {
+  padding: 0;
+  width: 100%;
+  flex: 1;
+ padding-bottom: 9vh;
+}
+
+
+.contenedor .carrusel {
+  display: flex;
+  overflow: hidden;
+}
+
+.imagenes-transformables {
+  height: 450px;
+  min-width: 20%;
+  width: 33.33%;
+  max-width: 50%;
+  transition: all 1s ease;
+  background-size: cover;
+  background-position: center center;
+  border: 1px solid black;
+}
+
+.imagenes-transformables:hover {
+  max-width: 40%;
+  min-width: 35%;
+  transition: min-width 1s ease;
+  -webkit-transition: min-width 1s ease;
+  -moz-transition: min-width 1s ease;
+  -ms-transition: min-width 1s ease;
+  -o-transition: min-width 1s ease;
+}
+
+.imagenes-transformables:hover .fade {
+  width: 50%;
+  height: 50%;
+  background-repeat: no-repeat;
+  transition: background-color .5s ease;
+  padding: 1em;
+  display: flex;
+}
+
+.imagenes-transformables:hover .fade .border-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  transition: font-size 1s ease;
+}
+
+.imagenes-transformables .fade .border-text {
+  margin: 2px;
+  display: none;
+  font-family: sans-serif;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background-color: transparent;
+  color: black;
+}
+.Terminos {
+  width: 30vh;
+  list-style: none;
+  font-size: medium;
+  padding: 2vh;
+}
+
+.Terminos li:hover {
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.Preguntas {
+  width: 30vh;
+  list-style: none;
+  font-size: medium;
+  padding: 2vh;
+}
+
+.Preguntas li:hover {
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.FooterCC {
+  width: 12vh;
+  height: 4.5vh;
+  padding: 2vh;
+  align-self: center;
+}
+@media(max-width:800px){
+  footer {
+    justify-content: space-between;
+  }
+  
+}
+
+@media(max-width:480px){
+  header{
+    justify-content:space-around;
+  }
+}
