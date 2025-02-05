@@ -154,5 +154,130 @@ public class GestorEventos {
   
 		return otros;
 	}
+	
+	public boolean eliminarVuelo(Vuelo vuelo){
+		
+
+	 	Connection conexion = null;
+        PreparedStatement sentencia = null;
+        boolean valido=false;
+       
+        try {
+            Class.forName(DBUtils.DRIVER);
+            conexion = DriverManager.getConnection(DBUtils.URL, DBUtils.USER, DBUtils.PASSWORD);
+            String sql = SQLQuerys.DELETE_EVENTO_VUELO;
+            sentencia = conexion.prepareStatement(sql);          
+            sentencia.setString(1, vuelo.getIdEvento());
+
+
+            sentencia.executeUpdate();
+            valido=true;
+            
+        } catch (SQLException sqle) {
+            System.out.println("Error con la base de datos" + sqle.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error génerico" + e.getMessage());
+        }
+
+        try {
+            sentencia.close();
+        } catch (SQLException sqle) {
+            System.out.println("Error al cerrar la sentencia" + sqle.getMessage());
+        }
+        try {
+            conexion.close();
+        } catch (SQLException sqle) {
+            System.out.println("Error al cerrar la conexión" + sqle.getMessage());
+        }
+	
+	return valido;
+		
+		
+		
+	}
+	
+public boolean eliminarAlojamiento(Alojamiento alojamiento){
+		
+
+	 	Connection conexion = null;
+        PreparedStatement sentencia = null;
+  
+        boolean valido=false;
+       
+        try {
+            Class.forName(DBUtils.DRIVER);
+            conexion = DriverManager.getConnection(DBUtils.URL, DBUtils.USER, DBUtils.PASSWORD);
+            String sql = SQLQuerys.DELETE_EVENTO_ALOJAMIENTO;
+            sentencia = conexion.prepareStatement(sql);          
+            sentencia.setString(1, alojamiento.getIdEvento());
+     
+
+            sentencia.executeUpdate();
+            valido=true;
+            
+        } catch (SQLException sqle) {
+            System.out.println("Error con la base de datos" + sqle.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error génerico" + e.getMessage());
+        }
+
+        try {
+            sentencia.close();
+        } catch (SQLException sqle) {
+            System.out.println("Error al cerrar la sentencia" + sqle.getMessage());
+        }
+        try {
+            conexion.close();
+        } catch (SQLException sqle) {
+            System.out.println("Error al cerrar la conexión" + sqle.getMessage());
+        }
+	
+	return valido;
+		
+		
+		
+	}
+
+public boolean eliminarOtros(Otros otro){
+	
+
+ 	Connection conexion = null;
+    PreparedStatement sentencia = null;
+    boolean valido=false;
+   
+    try {
+        Class.forName(DBUtils.DRIVER);
+        conexion = DriverManager.getConnection(DBUtils.URL, DBUtils.USER, DBUtils.PASSWORD);
+        String sql = SQLQuerys.DELETE_EVENTO_OTROS;
+        sentencia = conexion.prepareStatement(sql);          
+        sentencia.setString(1, otro.getIdEvento());
+      
+
+        sentencia.executeUpdate();
+        valido=true;
+        
+    } catch (SQLException sqle) {
+        System.out.println("Error con la base de datos" + sqle.getMessage());
+    } catch (Exception e) {
+        System.out.println("Error génerico" + e.getMessage());
+    }
+
+
+    try {
+        sentencia.close();
+    } catch (SQLException sqle) {
+        System.out.println("Error al cerrar la sentencia" + sqle.getMessage());
+    }
+    try {
+        conexion.close();
+    } catch (SQLException sqle) {
+        System.out.println("Error al cerrar la conexión" + sqle.getMessage());
+    }
+
+    return valido;
+	
+	
+	
+}
 
 }

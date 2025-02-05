@@ -108,7 +108,44 @@ public class GestorViajes {
         return viajes;
     }
 	
+	public boolean borrarViaje(Viaje viaje) {
+		
+		 	Connection conexion = null;
+	        PreparedStatement sentencia = null;
+	        boolean valido=false;
+	       
+	        try {
+	            Class.forName(DBUtils.DRIVER);
+	            conexion = DriverManager.getConnection(DBUtils.URL, DBUtils.USER, DBUtils.PASSWORD);
+	            String sql = SQLQuerys.DELETE_VIAJE;
+	            sentencia = conexion.prepareStatement(sql);          
+	            sentencia.setString(1, viaje.getIdViaje());
 
+	            sentencia.executeUpdate();
+	            valido=true;
+	            
+	        } catch (SQLException sqle) {
+	            System.out.println("Error con la base de datos" + sqle.getMessage());
+	        } catch (Exception e) {
+	            System.out.println("Error génerico" + e.getMessage());
+	        }
+	        
+	        try {
+	            sentencia.close();
+	        } catch (SQLException sqle) {
+	            System.out.println("Error al cerrar la sentencia" + sqle.getMessage());
+	        }
+	        try {
+	            conexion.close();
+	        } catch (SQLException sqle) {
+	            System.out.println("Error al cerrar la conexión" + sqle.getMessage());
+	        }
+		
+		return valido;
+	}
+	
+	
+	
 	
 }
 

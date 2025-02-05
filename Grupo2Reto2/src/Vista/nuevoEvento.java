@@ -51,7 +51,7 @@ public class nuevoEvento extends JFrame {
            int mes = calendar.getCalendar().get(Calendar.MONTH);
            int dia = calendar.getCalendar().get(Calendar.DAY_OF_MONTH);
            String fecha = dia+"-"+mes+"-"+año;
-           System.out.print(fecha);
+
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 792, 696);
@@ -146,7 +146,7 @@ public class nuevoEvento extends JFrame {
 		});
 		
 		
-		verVuelo(vuelo);
+		
 	}
 	
 	public void verAlojamiento(JPanel Alojamiento) {

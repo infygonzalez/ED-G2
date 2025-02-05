@@ -21,6 +21,8 @@ import Modelo.Vuelo;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.Color;
@@ -43,6 +45,9 @@ public class MenuPrincipal extends JFrame {
 	private JLabel lblEventos;
 	private JScrollPane spViajes;
 	private JButton btnGenerarOferta;
+	private JButton btnEliminarViaje;
+	private JButton btnEliminarEvento;
+	private JButton btnNuevoEvento;
 	
 
 	
@@ -114,7 +119,7 @@ public class MenuPrincipal extends JFrame {
 		btnNuevoViaje.setBounds(821, 159, 114, 48);
 		contentPane.add(btnNuevoViaje);
 		
-		JButton btnNuevoEvento = new JButton("Nuevo Evento");
+		btnNuevoEvento = new JButton("Nuevo Evento");
 		btnNuevoEvento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -136,20 +141,26 @@ public class MenuPrincipal extends JFrame {
 		lblCerrarSesiopn.setBounds(856, 43, 79, 14);
 		contentPane.add(lblCerrarSesiopn);
 		
-		JButton btnEliminarViaje = new JButton("Eliminar Viaje");
-		btnEliminarViaje.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		btnEliminarViaje.setBounds(529, 68, 106, 23);
+		btnEliminarViaje = new JButton("Eliminar Viaje");
+		
+		btnEliminarViaje.setBounds(503, 61, 130, 30);
 		contentPane.add(btnEliminarViaje);
     	btnEliminarViaje.setVisible(false);
-
+    	spEventos.setVisible(false);
+    	tablaEventos.setVisible(false);
+    	lblEventos.setVisible(false);
+    	btnNuevoEvento.setVisible(false);
+    	
 		
-		JButton btnEliminarEvento = new JButton("Eliminar Evento");
-		btnEliminarEvento.setBounds(529, 284, 106, 23);
+		btnEliminarEvento = new JButton("Eliminar Evento");
+		btnEliminarEvento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				borrarEvento(agencia);
+			}
+		});
+		btnEliminarEvento.setBounds(503, 277, 132, 30);
 		contentPane.add(btnEliminarEvento);
+		btnEliminarEvento.setVisible(false);
 		
 		btnGenerarOferta = new JButton("GenerarOferta");
 		btnGenerarOferta.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -161,10 +172,23 @@ public class MenuPrincipal extends JFrame {
 			    	Viaje viajeSeleccionado = viajeSeleccionado(agencia);
 	                if (viajeSeleccionado != null) {
 	                	btnEliminarViaje.setVisible(true);
+	                	spEventos.setVisible(true);
+	                	tablaEventos.setVisible(true);
+	                	lblEventos.setVisible(true);
+	                	btnNuevoEvento.setVisible(true);
 	                    rellenarEventos(viajeSeleccionado);
 	                }
 	                }
 			    });
+		tablaEventos.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+		    public void valueChanged(ListSelectionEvent event) {
+		    	Viaje viajeSeleccionado = viajeSeleccionado(agencia);
+                if (viajeSeleccionado != null) {
+                	btnEliminarEvento.setVisible(true);
+                    
+                }
+                }
+		    });
 	            		
 		rellenarViajes(agencia);
 		
@@ -186,6 +210,11 @@ public class MenuPrincipal extends JFrame {
 			}
 		});
 		
+		btnEliminarViaje.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				borrarViaje(agencia);
+			}
+		});
 	}
 	
 	public Viaje viajeSeleccionado(Agencia agencia) {
@@ -201,7 +230,7 @@ public class MenuPrincipal extends JFrame {
         return null;
         
     }
-	private void rellenarViajes(Agencia agencia) {
+	public void rellenarViajes(Agencia agencia) {
 		 modelo.setRowCount(0);
 		 ArrayList<Pais> paises = controlador.mostrarPais();
 		 ArrayList<Viaje> viajes = controlador.mostrarViajes(agencia,paises);
@@ -229,7 +258,7 @@ public class MenuPrincipal extends JFrame {
 			 ArrayList<Otros> otros = viaje.getOtros();
 			 for(int i=0;i<vuelos.size();i++) {
 				 String[] fila= new String[4];
-				 fila[0]= vuelos.get(i).getNombreEvento();
+				 fila[0]= vuelos.get(i).getIdEvento();
 				 fila[1]= "Vuelo";
 				 fila[2]= vuelos.get(i).getFecha();
 				 fila[3]= vuelos.get(i).getPrecio();
@@ -238,7 +267,7 @@ public class MenuPrincipal extends JFrame {
 			 
 			 for(int i=0;i<alojamientos.size();i++) {
 				 String[] fila= new String[4];
-				 fila[0]= alojamientos.get(i).getNombreEvento();
+				 fila[0]= alojamientos.get(i).getIdEvento();
 				 fila[1]= "Alojamiento";
 				 fila[2]= alojamientos.get(i).getFecha();
 				 fila[3]= alojamientos.get(i).getPrecio();
@@ -246,12 +275,74 @@ public class MenuPrincipal extends JFrame {
 			 }
 			 for(int i=0;i<otros.size();i++) {
 				 String[] fila= new String[4];
-				 fila[0]= otros.get(i).getNombreEvento();
+				 fila[0]= otros.get(i).getIdEvento();
 				 fila[1]= "Otros";
 				 fila[2]= otros.get(i).getFecha();
 				 fila[3]= otros.get(i).getPrecio();
 				 modelo1.addRow(fila);
 			 }
-		 }	 
-}
+		 }
+		 
+		 
+		 
+		 public void borrarViaje(Agencia agencia ) {
+			 if(controlador.borrarViaje(viajeSeleccionado(agencia))==true) {
+				 JOptionPane.showMessageDialog(null, "Eliminado", agencia.getNombre(),JOptionPane.INFORMATION_MESSAGE);
+				 rellenarViajes(agencia);
+				 modelo1.setRowCount(0);
+				 btnEliminarViaje.setVisible(false);
+				 btnEliminarEvento.setVisible(false);
+				 
+			 }
+		 }
+		 
+		 public void borrarEvento(Agencia agencia) {
+			 boolean valido = false;
+			 if(tablaEventos.getSelectedRow()!=-1 ) {
+				 String eventoSeleccionadoId = tablaEventos.getValueAt(tablaEventos.getSelectedRow(), 0).toString();
+			 
+				 if(tablaEventos.getSelectedRow()!=-1 ) {
+						String eventoSeleccionadoTipo = tablaEventos.getValueAt(tablaEventos.getSelectedRow(), 1).toString();
+					 if(eventoSeleccionadoTipo=="Vuelo") {
+					 ArrayList<Vuelo> vuelos= viajeSeleccionado(agencia).getVuelo();
+						for(int i =0;i<vuelos.size();i++) {
+							
+							if(vuelos.get(i).getIdEvento().equals(eventoSeleccionadoId)) {
+								valido=controlador.eliminarVuelo(vuelos.get(i));
+							}
+						}
+				 }
+					 else if(eventoSeleccionadoTipo=="Alojamiento") {
+						 ArrayList<Alojamiento> alojamientos= viajeSeleccionado(agencia).getAlojamiento();
+							for(int i =0;i<alojamientos.size();i++) {
+								
+								if(alojamientos.get(i).getIdEvento().equals(eventoSeleccionadoId)) {
+									valido=controlador.eliminarAlojamiento(alojamientos.get(i));
+								}
+							}
+					 }
+					 else if(eventoSeleccionadoTipo=="Otros") {
+						 ArrayList<Otros> otros= viajeSeleccionado(agencia).getOtros();
+							for(int i =0;i<otros.size();i++) {
+								
+								if(otros.get(i).getIdEvento().equals(eventoSeleccionadoId)) {
+									valido=controlador.eliminarOtros(otros.get(i));
+								}
+							}
+					 }
+					 
+	 
+			 }
+				 if(valido==true) {
+					 JOptionPane.showMessageDialog(null, "Eliminado", agencia.getNombre(),JOptionPane.INFORMATION_MESSAGE);
+					 rellenarViajes(agencia);
+					 modelo1.setRowCount(0);
+					 btnEliminarViaje.setVisible(false);
+					 btnEliminarEvento.setVisible(false);
+				 }
+			 
+			 
+		 }
+		 }
+		 }
 
