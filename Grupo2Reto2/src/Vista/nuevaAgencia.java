@@ -37,25 +37,9 @@ public class nuevaAgencia extends JFrame {
 	private Controlador controlador=new Controlador();
 	private JPanel pColor;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					nuevaAgencia frame = new nuevaAgencia();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
-	/**
-	 * Create the frame.
-	 */
+
 	public nuevaAgencia() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 500, 600);
