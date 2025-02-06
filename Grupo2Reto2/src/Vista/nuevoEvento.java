@@ -475,4 +475,14 @@ public class nuevoEvento extends JFrame {
 			dcFechaOtros.setBounds(224, 201, 118, 20);
 			otros.add(dcFechaOtros);
 }
+	
+	
+	
+	public boolean validarViaje() {
+		boolean valido = true;
+		
+		
+		
+	return valido;	
+	}
 }

@@ -31,7 +31,7 @@ public class Bienvenida extends JFrame {
         setBounds(0, 0, 1080, 600);
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        setSize(screenSize);
+        setSize(new Dimension(1037, 632));
 
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

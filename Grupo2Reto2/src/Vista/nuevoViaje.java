@@ -40,6 +40,7 @@ public class nuevoViaje extends JFrame {
 	private JDateChooser dcInicioViaje;
 	private JTextField txtDuracion;
 	private JDateChooser dcFinViaje;
+	private JComboBox cbPais;
 
 	public nuevoViaje(Agencia agencia) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -115,7 +116,7 @@ public class nuevoViaje extends JFrame {
 		textServicios.setBounds(250, 604, 281, 96);
 		contentPane.add(textServicios);
 		
-		JComboBox cbPais = new JComboBox();
+		cbPais = new JComboBox();
 		cbPais.setModel(new DefaultComboBoxModel(new String[] {"", "ALEMANIA", "ARGENTINA", "AUSTRIA", " BÉLGICA", "BRASIL", "CANADA", "CROACIA", "REPUBLICA CHECA", "CUBA", "CHINA", "CHIPRE", "DINAMARCA", "EGIPTO", "ESPAÑA", "ESTADOS UNIDOS", "ESTONIA", "FINLANDIA", "FRANCIA", "GRECIA", "GUATEMALA", "HONG-KONG", "HUNGRIA", "INDIA", "INDONESIA", "IRLANDA", "ISLANDIA", "ISRAEL", "ITALIA", "jAMAICA", "JAPÓN", "KENIA", "LUXEMBURGO", "MALDIVAS", "MALTA", "MARRUECOS", "MEXICO", "MÓNACO", "NORUEGA", "PAISES BAJOS", "PANAMÁ", "PERÚ", "POLONIA", "PORTUGAL", "PUERTO RICO", "QATAR", "REINO UNIDO", "RUMANIA", "RUSIA", " SEYCHELLES", "SINGAPUR", "SUDÁFRICA", "SUECIA", "SUIZA", "TAILANDIA", "TANZANIA (INCLUYE ZANZIBAR)", "TÚNEZ", "TURQUIA", "VENEZUELA", "VIETNAM"}));
 		cbPais.setBounds(250, 395, 179, 22);
 		contentPane.add(cbPais);
@@ -134,6 +135,11 @@ public class nuevoViaje extends JFrame {
 		txtDuracion.setColumns(10);
 		
 		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				validarViaje();
+			}
+		});
 		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnGuardar.setBounds(212, 749, 89, 23);
 		contentPane.add(btnGuardar);
@@ -154,12 +160,12 @@ public class nuevoViaje extends JFrame {
 		boolean valido=true;
 		 String nombreViaje=textNombreViaje.getText();
 		 String descripcion=textDescrip.getText();
-		 String tipoViaje=cbTipoViaje.getSelectedItem().toString();
+		 String tipoViaje=cbTipoViaje.getSelectedItem()+"";
 		 Date fechaIda = dcInicioViaje.getDate();
 		 Date fechaVuelta= dcFinViaje.getDate();
 		 String duracion = txtDuracion.getText();
-		 String descripcionServicio;
- 
+		 String descripcionServicio = textServicios.getText();
+		 String pais = cbPais.getSelectedItem()+"";
 		 
 
 			if(nombreViaje.length()<1 || nombreViaje.length()>25 == true) {
@@ -167,20 +173,48 @@ public class nuevoViaje extends JFrame {
 				valido= false;
 			}
 			if(tipoViaje!= null) {
-				JOptionPane.showMessageDialog(null, "Nombre incorrecto", "ERROR", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Tipo incorrecto", "ERROR", JOptionPane.ERROR_MESSAGE);
 				valido= false;
 			}
 			if(descripcion.length()<1 || descripcion.length()>255 == true) {
-				JOptionPane.showMessageDialog(null, "Nombre incorrecto", "ERROR", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Descripcion incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
 				valido= false;
 			}
 			
-			
+			if(duracion.length()<1 || duracion.length()>25 == true) {
+				JOptionPane.showMessageDialog(null, "Duracion incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
+				valido= false;
+			}
+	
+			if(descripcionServicio.length()<1 || descripcionServicio.length()>255 == true) {
+				JOptionPane.showMessageDialog(null, "Descripcion incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
+				valido= false;
+			}
 		
-		
+			  if (fechaIda == null || fechaVuelta == null) {
+		            JOptionPane.showMessageDialog(null, "Debe seleccionar ambas fechas.", "ERROR", JOptionPane.ERROR_MESSAGE);
+		            return false;
+		        }
+
+		        if (fechaIda.before(fechaIda)) {
+		            JOptionPane.showMessageDialog(null, "La fecha de ida no puede ser en el pasado.", "ERROR", JOptionPane.ERROR_MESSAGE);
+		            return false;
+		        }
+
+		        if (fechaVuelta.before(fechaIda)) {
+		            JOptionPane.showMessageDialog(null, "La fecha de vuelta no puede ser antes de la fecha de ida.", "ERROR", JOptionPane.ERROR_MESSAGE);
+		            return false;
+		        }
+		        
+		        if (pais =="") {
+		            JOptionPane.showMessageDialog(null, "SELECCIONE UN PAIS", "ERROR", JOptionPane.ERROR_MESSAGE);
+		            return false;
+		        }
+		        
 	
 		 return valido;
 	}
 		}
+
 
 
