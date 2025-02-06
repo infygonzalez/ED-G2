@@ -15,6 +15,8 @@ public class SQLQuerys {
 		public static final String SELECT_TODOS_ALOJAMIENTO = "SELECT * FROM alojamiento where idViajes = ?";
 		public static final String SELECT_TODOS_OTROS = "SELECT * FROM otros where idViajes = ?";
 		public static final String SELECT_TODOS_PAISES = "SELECT * FROM pais";
+		public static final String SELECT_TODAS_AEROLINEAS = "SELECT * FROM aerolinea";
+		public static final String SELECT_TODAS_AEROPUERTOS = "SELECT * FROM aeropuerto";
 		
 	//DELETES
 		public static final String DELETE_VIAJE = "DELETE FROM viajes WHERE idViajes = ?";

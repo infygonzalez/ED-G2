@@ -2,6 +2,8 @@ package Controlador;
 
 import java.util.ArrayList;
 
+import Modelo.Aerolinea;
+import Modelo.Aeropuerto;
 import Modelo.Agencia;
 import Modelo.Alojamiento;
 import Modelo.GestorAgencia;
@@ -31,11 +33,24 @@ public class Controlador {
 		return viajes;	
 	}
 	
-	public ArrayList<Pais> mostrarPais() {
+	public  ArrayList<Pais> mostrarPais() {
 		ArrayList<Pais>paises= new ArrayList<Pais>();
 		GestorViajes gestorViajes = new GestorViajes();
 		paises=gestorViajes.mostrarPais();
 		return paises;
+}
+	
+	public  ArrayList<Aerolinea> mostrarAerolineas() {
+		ArrayList<Aerolinea>aerolineas= new ArrayList<Aerolinea>();
+		GestorEventos gestorEventos = new GestorEventos();
+		aerolineas=gestorEventos.mostrarAerolineas();
+		return aerolineas;
+}
+	public  ArrayList<Aeropuerto> mostrarAeropuertos() {
+		ArrayList<Aeropuerto>aeropuertos= new ArrayList<Aeropuerto>();
+		GestorEventos gestorEventos = new GestorEventos();
+		aeropuertos=gestorEventos.mostrarAeropuertos();
+		return aeropuertos;
 }
 
 	public ArrayList<Vuelo> mostrarVuelos(Viaje viaje) {
@@ -115,6 +130,6 @@ public class Controlador {
 	public boolean eliminarOtros(Otros otro){
 		GestorEventos gestorOtros = new GestorEventos();
 		return gestorOtros.eliminarOtros(otro);
-
 	}
+	
 }

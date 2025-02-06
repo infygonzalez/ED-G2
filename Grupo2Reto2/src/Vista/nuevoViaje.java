@@ -7,7 +7,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Modelo.Agencia;
+import Modelo.GestorViajes;
+import Modelo.Pais;
 import Modelo.Viaje;
+import Controlador.Controlador;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -19,10 +22,13 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import com.toedter.calendar.JDateChooser;
+
+import Controlador.Controlador;
 
 public class nuevoViaje extends JFrame {
 
@@ -117,7 +123,7 @@ public class nuevoViaje extends JFrame {
 		contentPane.add(textServicios);
 		
 		cbPais = new JComboBox();
-		cbPais.setModel(new DefaultComboBoxModel(new String[] {"", "ALEMANIA", "ARGENTINA", "AUSTRIA", " BÉLGICA", "BRASIL", "CANADA", "CROACIA", "REPUBLICA CHECA", "CUBA", "CHINA", "CHIPRE", "DINAMARCA", "EGIPTO", "ESPAÑA", "ESTADOS UNIDOS", "ESTONIA", "FINLANDIA", "FRANCIA", "GRECIA", "GUATEMALA", "HONG-KONG", "HUNGRIA", "INDIA", "INDONESIA", "IRLANDA", "ISLANDIA", "ISRAEL", "ITALIA", "jAMAICA", "JAPÓN", "KENIA", "LUXEMBURGO", "MALDIVAS", "MALTA", "MARRUECOS", "MEXICO", "MÓNACO", "NORUEGA", "PAISES BAJOS", "PANAMÁ", "PERÚ", "POLONIA", "PORTUGAL", "PUERTO RICO", "QATAR", "REINO UNIDO", "RUMANIA", "RUSIA", " SEYCHELLES", "SINGAPUR", "SUDÁFRICA", "SUECIA", "SUIZA", "TAILANDIA", "TANZANIA (INCLUYE ZANZIBAR)", "TÚNEZ", "TURQUIA", "VENEZUELA", "VIETNAM"}));
+		cbPais.setModel(new DefaultComboBoxModel(new String[] {"",}));
 		cbPais.setBounds(250, 395, 179, 22);
 		contentPane.add(cbPais);
 		
@@ -138,6 +144,7 @@ public class nuevoViaje extends JFrame {
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				validarViaje();
+				System.out.println();
 			}
 		});
 		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -151,6 +158,7 @@ public class nuevoViaje extends JFrame {
 				 dispose();
 			}
 		});
+		llenarComboBoxPaises(cbPais);
 	}
 	
 	
@@ -214,6 +222,17 @@ public class nuevoViaje extends JFrame {
 	
 		 return valido;
 	}
+	
+	public  void llenarComboBoxPaises(JComboBox<String> cbPais) {
+		cbPais.removeAllItems();
+		GestorViajes gestorViajes = new GestorViajes();
+		ArrayList<Pais> paises = gestorViajes.mostrarPais();
+        for (Pais pais : paises) {
+        	cbPais.addItem(pais.getDescripPais()); 
+        }
+    }
+	
+	
 		}
 
 

@@ -5,10 +5,17 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import com.toedter.calendar.JCalendar;
 
+import Modelo.Aerolinea;
+import Modelo.Aeropuerto;
 import Modelo.Agencia;
+import Modelo.GestorEventos;
+import Modelo.GestorViajes;
+import Modelo.Pais;
 import Modelo.Viaje;
 
 import javax.swing.JLabel;
@@ -20,6 +27,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.awt.event.ActionEvent;
 import com.toedter.components.JLocaleChooser;
@@ -43,6 +51,10 @@ public class nuevoEvento extends JFrame {
 	private JTextField txtDescripcionOtros;
 	private JTextField txtPrecioOtros;
 	private JComboBox cbTipoEvento;
+	private JComboBox cbAropuertoO;
+	private JComboBox cbAeropuertoD;
+	private JComboBox cbAeropuertoDV;
+	private JComboBox cbAropuertoOV;
 
 
 	/**
@@ -110,8 +122,6 @@ public class nuevoEvento extends JFrame {
 		btnGuardar.setBounds(252, 624, 89, 23);
 		contentPane.add(btnGuardar);
 		
-		
-		verVuelo(vuelo);
 		
 		
 		
@@ -265,15 +275,17 @@ public class nuevoEvento extends JFrame {
 		lblDuracion.setBounds(61, 356, 118, 28);
 		vuelo.add(lblDuracion);
 		
-		JComboBox cbAropuertoO = new JComboBox();
-		cbAropuertoO.setModel(new DefaultComboBoxModel(new String[] {"", "Alicante ", "Asturias ", "barcelona", "Córdoba ", "Gerona ", "Granada ", "Ibiza ", "La Coruña LCG", "Lanzarote ", "Madrid", "MAHON", "Murcia ", "Pamplona ", "Salamanca ", "Santa Cruz de la Palma ", "Santiago de Compostela ", "Valencia ", "Vigo ", "Zaragoza", "Badajoz ", "Bilbao", "VITORIA", "Tenerife Norte ", "Tenerife Sur ", "SANTANDER", "SAN SEBASTIAN", "REUS", "PALMA DE MALLORCA", "MALAGA", "JEREZ DE LA FRONTERA", "GRAN CANARIA ", "FUERTEVENTURA", "HIERRO ", "LA GOMERA", "Montreal, Québec ", " CANADA Ottawa, Ontario YOW", "CANADA Toronto, Ontario YTO", "CANADA VANCOUVER  ", "Boston ", "Houston ", "Miami", "LOS ANGELES", "Nueva York ", "DETROIT", "Philadelphia PHL ", "SAN FRANCISCO", "Seattle ", "WASHINGTON", " REPUBLICA DOMINICANA (Santo Domingo) ", "JAMAICA (kingston)", "Buenos Aires ", "BRASIL (Rio de Janeiro )", " BRASIL (Sao Paulo )", "COLOMBIA Bogotá ", "PERU ( Lima)", "VENEZUELA ( CARACAS)", "AUSTRIA (Viena )", "REPUBLICA CHECA (Praga )", "FINLANDIA (Helsinki )", "FRANCIA (lyon)", "FRANCIA,París (aeropuerto Charles de Gaulle)", "FRANCIA ,Le Bourget,", "FRANCIA (ORLY)", "FRANCIA (Marsella)", "ALEMANIA (Berlín )", "ALEMANIA (Dusseldorf )", "ALEMANIA (Frankfurt )", "ALEMANIA (Munich )", "ALEMANIA (hamburgo)", "GRECIA ( Atenas)", "IRLANDA (DUBLIN)", " ITALIA (Milán )", "BOSTON", "DETROIT", " San Francisco", " México D.F.", "MÉXICO (ACAPULCO)", "BRASIL (brasilia)", "Washington", "ALEMANIA (Stuttgart) ", "SAN FRANCISCO", "DINAMARCA ", "BELGICA (Bruselas )", "HOLANDA Amsterdam ", "NORUEGA (oslo)", "POLONIA (Varsovia ) WAW ", "PORTUGAL (lisboa)", "SUECIA (Estocolmo)", " RUSIA (Moscú ) MOW ", "SUIZA (Ginebra )", "SUIZA (Zurich)", "TURQUIA (ESTAMBUL)", "LONDRES (GATWICK)", "LONDRES Heathrow", "LONDRES ( Stanted)", " EGIPTO El Cairo ", "KENIA ( Nairobi)", " MARRUECOS (Casablanca) ", "MARRUECOS (Marrakech)", "Túnez ", "JORDANIA (Ammán ) AMM", "TAILANDIA Bagkok ", " AUSTRALIA Melbourne ", "AUSTRALIA (SIYNEY)"}));
+		cbAropuertoO = new JComboBox();
+		cbAropuertoO.setModel(new DefaultComboBoxModel(new String[] {"",}));
 		cbAropuertoO.setBounds(225, 63, 118, 22);
 		vuelo.add(cbAropuertoO);
+		rellenarAeropuerto(cbAropuertoO);
 		
-		JComboBox cbAeropuertoD = new JComboBox();
-		cbAeropuertoD.setModel(new DefaultComboBoxModel(new String[] {"", "Alicante ", "Asturias ", "barcelona", "Córdoba ", "Gerona ", "Granada ", "Ibiza ", "La Coruña LCG", "Lanzarote ", "Madrid", "MAHON", "Murcia ", "Pamplona ", "Salamanca ", "Santa Cruz de la Palma ", "Santiago de Compostela ", "Valencia ", "Vigo ", "Zaragoza", "Badajoz ", "Bilbao", "VITORIA", "Tenerife Norte ", "Tenerife Sur ", "SANTANDER", "SAN SEBASTIAN", "REUS", "PALMA DE MALLORCA", "MALAGA", "JEREZ DE LA FRONTERA", "GRAN CANARIA ", "FUERTEVENTURA", "HIERRO ", "LA GOMERA", "Montreal, Québec ", " CANADA Ottawa, Ontario YOW", "CANADA Toronto, Ontario YTO", "CANADA VANCOUVER  ", "Boston ", "Houston ", "Miami", "LOS ANGELES", "Nueva York ", "DETROIT", "Philadelphia PHL ", "SAN FRANCISCO", "Seattle ", "WASHINGTON", " REPUBLICA DOMINICANA (Santo Domingo) ", "JAMAICA (kingston)", "Buenos Aires ", "BRASIL (Rio de Janeiro )", " BRASIL (Sao Paulo )", "COLOMBIA Bogotá ", "PERU ( Lima)", "VENEZUELA ( CARACAS)", "AUSTRIA (Viena )", "REPUBLICA CHECA (Praga )", "FINLANDIA (Helsinki )", "FRANCIA (lyon)", "FRANCIA,París (aeropuerto Charles de Gaulle)", "FRANCIA ,Le Bourget,", "FRANCIA (ORLY)", "FRANCIA (Marsella)", "ALEMANIA (Berlín )", "ALEMANIA (Dusseldorf )", "ALEMANIA (Frankfurt )", "ALEMANIA (Munich )", "ALEMANIA (hamburgo)", "GRECIA ( Atenas)", "IRLANDA (DUBLIN)", " ITALIA (Milán )", "BOSTON", "DETROIT", " San Francisco", " México D.F.", "MÉXICO (ACAPULCO)", "BRASIL (brasilia)", "Washington", "ALEMANIA (Stuttgart) ", "SAN FRANCISCO", "DINAMARCA ", "BELGICA (Bruselas )", "HOLANDA Amsterdam ", "NORUEGA (oslo)", "POLONIA (Varsovia ) WAW ", "PORTUGAL (lisboa)", "SUECIA (Estocolmo)", " RUSIA (Moscú ) MOW ", "SUIZA (Ginebra )", "SUIZA (Zurich)", "TURQUIA (ESTAMBUL)", "LONDRES (GATWICK)", "LONDRES Heathrow", "LONDRES ( Stanted)", " EGIPTO El Cairo ", "KENIA ( Nairobi)", " MARRUECOS (Casablanca) ", "MARRUECOS (Marrakech)", "Túnez ", "JORDANIA (Ammán ) AMM", "TAILANDIA Bagkok ", " AUSTRALIA Melbourne ", "AUSTRALIA (SIYNEY)"}));
+		cbAeropuertoD = new JComboBox();
+		cbAeropuertoD.setModel(new DefaultComboBoxModel(new String[] {"",}));
 		cbAeropuertoD.setBounds(225, 114, 118, 22);
 		vuelo.add(cbAeropuertoD);
+		rellenarAeropuerto(cbAeropuertoD);
 		
 		txtCodigoVuelo = new JTextField();
 		txtCodigoVuelo.setColumns(10);
@@ -298,9 +310,10 @@ public class nuevoEvento extends JFrame {
 		vuelo.add(txtDuracion);
 		
 		JComboBox cbAerolinea = new JComboBox();
-		cbAerolinea.setModel(new DefaultComboBoxModel(new String[] {"", "Aerolínea Vueling SA", "RYNAIR", "World2Fly", "Air France ", "KLM", "KLM Cityhopper", "TAP Portugal", "World 2 Fly Portugal, S.A.", "Finnair ", "Brussels Airlines", "Condor Flugdienst GmbH", "Lufthansa", "Lufthansa CityLine GmbH", "TUIfly Gmbh", "TUIfly Nordic AB", "Croatia Airlines d.d.", "Air Nostrum, Lineas aereas del Mediterra neo SA", "SATA (Air Acores)", "SATA Internacional - Azores Airlines, S.A.", "Air Europa Lineas Aereas, S.A.", "British Airways PLC", "BA Euroflyer Limited dba British Airways", "Virgin Atlantic Airways Ltd", "Norse Atlantic Airways AS", "Challenge Airlines (BE) S.A.", "Virgin Atlantic Airways Ltd", "EASYJET UK LIMITED", "Easyjet Switzerland S.A", "Edelweiss Air AG", "Air Greenland", "SWISS Internation Air Lines Ltd", "Turkish Airlines Inc", "Pegasus Airlines", "Malta Air Travel Ltd dba Malta MedAir", "Alitalia", "American Airlines", "BSA - Aerolinhas Brasileiras S.A dba LATAM Cargo Br", "Tam Linhas Aereas SA dba Latam Airlines Brasil", "Delta Air Lines Inc", "United Airlines Inc", "China United Airlines", "AVIANCA-Ecuador dba AVIANCA", "Aerovias del Continente Americano S.A. AVIANCA", "Egyptair", "Aerovias de Mexico SA de CV dba AeroMexico", "Aerolineas Argentinas S.A.", "Air Transat", "Alia - The Royal Jordanian Airlines dba Royal Jordanian", "Qatar Airways Group Q.C.S.C dba Qatar Airways"}));
+		cbAerolinea.setModel(new DefaultComboBoxModel(new String[] {"",}));
 		cbAerolinea.setBounds(225, 245, 118, 22);
 		vuelo.add(cbAerolinea);
+		rellenarAerolinea(cbAerolinea);
 		
 		JButton btnBuscarViaje = new JButton("BuscarViaje");
 		btnBuscarViaje.setBounds(397, 15, 210, 23);
@@ -348,16 +361,16 @@ public class nuevoEvento extends JFrame {
 		
 		
 		
-		JComboBox cbAropuertoOV = new JComboBox();
+		cbAropuertoOV = new JComboBox();
 		cbAropuertoOV.setBounds(576, 63, 118, 22);
 		vuelo.add(cbAropuertoOV);
+		rellenarAeropuerto(cbAropuertoOV);
 		
 		
-		
-		JComboBox cbAeropuertoDV = new JComboBox();
+		cbAeropuertoDV = new JComboBox();
 		cbAeropuertoDV.setBounds(576, 114, 118, 22);
 		vuelo.add(cbAeropuertoDV);
-		
+		rellenarAeropuerto(cbAeropuertoDV);
 		
 		txtCodigoVueloV = new JTextField();
 		txtCodigoVueloV.setColumns(10);
@@ -366,9 +379,10 @@ public class nuevoEvento extends JFrame {
 		
 		
 		JComboBox cbAerolineaV = new JComboBox();
-		cbAerolineaV.setModel(new DefaultComboBoxModel(new String[] {"", "Aerolínea Vueling SA", "RYNAIR", "World2Fly", "Air France ", "KLM", "KLM Cityhopper", "TAP Portugal", "World 2 Fly Portugal, S.A.", "Finnair ", "Brussels Airlines", "Condor Flugdienst GmbH", "Lufthansa", "Lufthansa CityLine GmbH", "TUIfly Gmbh", "TUIfly Nordic AB", "Croatia Airlines d.d.", "Air Nostrum, Lineas aereas del Mediterra neo SA", "SATA (Air Acores)", "SATA Internacional - Azores Airlines, S.A.", "Air Europa Lineas Aereas, S.A.", "British Airways PLC", "BA Euroflyer Limited dba British Airways", "Virgin Atlantic Airways Ltd", "Norse Atlantic Airways AS", "Challenge Airlines (BE) S.A.", "Virgin Atlantic Airways Ltd", "EASYJET UK LIMITED", "Easyjet Switzerland S.A", "Edelweiss Air AG", "Air Greenland", "SWISS Internation Air Lines Ltd", "Turkish Airlines Inc", "Pegasus Airlines", "Malta Air Travel Ltd dba Malta MedAir", "Alitalia", "American Airlines", "BSA - Aerolinhas Brasileiras S.A dba LATAM Cargo Br", "Tam Linhas Aereas SA dba Latam Airlines Brasil", "Delta Air Lines Inc", "United Airlines Inc", "China United Airlines", "AVIANCA-Ecuador dba AVIANCA", "Aerovias del Continente Americano S.A. AVIANCA", "Egyptair", "Aerovias de Mexico SA de CV dba AeroMexico", "Aerolineas Argentinas S.A.", "Air Transat", "Alia - The Royal Jordanian Airlines dba Royal Jordanian", "Qatar Airways Group Q.C.S.C dba Qatar Airways"}));
+		cbAerolineaV.setModel(new DefaultComboBoxModel(new String[] {"",}));
 		cbAerolineaV.setBounds(576, 243, 118, 22);
 		vuelo.add(cbAerolineaV);
+		rellenarAerolinea(cbAerolineaV);
 		
 		
 		txtHorarioV = new JTextField();
@@ -509,13 +523,32 @@ public class nuevoEvento extends JFrame {
 		boolean valido = true;
 	
 		
-		
-		
-		
-		
+	
 		
 		
 		return valido;	
 	}
+	
+	
+	public void rellenarAerolinea(JComboBox cbAerolineaV) {
+
+		GestorEventos gestorEventos = new GestorEventos();
+		ArrayList<Aerolinea> aerolienas = gestorEventos.mostrarAerolineas();
+        for (Aerolinea aerolinea : aerolienas) {
+        	cbAerolineaV.addItem(aerolinea.getDescripcionAerolinea()); 
+        }
+}
+	
+	
+	
+	public void rellenarAeropuerto(JComboBox cbAeropuerto) {
+
+		GestorEventos gestorEventos = new GestorEventos();
+		ArrayList<Aeropuerto> aeropuertos = gestorEventos.mostrarAeropuertos();
+        for (Aeropuerto aeropuerto : aeropuertos) {
+        	cbAeropuerto.addItem(aeropuerto.getLugarAero()); 
+        }
+		
+}
 	
 }

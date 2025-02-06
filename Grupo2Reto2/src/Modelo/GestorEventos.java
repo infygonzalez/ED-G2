@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JComboBox;
+
 public class GestorEventos {
 
 	public ArrayList<Vuelo> mostrarVuelos(Viaje viaje) {
@@ -278,6 +280,93 @@ public boolean eliminarOtros(Otros otro){
 	
 	
 	
+}
+
+public ArrayList<Aerolinea> mostrarAerolineas() {
+    Connection conexion = null;
+    PreparedStatement sentencia = null;
+    ResultSet resultSet = null;
+    ArrayList<Aerolinea> aerolineas = null;
+    try {
+        Class.forName(DBUtils.DRIVER);
+        conexion = DriverManager.getConnection(DBUtils.URL, DBUtils.USER, DBUtils.PASSWORD);
+        String sql = SQLQuerys.SELECT_TODAS_AEROLINEAS;
+        sentencia = conexion.prepareStatement(sql);
+        resultSet = sentencia.executeQuery();
+        aerolineas = new ArrayList<Aerolinea>();
+
+        while (resultSet.next()) {
+        	Aerolinea aerolinea = new Aerolinea();
+        	aerolinea.setCodigoAerolinea(resultSet.getString("codigoAerolinea"));
+            aerolinea.setDescripcionAerolinea(resultSet.getString("nombreAerolinea"));
+            aerolineas.add(aerolinea);
+        }
+    } catch (SQLException sqle) {
+        System.out.println("Error con la base de datos" + sqle.getMessage());
+    } catch (Exception e) {
+        System.out.println("Error génerico" + e.getMessage());
+    }
+
+    try {
+        resultSet.close();
+    } catch (Exception e) {
+        System.out.println("Error al cerrar el resultSet" + e.getMessage());
+    }
+    try {
+        sentencia.close();
+    } catch (SQLException sqle) {
+        System.out.println("Error al cerrar la sentencia" + sqle.getMessage());
+    }
+    try {
+        conexion.close();
+    } catch (SQLException sqle) {
+        System.out.println("Error al cerrar la conexión" + sqle.getMessage());
+    }
+    return aerolineas;
+}
+
+
+public ArrayList<Aeropuerto> mostrarAeropuertos() {
+    Connection conexion = null;
+    PreparedStatement sentencia = null;
+    ResultSet resultSet = null;
+    ArrayList<Aeropuerto> aeropuertos = null;
+    try {
+        Class.forName(DBUtils.DRIVER);
+        conexion = DriverManager.getConnection(DBUtils.URL, DBUtils.USER, DBUtils.PASSWORD);
+        String sql = SQLQuerys.SELECT_TODAS_AEROPUERTOS;
+        sentencia = conexion.prepareStatement(sql);
+        resultSet = sentencia.executeQuery();
+        aeropuertos = new ArrayList<Aeropuerto>();
+
+        while (resultSet.next()) {
+        	Aeropuerto aeropuerto = new Aeropuerto();
+        	aeropuerto.setCodigoAero(resultSet.getString("codigoAeropuerto"));
+        	aeropuerto.setLugarAero(resultSet.getString("lugarAeropuerto"));
+            aeropuertos.add(aeropuerto);
+        }
+    } catch (SQLException sqle) {
+        System.out.println("Error con la base de datos" + sqle.getMessage());
+    } catch (Exception e) {
+        System.out.println("Error génerico" + e.getMessage());
+    }
+
+    try {
+        resultSet.close();
+    } catch (Exception e) {
+        System.out.println("Error al cerrar el resultSet" + e.getMessage());
+    }
+    try {
+        sentencia.close();
+    } catch (SQLException sqle) {
+        System.out.println("Error al cerrar la sentencia" + sqle.getMessage());
+    }
+    try {
+        conexion.close();
+    } catch (SQLException sqle) {
+        System.out.println("Error al cerrar la conexión" + sqle.getMessage());
+    }
+    return aeropuertos;
 }
 
 }

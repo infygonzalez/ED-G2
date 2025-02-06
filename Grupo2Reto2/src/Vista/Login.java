@@ -77,7 +77,7 @@ public class Login extends JFrame {
 				txtUsuario.setColumns(10);
 				txtUsuario.setBackground(new Color(0, 0, 0, 100));  
 				txtUsuario.setOpaque(false);  
-				txtUsuario.setForeground(Color.WHITE);  
+				txtUsuario.setForeground(new Color(0, 0, 0));  
 				txtUsuario.setBorder(null);  
 				txtUsuario.setBorder(new LineBorder(new Color(0 , 0 , 0, 150 ), 2, true));
 				
@@ -88,7 +88,7 @@ public class Login extends JFrame {
 						textClave.setColumns(10);
 						textClave.setBackground(new Color(0, 0, 0, 100));
 						textClave.setOpaque(false);  
-						textClave.setForeground(Color.WHITE);  
+						textClave.setForeground(new Color(0, 0, 0));  
 						textClave.setBorder(null);  
 						textClave.setBorder(new LineBorder(new Color(0 , 0 , 0, 150 ), 2, true));
 						

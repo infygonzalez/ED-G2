@@ -24,10 +24,15 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -165,6 +170,29 @@ public class MenuPrincipal extends JFrame {
 		btnGenerarOferta.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnGenerarOferta.setBounds(10, 514, 255, 53);
 		contentPane.add(btnGenerarOferta);
+		
+		JLabel lblLogo = new JLabel("");
+		lblLogo.setBounds(10, 11, 106, 80);
+		contentPane.add(lblLogo);
+		
+		/*String logoUrl = agencia.getLogo();
+        URL imgUrl = null;
+        try {
+            imgUrl = new URL(logoUrl);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        ImageIcon image = new ImageIcon(imgUrl);
+        Image img = image.getImage();  
+        Image resizedImg = img.getScaledInstance(163, 149, Image.SCALE_SMOOTH);  
+
+        lblLogo = new JLabel(new ImageIcon(resizedImg));  
+        lblLogo.setBounds(10, 142, 163, 149);  
+        contentPane.add(lblLogo);
+
+        contentPane.revalidate();  
+        contentPane.repaint();  */  
 		
 		tablaViajes.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			    public void valueChanged(ListSelectionEvent event) {

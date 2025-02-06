@@ -222,8 +222,8 @@ public class nuevaAgencia extends JFrame {
 
 		return valido;
 		
-		
-		
 	}
+	
+	
 	
 }
