@@ -9,8 +9,11 @@ import javax.swing.border.EmptyBorder;
 import com.toedter.calendar.JCalendar;
 
 import Modelo.Agencia;
+import Modelo.Viaje;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -27,7 +30,7 @@ public class nuevoEvento extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField txtNombreEvento;
 	private JTextField txtCodigoVuelo;
 	private JTextField txtPrecio;
 	private JTextField txtHorario;
@@ -39,6 +42,7 @@ public class nuevoEvento extends JFrame {
 	private JTextField txtPrecioAlo;
 	private JTextField txtDescripcionOtros;
 	private JTextField txtPrecioOtros;
+	private JComboBox cbTipoEvento;
 
 
 	/**
@@ -61,22 +65,22 @@ public class nuevoEvento extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Nombre del evento");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel.setBounds(61, 40, 118, 28);
-		contentPane.add(lblNewLabel);
+		JLabel lblNombreEvento = new JLabel("Nombre del evento");
+		lblNombreEvento.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNombreEvento.setBounds(61, 40, 118, 28);
+		contentPane.add(lblNombreEvento);
 		
-		textField = new JTextField();
-		textField.setBounds(223, 45, 118, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		txtNombreEvento = new JTextField();
+		txtNombreEvento.setBounds(223, 45, 118, 20);
+		contentPane.add(txtNombreEvento);
+		txtNombreEvento.setColumns(10);
 		
 		JLabel lblTipoEvento = new JLabel("Tipo del evento");
 		lblTipoEvento.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblTipoEvento.setBounds(61, 94, 118, 28);
 		contentPane.add(lblTipoEvento);
 		
-		JComboBox cbTipoEvento = new JComboBox();
+		cbTipoEvento = new JComboBox();
 		cbTipoEvento.setModel(new DefaultComboBoxModel(new String[] {"", "Vuelo", "Alojamiento", "Otros"}));
 		cbTipoEvento.setBounds(223, 98, 118, 22);
 		contentPane.add(cbTipoEvento);
@@ -97,9 +101,19 @@ public class nuevoEvento extends JFrame {
 		vuelo.setLayout(null);
 		
 		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				validarEvento();
+			}
+		});
 		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnGuardar.setBounds(252, 624, 89, 23);
 		contentPane.add(btnGuardar);
+		
+		
+		verVuelo(vuelo);
+		
+		
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
@@ -113,7 +127,6 @@ public class nuevoEvento extends JFrame {
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnCancelar.setBounds(421, 624, 89, 23);
 		contentPane.add(btnCancelar);
-		
 		
 		cbTipoEvento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -478,11 +491,31 @@ public class nuevoEvento extends JFrame {
 	
 	
 	
-	public boolean validarViaje() {
+	public boolean validarEvento() {
 		boolean valido = true;
-		
-		
+		  if (txtNombreEvento.getText().trim().isEmpty()) {
+	            JOptionPane.showMessageDialog(null, "El nombre del evento no puede estar vacío","ERROR", JOptionPane.ERROR_MESSAGE);
+	            valido = false;
+	        }
+	        if (cbTipoEvento.getSelectedIndex() == 0) {
+	            JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de evento","ERROR", JOptionPane.ERROR_MESSAGE);
+	            valido = false;
+	        }
 		
 	return valido;	
 	}
+	
+	public boolean validarVuelo() {
+		boolean valido = true;
+	
+		
+		
+		
+		
+		
+		
+		
+		return valido;	
+	}
+	
 }
