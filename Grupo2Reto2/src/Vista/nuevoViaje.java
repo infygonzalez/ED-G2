@@ -7,8 +7,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Modelo.Agencia;
+import Modelo.Viaje;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -16,6 +19,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import com.toedter.calendar.JDateChooser;
@@ -33,7 +37,9 @@ public class nuevoViaje extends JFrame {
 	private JLabel lblDescrip;
 	private JTextPane textDescrip;
 	private JTextPane textServicios;
+	private JDateChooser dcInicioViaje;
 	private JTextField txtDuracion;
+	private JDateChooser dcFinViaje;
 
 	public nuevoViaje(Agencia agencia) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -114,11 +120,11 @@ public class nuevoViaje extends JFrame {
 		cbPais.setBounds(250, 395, 179, 22);
 		contentPane.add(cbPais);
 		
-		JDateChooser dcInicioViaje = new JDateChooser();
+		dcInicioViaje = new JDateChooser();
 		dcInicioViaje.setBounds(250, 207, 179, 20);
 		contentPane.add(dcInicioViaje);
 		
-		JDateChooser dcFinViaje = new JDateChooser();
+		dcFinViaje = new JDateChooser();
 		dcFinViaje.setBounds(250, 269, 179, 20);
 		contentPane.add(dcFinViaje);
 		
@@ -139,6 +145,41 @@ public class nuevoViaje extends JFrame {
 				 dispose();
 			}
 		});
+	}
+	
+	
+	
+	public boolean validarViaje() {
+		Viaje viaje = new Viaje();
+		boolean valido=true;
+		 String nombreViaje=textNombreViaje.getText();
+		 String descripcion=textDescrip.getText();
+		 String tipoViaje=cbTipoViaje.getSelectedItem().toString();
+		 Date fechaIda = dcInicioViaje.getDate();
+		 Date fechaVuelta= dcFinViaje.getDate();
+		 String duracion = txtDuracion.getText();
+		 String descripcionServicio;
+ 
+		 
+
+			if(nombreViaje.length()<1 || nombreViaje.length()>25 == true) {
+				JOptionPane.showMessageDialog(null, "Nombre incorrecto", "ERROR", JOptionPane.ERROR_MESSAGE);
+				valido= false;
+			}
+			if(tipoViaje!= null) {
+				JOptionPane.showMessageDialog(null, "Nombre incorrecto", "ERROR", JOptionPane.ERROR_MESSAGE);
+				valido= false;
+			}
+			if(descripcion.length()<1 || descripcion.length()>255 == true) {
+				JOptionPane.showMessageDialog(null, "Nombre incorrecto", "ERROR", JOptionPane.ERROR_MESSAGE);
+				valido= false;
+			}
+			
+			
+		
+		
+	
+		 return valido;
 	}
 		}
 

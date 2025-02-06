@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import Controlador.Controlador;
 import Modelo.Agencia;
@@ -33,6 +35,7 @@ public class nuevaAgencia extends JFrame {
 	private JComboBox cbTipoAgencia;
 	private JComboBox cbNumeroEmpleados;
 	private Controlador controlador=new Controlador();
+	private JPanel pColor;
 
 	/**
 	 * Launch the application.
@@ -73,6 +76,10 @@ public class nuevaAgencia extends JFrame {
 		txtAgencia.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Color de marca");
+
+        
+       
+       
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblNewLabel.setBounds(50, 122, 112, 14);
 		contentPane.add(lblNewLabel);
@@ -81,6 +88,7 @@ public class nuevaAgencia extends JFrame {
 		txtColorMarca.setBounds(172, 120, 86, 20);
 		contentPane.add(txtColorMarca);
 		txtColorMarca.setColumns(10);
+		
 		
 		JLabel lblNumeroEmp = new JLabel("Numero de empleados");
 		lblNumeroEmp.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -122,7 +130,7 @@ public class nuevaAgencia extends JFrame {
 		btnCancelar.setBounds(261, 475, 89, 23);
 		contentPane.add(btnCancelar);
 		
-		JPanel pColor = new JPanel();
+		pColor = new JPanel();
 		pColor.setBackground(new Color(255, 255, 255));
 		pColor.setBounds(317, 122, 33, 20);
 		contentPane.add(pColor);
@@ -136,7 +144,34 @@ public class nuevaAgencia extends JFrame {
 		txtClave.setBounds(172, 406, 86, 20);
 		contentPane.add(txtClave);
 		txtClave.setColumns(10);
-		
+
+		txtColorMarca.getDocument().addDocumentListener(new DocumentListener() {
+	            @Override
+	            public void insertUpdate(DocumentEvent e) {
+	                actualizarColor();
+	            }
+
+	            @Override
+	            public void removeUpdate(DocumentEvent e) {
+	                actualizarColor();
+	            }
+
+	            @Override
+	            public void changedUpdate(DocumentEvent e) {
+	                actualizarColor();
+	            }
+	            
+	            private void actualizarColor() {
+	                String hexColor = txtColorMarca.getText().trim();
+
+	                    try { 
+	                    	pColor.setBackground(Color.decode(hexColor));
+	                    } catch (Exception ex) {
+	                       
+	                    	pColor.setBackground(Color.WHITE);
+	                    }
+	            }
+	        });
 		
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -148,9 +183,12 @@ public class nuevaAgencia extends JFrame {
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				validarAgencia();
-				
+				if(validarAgencia()==true) {
+				JOptionPane.showMessageDialog(null, "Agencia correctamente creada");
+				dispose();
+				Login loginWindow = new Login();
+                loginWindow.setVisible(true);
+				}
 			}
 		});
 	}
@@ -199,5 +237,9 @@ public class nuevaAgencia extends JFrame {
 		}
 
 		return valido;
+		
+		
+		
 	}
+	
 }

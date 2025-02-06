@@ -142,7 +142,6 @@ public class MenuPrincipal extends JFrame {
 		contentPane.add(lblCerrarSesiopn);
 		
 		btnEliminarViaje = new JButton("Eliminar Viaje");
-		
 		btnEliminarViaje.setBounds(503, 61, 130, 30);
 		contentPane.add(btnEliminarViaje);
     	btnEliminarViaje.setVisible(false);
@@ -284,7 +283,6 @@ public class MenuPrincipal extends JFrame {
 		 }
 		 
 		 
-		 
 		 public void borrarViaje(Agencia agencia ) {
 			 if(controlador.borrarViaje(viajeSeleccionado(agencia))==true) {
 				 JOptionPane.showMessageDialog(null, "Eliminado", agencia.getNombre(),JOptionPane.INFORMATION_MESSAGE);
@@ -340,9 +338,6 @@ public class MenuPrincipal extends JFrame {
 					 btnEliminarViaje.setVisible(false);
 					 btnEliminarEvento.setVisible(false);
 				 }
-			 
-			 
-		 }
-		 }
-		 }
-
+			 }
+	 }
+ }
