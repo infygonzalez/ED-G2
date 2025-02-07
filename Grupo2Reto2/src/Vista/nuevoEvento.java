@@ -55,6 +55,8 @@ public class nuevoEvento extends JFrame {
 	private JComboBox cbAeropuertoD;
 	private JComboBox cbAeropuertoDV;
 	private JComboBox cbAropuertoOV;
+	private JPanel vuelo_1;
+	private JComboBox cbTrayecto;
 
 
 	/**
@@ -107,10 +109,10 @@ public class nuevoEvento extends JFrame {
 		contentPane.add(otros);
 		otros.setLayout(null);
 		
-		JPanel vuelo = new JPanel();
-		vuelo.setBounds(0, 132, 766, 411);
-		contentPane.add(vuelo);
-		vuelo.setLayout(null);
+		vuelo_1 = new JPanel();
+		vuelo_1.setBounds(0, 132, 766, 411);
+		contentPane.add(vuelo_1);
+		vuelo_1.setLayout(null);
 		
 		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.addActionListener(new ActionListener() {
@@ -138,15 +140,16 @@ public class nuevoEvento extends JFrame {
 		btnCancelar.setBounds(421, 624, 89, 23);
 		contentPane.add(btnCancelar);
 		
+		 verVuelo(vuelo_1);
 		cbTipoEvento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				if(cbTipoEvento.getSelectedItem().equals("Vuelo")) {
-					 verVuelo(vuelo);
-					 vuelo.setVisible(true);
+					 verVuelo(vuelo_1);
+					 vuelo_1.setVisible(true);
 					
 				}else {
-					vuelo.setVisible(false);
+					vuelo_1.setVisible(false);
 				}
 				
 				if("Alojamiento".equals(cbTipoEvento.getSelectedItem())) {
@@ -254,7 +257,7 @@ public class nuevoEvento extends JFrame {
 		lblAerolinea.setBounds(61, 239, 118, 28);
 		vuelo.add(lblAerolinea);
 		
-		JComboBox cbTrayecto = new JComboBox();
+		cbTrayecto = new JComboBox();
 		
 		cbTrayecto.setModel(new DefaultComboBoxModel(new String[] {"", "Ida", "Ida y vuelta"}));
 		cbTrayecto.setBounds(225, 15, 118, 22);
@@ -316,6 +319,10 @@ public class nuevoEvento extends JFrame {
 		rellenarAerolinea(cbAerolinea);
 		
 		JButton btnBuscarViaje = new JButton("BuscarViaje");
+		btnBuscarViaje.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnBuscarViaje.setBounds(397, 15, 210, 23);
 		vuelo.add(btnBuscarViaje);
 		
@@ -522,13 +529,19 @@ public class nuevoEvento extends JFrame {
 	public boolean validarVuelo() {
 		boolean valido = true;
 	
-		
-	
+		if (cbTrayecto.getSelectedItem() == null || cbTrayecto.getSelectedItem().toString().trim().isEmpty()) {
+		    JOptionPane.showMessageDialog(this, "Seleccione el trayecto", "Error", JOptionPane.ERROR_MESSAGE);
+		    valido = false;
+		}
+		if(cbAropuertoO.getSelectedItem() == null || cbAropuertoO.getSelectedItem().toString().trim().isEmpty()) {
+			JOptionPane.showMessageDialog(this, "Seleccione el aropuerto", "Error", JOptionPane.ERROR_MESSAGE);
+		    valido = false;
+		}
 		
 		
 		return valido;	
-	}
 	
+	}
 	
 	public void rellenarAerolinea(JComboBox cbAerolineaV) {
 

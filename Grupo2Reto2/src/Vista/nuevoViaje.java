@@ -195,7 +195,7 @@ public class nuevoViaje extends JFrame {
 			}
 	
 			if(descripcionServicio.length()<1 || descripcionServicio.length()>255 == true) {
-				JOptionPane.showMessageDialog(null, "Descripcion incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Descripcion del servicio incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
 				valido= false;
 			}
 		
