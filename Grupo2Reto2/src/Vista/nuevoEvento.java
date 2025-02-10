@@ -1,5 +1,6 @@
 package Vista;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -13,9 +14,8 @@ import com.toedter.calendar.JCalendar;
 import Modelo.Aerolinea;
 import Modelo.Aeropuerto;
 import Modelo.Agencia;
+
 import Modelo.Gestor;
-import Modelo.GestorEventos;
-import Modelo.GestorViajes;
 import Modelo.Pais;
 import Modelo.Viaje;
 
@@ -56,8 +56,6 @@ public class nuevoEvento extends JFrame {
 	private JComboBox cbAeropuertoD;
 	private JComboBox cbAeropuertoDV;
 	private JComboBox cbAropuertoOV;
-	private JPanel vuelo_1;
-	private JComboBox cbTrayecto;
 
 
 	/**
@@ -81,39 +79,39 @@ public class nuevoEvento extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNombreEvento = new JLabel("Nombre del evento");
-		lblNombreEvento.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNombreEvento.setBounds(61, 40, 118, 28);
+		lblNombreEvento.setFont(new Font("Yu Gothic", Font.PLAIN, 22));
+		lblNombreEvento.setBounds(354, 79, 201, 36);
 		contentPane.add(lblNombreEvento);
 		
 		txtNombreEvento = new JTextField();
-		txtNombreEvento.setBounds(223, 45, 118, 20);
+		txtNombreEvento.setBounds(554, 83, 118, 20);
 		contentPane.add(txtNombreEvento);
 		txtNombreEvento.setColumns(10);
 		
 		JLabel lblTipoEvento = new JLabel("Tipo del evento");
-		lblTipoEvento.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTipoEvento.setBounds(61, 94, 118, 28);
+		lblTipoEvento.setFont(new Font("Yu Gothic", Font.PLAIN, 22));
+		lblTipoEvento.setBounds(42, 74, 181, 46);
 		contentPane.add(lblTipoEvento);
 		
 		cbTipoEvento = new JComboBox();
 		cbTipoEvento.setModel(new DefaultComboBoxModel(new String[] {"", "Vuelo", "Alojamiento", "Otros"}));
-		cbTipoEvento.setBounds(223, 98, 118, 22);
+		cbTipoEvento.setBounds(217, 83, 118, 22);
 		contentPane.add(cbTipoEvento);
-		
-		JPanel Alojamiento = new JPanel();
-		Alojamiento.setBounds(0, 147, 776, 432);
-		contentPane.add(Alojamiento);
-		Alojamiento.setLayout(null);
 		
 		JPanel otros = new JPanel();
 		otros.setBounds(0, 133, 776, 443);
 		contentPane.add(otros);
 		otros.setLayout(null);
 		
-		vuelo_1 = new JPanel();
-		vuelo_1.setBounds(0, 132, 766, 411);
-		contentPane.add(vuelo_1);
-		vuelo_1.setLayout(null);
+		JPanel Alojamiento = new JPanel();
+		Alojamiento.setBounds(-52, 5, 776, 432);
+		otros.add(Alojamiento);
+		Alojamiento.setLayout(null);
+		
+		JPanel vuelo = new JPanel();
+		vuelo.setBounds(0, 132, 766, 411);
+		contentPane.add(vuelo);
+		vuelo.setLayout(null);
 		
 		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.addActionListener(new ActionListener() {
@@ -141,16 +139,20 @@ public class nuevoEvento extends JFrame {
 		btnCancelar.setBounds(421, 624, 89, 23);
 		contentPane.add(btnCancelar);
 		
-		 verVuelo(vuelo_1);
+		JPanel panelColoreable = new JPanel();
+		panelColoreable.setBounds(-1, -1, 777, 54);
+		contentPane.add(panelColoreable);
+		panelColoreable.setBackground(rellenarColor(agencia));
+		
 		cbTipoEvento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				if(cbTipoEvento.getSelectedItem().equals("Vuelo")) {
-					 verVuelo(vuelo_1);
-					 vuelo_1.setVisible(true);
+					 verVuelo(vuelo);
+					 vuelo.setVisible(true);
 					
 				}else {
-					vuelo_1.setVisible(false);
+					vuelo.setVisible(false);
 				}
 				
 				if("Alojamiento".equals(cbTipoEvento.getSelectedItem())) {
@@ -224,6 +226,7 @@ public class nuevoEvento extends JFrame {
 		
 		
 	}
+
 	
 	public void verVuelo(JPanel vuelo) {
 		
@@ -258,7 +261,7 @@ public class nuevoEvento extends JFrame {
 		lblAerolinea.setBounds(61, 239, 118, 28);
 		vuelo.add(lblAerolinea);
 		
-		cbTrayecto = new JComboBox();
+		JComboBox cbTrayecto = new JComboBox();
 		
 		cbTrayecto.setModel(new DefaultComboBoxModel(new String[] {"", "Ida", "Ida y vuelta"}));
 		cbTrayecto.setBounds(225, 15, 118, 22);
@@ -320,10 +323,6 @@ public class nuevoEvento extends JFrame {
 		rellenarAerolinea(cbAerolinea);
 		
 		JButton btnBuscarViaje = new JButton("BuscarViaje");
-		btnBuscarViaje.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnBuscarViaje.setBounds(397, 15, 210, 23);
 		vuelo.add(btnBuscarViaje);
 		
@@ -530,19 +529,13 @@ public class nuevoEvento extends JFrame {
 	public boolean validarVuelo() {
 		boolean valido = true;
 	
-		if (cbTrayecto.getSelectedItem() == null || cbTrayecto.getSelectedItem().toString().trim().isEmpty()) {
-		    JOptionPane.showMessageDialog(this, "Seleccione el trayecto", "Error", JOptionPane.ERROR_MESSAGE);
-		    valido = false;
-		}
-		if(cbAropuertoO.getSelectedItem() == null || cbAropuertoO.getSelectedItem().toString().trim().isEmpty()) {
-			JOptionPane.showMessageDialog(this, "Seleccione el aropuerto", "Error", JOptionPane.ERROR_MESSAGE);
-		    valido = false;
-		}
+		
+	
 		
 		
 		return valido;	
-	
 	}
+	
 	
 	public void rellenarAerolinea(JComboBox cbAerolineaV) {
 
@@ -564,5 +557,18 @@ public class nuevoEvento extends JFrame {
         }
 		
 }
+
+	public Color rellenarColor(Agencia agencia) {
+		String colorMarca = agencia.getColorMarca();
+		try {
+			return Color.decode(colorMarca); // Convierte el código hexadecimal a un Color
+		} catch (NumberFormatException e) {
+			return Color.BLACK; // Color por defecto si el formato no es válido
+		}
+	}
+	public void setBorder(Object object) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
