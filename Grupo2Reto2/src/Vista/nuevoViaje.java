@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 import Modelo.Agencia;
 import Modelo.Gestor;
@@ -57,6 +58,7 @@ public class nuevoViaje extends JFrame {
 	public nuevoViaje(Agencia agencia) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 700, 821);
+        Image backgroundImage = new ImageIcon(getClass().getResource("/img/nuevaagenciaa.jpg")).getImage();
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -64,8 +66,9 @@ public class nuevoViaje extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblNombreViaje = new JLabel("Nombre del viaje");
-		lblNombreViaje.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNombreViaje.setBounds(77, 84, 118, 14);
+		lblNombreViaje.setForeground(new Color(255, 255, 255));
+		lblNombreViaje.setFont(new Font("Yu Gothic", Font.BOLD, 13));
+		lblNombreViaje.setBounds(77, 81, 118, 28);
 		contentPane.add(lblNombreViaje);
 
 		textNombreViaje = new JTextField();
@@ -74,8 +77,9 @@ public class nuevoViaje extends JFrame {
 		textNombreViaje.setColumns(10);
 
 		JLabel lblTipoViaje = new JLabel("Tipo de viaje");
-		lblTipoViaje.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTipoViaje.setBounds(77, 144, 118, 14);
+		lblTipoViaje.setForeground(new Color(255, 255, 255));
+		lblTipoViaje.setFont(new Font("Yu Gothic", Font.BOLD, 13));
+		lblTipoViaje.setBounds(77, 142, 118, 28);
 		contentPane.add(lblTipoViaje);
 
 		cbTipoViaje = new JComboBox();
@@ -86,38 +90,49 @@ public class nuevoViaje extends JFrame {
 		contentPane.add(cbTipoViaje);
 
 		lblInicioViaje = new JLabel("Inicio del viaje");
-		lblInicioViaje.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblInicioViaje.setBounds(77, 207, 118, 14);
+		lblInicioViaje.setForeground(new Color(255, 255, 255));
+		lblInicioViaje.setFont(new Font("Yu Gothic", Font.BOLD, 13));
+		lblInicioViaje.setBounds(77, 207, 118, 28);
 		contentPane.add(lblInicioViaje);
 
 		lblFinViaje = new JLabel("Fin del viaje");
-		lblFinViaje.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblFinViaje.setBounds(77, 269, 118, 14);
+		lblFinViaje.setForeground(new Color(255, 255, 255));
+		lblFinViaje.setFont(new Font("Yu Gothic", Font.BOLD, 13));
+		lblFinViaje.setBounds(77, 269, 118, 28);
 		contentPane.add(lblFinViaje);
 
 		lblDuracion = new JLabel("Duracion");
-		lblDuracion.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblDuracion.setBounds(77, 332, 118, 14);
+		lblDuracion.setForeground(new Color(255, 255, 255));
+		lblDuracion.setFont(new Font("Yu Gothic", Font.PLAIN, 13));
+		lblDuracion.setBounds(77, 329, 118, 28);
 		contentPane.add(lblDuracion);
 
 		lblPais = new JLabel("Pais");
-		lblPais.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblPais.setBounds(77, 398, 118, 14);
+		lblPais.setForeground(new Color(255, 255, 255));
+		lblPais.setFont(new Font("Yu Gothic", Font.BOLD, 13));
+		lblPais.setBounds(77, 395, 118, 28);
 		contentPane.add(lblPais);
 
 		lblDescrip = new JLabel("Descripcion");
-		lblDescrip.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblDescrip.setBounds(77, 467, 118, 14);
+		lblDescrip.setForeground(new Color(255, 255, 255));
+		lblDescrip.setFont(new Font("Yu Gothic", Font.BOLD, 13));
+		lblDescrip.setBounds(77, 437, 118, 28);
 		contentPane.add(lblDescrip);
 
 		JLabel lblServiciosNoInclu = new JLabel("Servicios no incl.");
-		lblServiciosNoInclu.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblServiciosNoInclu.setBounds(77, 631, 118, 14);
+		lblServiciosNoInclu.setForeground(new Color(255, 255, 255));
+		lblServiciosNoInclu.setFont(new Font("Yu Gothic", Font.BOLD, 13));
+		lblServiciosNoInclu.setBounds(77, 604, 118, 28);
 		contentPane.add(lblServiciosNoInclu);
 
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnCancelar.setBounds(442, 748, 89, 23);
+		btnCancelar.setFont(new Font("Yu Gothic", Font.BOLD, 16));
+		btnCancelar.setBackground(new Color(0, 0, 0, 100));
+		btnCancelar.setOpaque(false);
+		btnCancelar.setForeground(new Color(255, 255, 255));
+		btnCancelar.setBorder(null);
+		btnCancelar.setBorder(new LineBorder(new Color(255, 255, 255, 255), 3, true));
+		btnCancelar.setBounds(413, 721, 118, 50);
 		contentPane.add(btnCancelar);
 
 		textDescrip = new JTextPane();
@@ -153,8 +168,13 @@ public class nuevoViaje extends JFrame {
 				System.out.println();
 			}
 		});
-		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnGuardar.setBounds(212, 749, 89, 23);
+		btnGuardar.setFont(new Font("Yu Gothic", Font.BOLD, 16));
+		btnGuardar.setBackground(new Color(0, 0, 0, 100));
+		btnGuardar.setOpaque(false);
+		btnGuardar.setForeground(new Color(255, 255, 255));
+		btnGuardar.setBorder(null);
+		btnGuardar.setBorder(new LineBorder(new Color(255, 255, 255, 255), 3, true));
+		btnGuardar.setBounds(250, 721, 118, 50);
 		contentPane.add(btnGuardar);
 
 		btnCancelar.addActionListener(new ActionListener() {

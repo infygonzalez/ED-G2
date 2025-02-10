@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -16,12 +17,17 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+
 import java.awt.Color;
 
 public class nuevaAgencia extends JFrame {
@@ -42,16 +48,23 @@ public class nuevaAgencia extends JFrame {
 
 	public nuevaAgencia() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 500, 600);
-		contentPane = new JPanel();
+		setBounds(0, 0, 433, 600);
+		contentPane = new JPanel() {
+		 protected void paintComponent(Graphics g) {
+		        super.paintComponent(g);
+		        Image backgroundImage = new ImageIcon(getClass().getResource("/img/nuevaagencia.jpg")).getImage();
+		        g.drawImage(backgroundImage, 0, 0, this); 
+		    }
+		};
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblNombreAgencia = new JLabel("Nombre Agencia");
-		lblNombreAgencia.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNombreAgencia.setBounds(50, 65, 112, 14);
+		lblNombreAgencia.setForeground(new Color(255, 255, 255));
+		lblNombreAgencia.setFont(new Font("Yu Gothic", Font.BOLD, 13));
+		lblNombreAgencia.setBounds(50, 65, 112, 22);
 		contentPane.add(lblNombreAgencia);
 		
 		txtAgencia = new JTextField();
@@ -60,12 +73,13 @@ public class nuevaAgencia extends JFrame {
 		txtAgencia.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Color de marca");
+		lblNewLabel.setForeground(new Color(255, 255, 255));
 
         
        
        
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel.setBounds(50, 122, 112, 14);
+		lblNewLabel.setFont(new Font("Yu Gothic", Font.BOLD, 13));
+		lblNewLabel.setBounds(50, 122, 112, 22);
 		contentPane.add(lblNewLabel);
 		
 		txtColorMarca = new JTextField();
@@ -75,8 +89,9 @@ public class nuevaAgencia extends JFrame {
 		
 		
 		JLabel lblNumeroEmp = new JLabel("Numero de empleados");
-		lblNumeroEmp.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNumeroEmp.setBounds(50, 187, 146, 14);
+		lblNumeroEmp.setForeground(new Color(255, 255, 255));
+		lblNumeroEmp.setFont(new Font("Yu Gothic", Font.BOLD, 13));
+		lblNumeroEmp.setBounds(50, 179, 146, 22);
 		contentPane.add(lblNumeroEmp);
 		
 		cbNumeroEmpleados = new JComboBox();
@@ -85,33 +100,45 @@ public class nuevaAgencia extends JFrame {
 		contentPane.add(cbNumeroEmpleados);
 		
 		JLabel lblTipoAgencia = new JLabel("Tipo de Agencia");
-		lblTipoAgencia.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTipoAgencia.setBounds(50, 261, 112, 14);
+		lblTipoAgencia.setForeground(new Color(255, 255, 255));
+		lblTipoAgencia.setFont(new Font("Yu Gothic", Font.BOLD, 13));
+		lblTipoAgencia.setBounds(50, 236, 112, 33);
 		contentPane.add(lblTipoAgencia);
 		
 		cbTipoAgencia = new JComboBox();
 		cbTipoAgencia.setModel(new DefaultComboBoxModel(new String[] {"", "Mayorista", "Minorista", "Mayorista-Minorista"}));
-		cbTipoAgencia.setBounds(206, 258, 144, 22);
+		cbTipoAgencia.setBounds(206, 238, 144, 22);
 		contentPane.add(cbTipoAgencia);
 		
 		JLabel lbLogo = new JLabel("Logo");
-		lbLogo.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lbLogo.setBounds(50, 344, 86, 14);
+		lbLogo.setForeground(new Color(255, 255, 255));
+		lbLogo.setFont(new Font("Yu Gothic", Font.BOLD, 13));
+		lbLogo.setBounds(50, 280, 86, 33);
 		contentPane.add(lbLogo);
 		
 		txtLogo = new JTextField();
-		txtLogo.setBounds(172, 341, 178, 20);
+		txtLogo.setBounds(172, 283, 178, 20);
 		contentPane.add(txtLogo);
 		txtLogo.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Guardar");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnNewButton.setBounds(50, 474, 89, 23);
+		btnNewButton.setFont(new Font("Yu Gothic", Font.BOLD, 16));
+		btnNewButton.setBounds(224, 433, 146, 55);
+		btnNewButton.setBackground(new Color(0, 0, 0, 100));
+		btnNewButton.setOpaque(false);
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setBorder(null);
+		btnNewButton.setBorder(new LineBorder(new Color(255, 255, 255, 255), 3, true));
 		contentPane.add(btnNewButton);
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnCancelar.setBounds(261, 475, 89, 23);
+		btnCancelar.setFont(new Font("Yu Gothic", Font.BOLD, 16));
+		btnCancelar.setBounds(50, 433, 138, 55);
+		btnCancelar.setBackground(new Color(0, 0, 0, 100));
+		btnCancelar.setOpaque(false);
+		btnCancelar.setForeground(new Color(255, 255, 255));
+		btnCancelar.setBorder(null);
+		btnCancelar.setBorder(new LineBorder(new Color(255, 255, 255, 255), 3, true));
 		contentPane.add(btnCancelar);
 		
 		pColor = new JPanel();
@@ -120,12 +147,13 @@ public class nuevaAgencia extends JFrame {
 		contentPane.add(pColor);
 		
 		JLabel lblClave = new JLabel("Introduce la clave");
-		lblClave.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblClave.setBounds(50, 409, 112, 14);
+		lblClave.setForeground(new Color(255, 255, 255));
+		lblClave.setFont(new Font("Yu Gothic", Font.BOLD, 13));
+		lblClave.setBounds(50, 324, 112, 33);
 		contentPane.add(lblClave);
 		
 		txtClave = new JTextField();
-		txtClave.setBounds(172, 406, 86, 20);
+		txtClave.setBounds(264, 327, 86, 20);
 		contentPane.add(txtClave);
 		txtClave.setColumns(10);
 
