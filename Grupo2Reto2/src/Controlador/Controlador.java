@@ -6,78 +6,78 @@ import Modelo.Aerolinea;
 import Modelo.Aeropuerto;
 import Modelo.Agencia;
 import Modelo.Alojamiento;
-import Modelo.GestorAgencia;
-import Modelo.GestorEventos;
-import Modelo.GestorViajes;
+import Modelo.Gestor;
 import Modelo.Otros;
 import Modelo.Pais;
 import Modelo.Viaje;
 import Modelo.Vuelo;
 
+
+
 public class Controlador {
 
 	public Agencia login(String nombre,String clave) {
-	GestorAgencia gestorAgencia = new GestorAgencia();
+	Gestor gestorAgencia = new Gestor();
 	return gestorAgencia.login( nombre,clave);
 	}
 	
 	public void crearAgencia(Agencia agencia) {
-		GestorAgencia gestorAgencia = new GestorAgencia();
+		Gestor gestorAgencia = new Gestor();
 		gestorAgencia.crearAgencia(agencia);
 	}
 	
 	public ArrayList<Viaje> mostrarViajes(Agencia agencia,ArrayList<Pais> paises) {
 		ArrayList<Viaje>viajes= new ArrayList<Viaje>();
-		GestorViajes gestorViajes = new GestorViajes();
-		viajes=gestorViajes.mostrarViajes(agencia, paises);
+		Gestor gestor = new Gestor();
+		viajes=gestor.mostrarViajes(agencia, paises);
 		return viajes;	
 	}
 	
 	public  ArrayList<Pais> mostrarPais() {
 		ArrayList<Pais>paises= new ArrayList<Pais>();
-		GestorViajes gestorViajes = new GestorViajes();
-		paises=gestorViajes.mostrarPais();
+		Gestor gestor = new Gestor();
+		paises=gestor.mostrarPais();
 		return paises;
 }
 	
 	public  ArrayList<Aerolinea> mostrarAerolineas() {
 		ArrayList<Aerolinea>aerolineas= new ArrayList<Aerolinea>();
-		GestorEventos gestorEventos = new GestorEventos();
-		aerolineas=gestorEventos.mostrarAerolineas();
+		Gestor gestor = new Gestor();
+		aerolineas=gestor.mostrarAerolineas();
 		return aerolineas;
 }
 	public  ArrayList<Aeropuerto> mostrarAeropuertos() {
 		ArrayList<Aeropuerto>aeropuertos= new ArrayList<Aeropuerto>();
-		GestorEventos gestorEventos = new GestorEventos();
-		aeropuertos=gestorEventos.mostrarAeropuertos();
+		Gestor gestor = new Gestor();
+		aeropuertos=gestor.mostrarAeropuertos();
 		return aeropuertos;
 }
 
 	public ArrayList<Vuelo> mostrarVuelos(Viaje viaje) {
 		ArrayList<Vuelo>vuelos= new ArrayList<Vuelo>();
-		GestorEventos gestorEventos = new GestorEventos();
-		vuelos=gestorEventos.mostrarVuelos(viaje);
+		Gestor gestor = new Gestor();
+		vuelos=gestor.mostrarVuelos(viaje);
 		
 		return vuelos;
 	}
 
 	public ArrayList<Alojamiento> mostrarAlojamientos(Viaje viaje) {
 		ArrayList<Alojamiento>alojamientos= new ArrayList<Alojamiento>();
-		GestorEventos gestorEventos = new GestorEventos();
-		alojamientos=gestorEventos.mostrarAlojamientos(viaje);
+		Gestor gestor = new Gestor();
+		alojamientos=gestor.mostrarAlojamientos(viaje);
 		
 		return alojamientos;
 	}
 	public ArrayList<Otros> mostrarOtros(Viaje viaje) {
 		ArrayList<Otros>otros= new ArrayList<Otros>();
-		GestorEventos gestorEventos = new GestorEventos();
-		otros=gestorEventos.mostrarOtros(viaje);
+		Gestor gestor = new Gestor();
+		otros=gestor.mostrarOtros(viaje);
 		
 		return otros;
 	}
 	
 	public boolean borrarViaje(Viaje viaje) {
-		GestorViajes gestorViajes = new GestorViajes();
+		Gestor gestor = new Gestor();
 		boolean valido=true;
 		ArrayList<Vuelo>vuelos= viaje.getVuelo();
 		for(int i =0;i<vuelos.size();i++) {
@@ -104,14 +104,14 @@ public class Controlador {
 			
 		}
 		if(valido==true) {
-			valido=gestorViajes.borrarViaje(viaje);
+			valido=gestor.borrarViaje(viaje);
 		}
 		return valido;
 	}
 	
 	public boolean eliminarVuelo(Vuelo vuelo){
 	
-		GestorEventos gestorVuelo = new GestorEventos();
+		Gestor gestorVuelo = new Gestor();
 		boolean valido=true;
 		valido=gestorVuelo.eliminarVuelo(vuelo);
 		if(vuelo.getVueloIda()!= null && valido==true) {
@@ -123,12 +123,12 @@ public class Controlador {
 	}
 	
 	public boolean eliminarAlojamiento(Alojamiento alojamiento){
-		GestorEventos gestorAlojamiento = new GestorEventos();
+		Gestor gestorAlojamiento = new Gestor();
 		return gestorAlojamiento.eliminarAlojamiento(alojamiento);
 	}
 	
 	public boolean eliminarOtros(Otros otro){
-		GestorEventos gestorOtros = new GestorEventos();
+		Gestor gestorOtros = new Gestor();
 		return gestorOtros.eliminarOtros(otro);
 	}
 	

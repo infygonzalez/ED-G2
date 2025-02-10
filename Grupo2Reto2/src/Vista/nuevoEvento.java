@@ -13,6 +13,7 @@ import com.toedter.calendar.JCalendar;
 import Modelo.Aerolinea;
 import Modelo.Aeropuerto;
 import Modelo.Agencia;
+import Modelo.Gestor;
 import Modelo.GestorEventos;
 import Modelo.GestorViajes;
 import Modelo.Pais;
@@ -545,7 +546,7 @@ public class nuevoEvento extends JFrame {
 	
 	public void rellenarAerolinea(JComboBox cbAerolineaV) {
 
-		GestorEventos gestorEventos = new GestorEventos();
+		Gestor gestorEventos = new Gestor();
 		ArrayList<Aerolinea> aerolienas = gestorEventos.mostrarAerolineas();
         for (Aerolinea aerolinea : aerolienas) {
         	cbAerolineaV.addItem(aerolinea.getDescripcionAerolinea()); 
@@ -556,7 +557,7 @@ public class nuevoEvento extends JFrame {
 	
 	public void rellenarAeropuerto(JComboBox cbAeropuerto) {
 
-		GestorEventos gestorEventos = new GestorEventos();
+		Gestor gestorEventos = new Gestor();
 		ArrayList<Aeropuerto> aeropuertos = gestorEventos.mostrarAeropuertos();
         for (Aeropuerto aeropuerto : aeropuertos) {
         	cbAeropuerto.addItem(aeropuerto.getLugarAero()); 

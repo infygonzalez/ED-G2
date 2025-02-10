@@ -10,7 +10,7 @@ import javax.swing.event.DocumentListener;
 
 import Controlador.Controlador;
 import Modelo.Agencia;
-import Modelo.GestorAgencia;
+import Modelo.Gestor;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;

@@ -3,7 +3,7 @@ package Vista;
 import java.awt.EventQueue;
 
 import Modelo.Agencia;
-import Modelo.GestorAgencia;
+import Modelo.Gestor;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
