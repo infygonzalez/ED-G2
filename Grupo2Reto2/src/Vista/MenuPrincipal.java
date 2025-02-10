@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
@@ -19,16 +20,21 @@ import Modelo.Viaje;
 import Modelo.Vuelo;
 
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.MalformedURLException;
@@ -53,14 +59,21 @@ public class MenuPrincipal extends JFrame {
 	private JButton btnEliminarViaje;
 	private JButton btnEliminarEvento;
 	private JButton btnNuevoEvento;
+	private JPanel panelColoreable;
 	
 
 	
 	public MenuPrincipal(Agencia agencia) {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 961, 617);
-		contentPane = new JPanel();
+		setBounds(100, 100, 852, 617);
+		contentPane = new JPanel() {
+	    private Image backgroundImage = new ImageIcon(getClass().getResource("/img/menuprincipal.jpg")).getImage();
+	    protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+        }
+    };
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -68,12 +81,28 @@ public class MenuPrincipal extends JFrame {
 		
 		spViajes = new JScrollPane();
 		spViajes.setBounds(10, 102, 625, 155);
+		spViajes.setBackground(new Color(240, 240, 240));
+		spViajes.getVerticalScrollBar().setUnitIncrement(16);
+		spViajes.getHorizontalScrollBar().setUnitIncrement(16);
+		spViajes.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
+		JPanel panelInterior = new JPanel();
+		panelInterior.setBackground(Color.WHITE);
+		panelInterior.setPreferredSize(new Dimension(600, 300));
+		spViajes.setViewportView(panelInterior);
 		contentPane.add(spViajes);
 		
 		
 		
 		spEventos = new JScrollPane();
 		spEventos.setBounds(10, 318, 625, 155);
+		spEventos.setBackground(new Color(240, 240, 240));
+		spEventos.getVerticalScrollBar().setUnitIncrement(16);
+		spEventos.getHorizontalScrollBar().setUnitIncrement(16);
+		spEventos.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
+		JPanel panelInterior1 = new JPanel();
+		panelInterior1.setBackground(Color.WHITE);
+		panelInterior1.setPreferredSize(new Dimension(600, 300));
+		spViajes.setViewportView(panelInterior1);
 		contentPane.add(spEventos);
 		
 		
@@ -102,27 +131,29 @@ public class MenuPrincipal extends JFrame {
 		tablaEventos.setDefaultEditor(Object.class, null);
 		spEventos.setViewportView(tablaEventos);
 		
-		lblViajes = new JLabel("Viajes");
-		lblViajes.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblViajes.setBounds(289, 43, 85, 48);
-		contentPane.add(lblViajes);
-		
 		lblEventos = new JLabel("Eventos");
-		lblViajes.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblEventos.setFont(new Font("Yu Gothic", Font.BOLD, 20));
+		lblEventos.setForeground(new Color(255, 255, 255));
 		lblEventos.setBounds(284, 268, 106, 39);
 		contentPane.add(lblEventos);
 		 
 		JButton btnNuevoViaje = new JButton("Nuevo Viaje");
 		btnNuevoViaje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 dispose();
-					nuevoViaje nuevoViaje = new nuevoViaje(agencia);
-					 nuevoViaje.setVisible(true);
+				dispose();
+				nuevoViaje nuevoViaje = new nuevoViaje(agencia);
+				nuevoViaje.setVisible(true);
 			}
 		});
-		btnNuevoViaje.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnNuevoViaje.setBounds(821, 159, 114, 48);
+		btnNuevoViaje.setBounds(645, 153, 128, 48);
+		btnNuevoViaje.setFont(new Font("Yu Gothic", Font.BOLD, 16));
+		btnNuevoViaje.setBackground(new Color(0, 0, 0, 100));
+		btnNuevoViaje.setOpaque(false);
+		btnNuevoViaje.setForeground(new Color(255, 255, 255));
+		btnNuevoViaje.setBorder(null);
+		btnNuevoViaje.setBorder(new LineBorder(new Color(255, 255, 255, 255), 3, true));
 		contentPane.add(btnNuevoViaje);
+
 		
 		btnNuevoEvento = new JButton("Nuevo Evento");
 		btnNuevoEvento.addActionListener(new ActionListener() {
@@ -130,31 +161,37 @@ public class MenuPrincipal extends JFrame {
 				dispose();
 				nuevoEvento nuevoEvento = new nuevoEvento(agencia);
 				nuevoEvento.setVisible(true);
-				
+
 			}
 		});
-		btnNuevoEvento.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnNuevoEvento.setBounds(821, 364, 114, 48);
+		btnNuevoEvento.setBounds(645, 366, 128, 48);
+		btnNuevoEvento.setFont(new Font("Yu Gothic", Font.BOLD, 16));
+		btnNuevoEvento.setBackground(new Color(0, 0, 0, 100));
+		btnNuevoEvento.setOpaque(false);
+		btnNuevoEvento.setForeground(new Color(255, 255, 255));
+		btnNuevoEvento.setBorder(null);
+		btnNuevoEvento.setBorder(new LineBorder(new Color(255, 255, 255, 255), 3, true));
 		contentPane.add(btnNuevoEvento);
 		
 		JLabel lblNombreAgencia = new JLabel("");
 		lblNombreAgencia.setBounds(856, 11, 79, 30);
 		contentPane.add(lblNombreAgencia);
 		
-		JLabel lblCerrarSesiopn = new JLabel("Cerrar Sesion");
-		lblCerrarSesiopn.setForeground(new Color(255, 0, 0));
-		lblCerrarSesiopn.setBounds(856, 43, 79, 14);
-		contentPane.add(lblCerrarSesiopn);
-		
 		btnEliminarViaje = new JButton("Eliminar Viaje");
-		btnEliminarViaje.setBounds(503, 61, 130, 30);
+		btnEliminarViaje.setBounds(647, 212, 128, 48);
+		btnEliminarViaje.setFont(new Font("Yu Gothic", Font.BOLD, 16));
+		btnEliminarViaje.setBackground(new Color(0, 0, 0, 100));
+		btnEliminarViaje.setOpaque(false);
+		btnEliminarViaje.setForeground(new Color(255, 255, 255));
+		btnEliminarViaje.setBorder(null);
+		btnEliminarViaje.setBorder(new LineBorder(new Color(255, 255, 255, 255), 3, true));
+		
 		contentPane.add(btnEliminarViaje);
-    	btnEliminarViaje.setVisible(false);
-    	spEventos.setVisible(false);
-    	tablaEventos.setVisible(false);
-    	lblEventos.setVisible(false);
-    	btnNuevoEvento.setVisible(false);
-    	
+		btnEliminarViaje.setVisible(false);
+		spEventos.setVisible(false);
+		tablaEventos.setVisible(false);
+		lblEventos.setVisible(false);
+		btnNuevoEvento.setVisible(false);
 		
 		btnEliminarEvento = new JButton("Eliminar Evento");
 		btnEliminarEvento.addActionListener(new ActionListener() {
@@ -162,20 +199,80 @@ public class MenuPrincipal extends JFrame {
 				borrarEvento(agencia);
 			}
 		});
-		btnEliminarEvento.setBounds(503, 277, 132, 30);
+		btnEliminarEvento.setBounds(645, 425, 128, 48);
+		btnEliminarEvento.setFont(new Font("Yu Gothic", Font.BOLD, 16));
+		btnEliminarEvento.setBackground(new Color(0, 0, 0, 100));
+		btnEliminarEvento.setOpaque(false);
+		btnEliminarEvento.setForeground(new Color(255, 255, 255));
+		btnEliminarEvento.setBorder(null);
+		btnEliminarEvento.setBorder(new LineBorder(new Color(255, 255, 255, 255), 3, true));
 		contentPane.add(btnEliminarEvento);
 		btnEliminarEvento.setVisible(false);
 		
-		btnGenerarOferta = new JButton("GenerarOferta");
-		btnGenerarOferta.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnGenerarOferta = new JButton("Generar Oferta");
+		btnGenerarOferta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnGenerarOferta.setBounds(10, 514, 255, 53);
+		btnGenerarOferta.setFont(new Font("Yu Gothic", Font.BOLD, 16));
+		btnGenerarOferta.setBackground(new Color(0, 0, 0, 100));
+		btnGenerarOferta.setOpaque(false);
+		btnGenerarOferta.setForeground(new Color(255, 255, 255));
+		btnGenerarOferta.setBorder(null);
+		btnGenerarOferta.setBorder(new LineBorder(new Color(255, 255, 255, 255), 3, true));
 		contentPane.add(btnGenerarOferta);
 		
-		JLabel lblLogo = new JLabel("");
-		lblLogo.setBounds(10, 11, 106, 80);
-		contentPane.add(lblLogo);
+		panelColoreable = new JPanel();
+		//getColor
+		panelColoreable.setBounds(0, 0, 945, 80);
+		contentPane.add(panelColoreable);
+		panelColoreable.setLayout(null);
+		panelColoreable.setBackground(rellenarColor(agencia));
 		
-		/*String logoUrl = agencia.getLogo();
+		JLabel lblCerrarSesiopn = new JLabel("Cerrar Sesion");
+		lblCerrarSesiopn.setBounds(687, 21, 119, 37);
+		lblCerrarSesiopn.setForeground(new Color(255, 255, 255));
+		lblCerrarSesiopn.setFont(new Font("Arial", Font.BOLD, 14)); 
+		lblCerrarSesiopn.setCursor(new Cursor(Cursor.HAND_CURSOR)); 
+		lblCerrarSesiopn.setHorizontalAlignment(SwingConstants.CENTER); 
+		lblCerrarSesiopn.setOpaque(true); 
+		lblCerrarSesiopn.setBackground(new Color(255, 0, 0));
+		lblCerrarSesiopn.revalidate();
+		lblCerrarSesiopn.repaint();
+		lblCerrarSesiopn.setBorder(BorderFactory.createLineBorder(new Color(255, 0, 0), 2)); 
+
+		panelColoreable.add(lblCerrarSesiopn);
+		
+		lblCerrarSesiopn.setBackground(new Color(255, 0, 0));
+		
+		
+		lblCerrarSesiopn.addMouseListener(new MouseAdapter() { 
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Login loginWindow = new Login();
+                loginWindow.setVisible(true);
+        		dispose();
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblCerrarSesiopn.setFont(new Font("Tahoma", Font.BOLD, 11));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblCerrarSesiopn.setFont(new Font("Tahoma", Font.PLAIN, 11));
+			}
+		});
+		
+		lblViajes = new JLabel("Viajes");
+		lblViajes.setBounds(688, 94, 106, 48);
+		contentPane.add(lblViajes);
+		lblViajes.setForeground(new Color(255, 255, 255));
+		lblViajes.setFont(new Font("Yu Gothic", Font.BOLD, 23));
+		lblViajes.setFont(new Font("Tahoma", Font.BOLD, 20));
+
+		
+		String logoUrl = agencia.getLogo();
         URL imgUrl = null;
         try {
             imgUrl = new URL(logoUrl);
@@ -185,14 +282,15 @@ public class MenuPrincipal extends JFrame {
 
         ImageIcon image = new ImageIcon(imgUrl);
         Image img = image.getImage();  
-        Image resizedImg = img.getScaledInstance(163, 149, Image.SCALE_SMOOTH);  
+        Image resizedImg = img.getScaledInstance(80, 80, Image.SCALE_SMOOTH);  
 
-        lblLogo = new JLabel(new ImageIcon(resizedImg));  
-        lblLogo.setBounds(10, 142, 163, 149);  
-        contentPane.add(lblLogo);
-
+        JLabel lblLogo = new JLabel(new ImageIcon(resizedImg));  
+        lblLogo.setBounds(0, 0, 80, 80);  
+        panelColoreable.add(lblLogo);
+        
+        
         contentPane.revalidate();  
-        contentPane.repaint();  */  
+        contentPane.repaint();  
 		
 		tablaViajes.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			    public void valueChanged(ListSelectionEvent event) {
@@ -218,24 +316,6 @@ public class MenuPrincipal extends JFrame {
 		    });
 	            		
 		rellenarViajes(agencia);
-		
-		
-		lblCerrarSesiopn.addMouseListener(new MouseAdapter() { 
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Login loginWindow = new Login();
-                loginWindow.setVisible(true);
-        		dispose();
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				lblCerrarSesiopn.setFont(new Font("Tahoma", Font.BOLD, 11));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				lblCerrarSesiopn.setFont(new Font("Tahoma", Font.PLAIN, 11));
-			}
-		});
 		
 		btnEliminarViaje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -316,7 +396,21 @@ public class MenuPrincipal extends JFrame {
 				 JOptionPane.showMessageDialog(null, "Eliminado", agencia.getNombre(),JOptionPane.INFORMATION_MESSAGE);
 				 rellenarViajes(agencia);
 				 modelo1.setRowCount(0);
+				 
+					btnEliminarViaje.setBackground(new Color(0, 0, 0, 100));
+					btnEliminarViaje.setOpaque(false);  
+					btnEliminarViaje.setForeground(new Color(255, 255, 255));  
+					btnEliminarViaje.setBorder(null);  
+					btnEliminarViaje.setBorder(new LineBorder(new Color(255, 255, 255, 150 ), 2, true));
+					
 				 btnEliminarViaje.setVisible(false);
+				 
+					btnEliminarEvento.setBackground(new Color(0, 0, 0, 100));
+					btnEliminarEvento.setOpaque(false);  
+					btnEliminarEvento.setForeground(new Color(255, 255, 255));  
+					btnEliminarEvento.setBorder(null);  
+					btnEliminarEvento.setBorder(new LineBorder(new Color(255, 255, 255, 150 ), 2, true));
+					
 				 btnEliminarEvento.setVisible(false);
 				 
 			 }
@@ -365,7 +459,18 @@ public class MenuPrincipal extends JFrame {
 					 modelo1.setRowCount(0);
 					 btnEliminarViaje.setVisible(false);
 					 btnEliminarEvento.setVisible(false);
+					 
 				 }
 			 }
 	 }
+		 
+		 
+		 public Color rellenarColor(Agencia agencia) {
+			 String colorMarca = agencia.getColorMarca();
+			    try {
+			        return Color.decode(colorMarca); 
+			    } catch (NumberFormatException e) {
+			        return Color.BLACK;  
+			    }
+		 }
  }

@@ -561,9 +561,9 @@ public class nuevoEvento extends JFrame {
 	public Color rellenarColor(Agencia agencia) {
 		String colorMarca = agencia.getColorMarca();
 		try {
-			return Color.decode(colorMarca); // Convierte el código hexadecimal a un Color
+			return Color.decode(colorMarca); 
 		} catch (NumberFormatException e) {
-			return Color.BLACK; // Color por defecto si el formato no es válido
+			return Color.BLACK; 
 		}
 	}
 	public void setBorder(Object object) {
