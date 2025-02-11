@@ -1,10 +1,12 @@
 package Vista;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -21,11 +23,17 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.awt.event.ActionEvent;
@@ -63,6 +71,7 @@ public class nuevoEvento extends JFrame {
 	private JDateChooser dcFechaOtros;
 	private JComboBox cbAerolineaV_1;
 	private JComboBox cbAerolinea;
+	private JPanel coloreablePanel;
 
 
 	/**
@@ -78,36 +87,44 @@ public class nuevoEvento extends JFrame {
 
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 792, 696);
-		contentPane = new JPanel();
+		setBounds(100, 100, 774, 696);
+		contentPane = new JPanel() {
+		 private Image backgroundImage = new ImageIcon(getClass().getResource("/img/nuevaagencia.jpg")).getImage();
+		    protected void paintComponent(Graphics g) {
+	            super.paintComponent(g);
+	            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+	        }
+	    };
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblNombreEvento = new JLabel("Nombre del evento");
-		lblNombreEvento.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNombreEvento.setBounds(61, 40, 118, 28);
+		lblNombreEvento.setForeground(new Color(255, 255, 255));
+		lblNombreEvento.setFont(new Font("Yu Gothic", Font.BOLD, 13));
+		lblNombreEvento.setBounds(20, 68, 141, 28);
 		contentPane.add(lblNombreEvento);
 		
 		txtNombreEvento = new JTextField();
-		txtNombreEvento.setBounds(223, 45, 118, 20);
+		txtNombreEvento.setBounds(161, 69, 118, 20);
 		contentPane.add(txtNombreEvento);
 		txtNombreEvento.setColumns(10);
 		
 		JLabel lblTipoEvento = new JLabel("Tipo del evento");
-		lblTipoEvento.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTipoEvento.setBounds(61, 94, 118, 28);
+		lblTipoEvento.setForeground(new Color(255, 255, 255));
+		lblTipoEvento.setFont(new Font("Yu Gothic", Font.BOLD, 13));
+		lblTipoEvento.setBounds(20, 100, 131, 28);
 		contentPane.add(lblTipoEvento);
 		
 		cbTipoEvento = new JComboBox();
 		cbTipoEvento.setModel(new DefaultComboBoxModel(new String[] {"", "Vuelo", "Alojamiento", "Otros"}));
-		cbTipoEvento.setBounds(223, 98, 118, 22);
+		cbTipoEvento.setBounds(161, 100, 118, 22);
 		contentPane.add(cbTipoEvento);
 		
 		
 		JPanel Alojamiento = new JPanel();
-		Alojamiento.setBounds(0, 147, 776, 432);
+		Alojamiento.setBounds(0, 147, 758, 432);
 		contentPane.add(Alojamiento);
 		Alojamiento.setLayout(null);
 		
@@ -122,8 +139,13 @@ public class nuevoEvento extends JFrame {
 		vuelo.setLayout(null);
 		
 		JButton btnGuardar = new JButton("Guardar");
-		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnGuardar.setBounds(252, 624, 89, 23);
+		btnGuardar.setFont(new Font("Yu Gothic", Font.BOLD, 16));
+		btnGuardar.setBackground(new Color(0, 0, 0, 100));
+		btnGuardar.setOpaque(false);
+		btnGuardar.setForeground(new Color(255, 255, 255));
+		btnGuardar.setBorder(null);
+		btnGuardar.setBorder(new LineBorder(new Color(255, 255, 255, 255), 3, true));
+		btnGuardar.setBounds(33, 614, 89, 33);
 		contentPane.add(btnGuardar);
 		
 		
@@ -138,9 +160,36 @@ public class nuevoEvento extends JFrame {
 				
 			}
 		});
-		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnCancelar.setBounds(421, 624, 89, 23);
+		btnCancelar.setFont(new Font("Yu Gothic", Font.BOLD, 16));
+		btnCancelar.setBackground(new Color(0, 0, 0, 100));
+		btnCancelar.setOpaque(false);
+		btnCancelar.setForeground(new Color(255, 255, 255));
+		btnCancelar.setBorder(null);
+		btnCancelar.setBorder(new LineBorder(new Color(255, 255, 255, 255), 3, true));
+		btnCancelar.setBounds(161, 614, 89, 33);
 		contentPane.add(btnCancelar);
+		
+		coloreablePanel = new JPanel();
+		coloreablePanel.setBounds(0, 0, 776, 53);
+		contentPane.add(coloreablePanel);
+		coloreablePanel.setLayout(null);
+		coloreablePanel.setBackground(rellenarColor(agencia));
+				
+		String logoUrl = agencia.getLogo();
+        URL imgUrl = null;
+        try {
+            imgUrl = new URL(logoUrl);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        
+		ImageIcon image = new ImageIcon(imgUrl);
+        Image img = image.getImage();  
+        Image resizedImg = img.getScaledInstance(55, 55, Image.SCALE_SMOOTH);
+        
+        JLabel lblLogo = new JLabel(new ImageIcon(resizedImg));  
+        lblLogo.setBounds(0, 0, 53, 53);
+		coloreablePanel.add(lblLogo);
 		
 		
 		cbTipoEvento.addActionListener(new ActionListener() {
@@ -703,5 +752,12 @@ public class nuevoEvento extends JFrame {
         	cbAeropuerto.addItem(aeropuerto.getLugarAero()); 
         }
 }
-	
+	public Color rellenarColor(Agencia agencia) {
+		String colorMarca = agencia.getColorMarca();
+		try {
+			return Color.decode(colorMarca);
+		} catch (NumberFormatException e) {
+			return Color.BLACK; 
+		}
+	}
 }

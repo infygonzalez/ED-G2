@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -17,9 +18,13 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JTextPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -34,6 +39,8 @@ import com.toedter.calendar.JDateChooser;
 
 import Controlador.Controlador;
 import java.beans.PropertyChangeListener;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.beans.PropertyChangeEvent;
 
@@ -54,90 +61,110 @@ public class nuevoViaje extends JFrame {
 	private JDateChooser dcFinViaje;
 	private JComboBox cbPais;
 	private JComboBox cbTipoViaje;
+	private JPanel coloreablePanel;
 	private Controlador controlador = new Controlador();
 
 	public nuevoViaje(Agencia agencia) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 700, 821);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setBounds(0, 0, 556, 740);
+		contentPane = new JPanel() {
+		    private Image backgroundImage = new ImageIcon(getClass().getResource("/img/nuevaagencia.jpg")).getImage();
+
+	        protected void paintComponent(Graphics g) {
+	            super.paintComponent(g);
+	            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+	        }
+	    };
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblNombreViaje = new JLabel("Nombre del viaje");
-		lblNombreViaje.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNombreViaje.setBounds(77, 84, 118, 14);
+		lblNombreViaje.setForeground(new Color(255, 255, 255));
+		lblNombreViaje.setFont(new Font("Yu Gothic", Font.BOLD, 13));
+		lblNombreViaje.setBounds(77, 108, 118, 27);
 		contentPane.add(lblNombreViaje);
 		
 		textNombreViaje = new JTextField();
-		textNombreViaje.setBounds(250, 82, 179, 20);
+		textNombreViaje.setBounds(212, 108, 179, 20);
 		contentPane.add(textNombreViaje);
 		textNombreViaje.setColumns(10);
 		
 		JLabel lblTipoViaje = new JLabel("Tipo de viaje");
-		lblTipoViaje.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTipoViaje.setBounds(77, 144, 118, 14);
+		lblTipoViaje.setForeground(new Color(255, 255, 255));
+		lblTipoViaje.setFont(new Font("Yu Gothic", Font.BOLD, 13));
+		lblTipoViaje.setBounds(77, 146, 118, 38);
 		contentPane.add(lblTipoViaje);
 		
 		lblInicioViaje = new JLabel("Inicio del viaje");
-		lblInicioViaje.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblInicioViaje.setBounds(77, 207, 118, 14);
+		lblInicioViaje.setForeground(new Color(255, 255, 255));
+		lblInicioViaje.setFont(new Font("Yu Gothic", Font.BOLD, 13));
+		lblInicioViaje.setBounds(77, 191, 118, 36);
 		contentPane.add(lblInicioViaje);
 		
 		lblFinViaje = new JLabel("Fin del viaje");
-		lblFinViaje.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblFinViaje.setBounds(77, 269, 118, 14);
+		lblFinViaje.setForeground(new Color(255, 255, 255));
+		lblFinViaje.setFont(new Font("Yu Gothic", Font.BOLD, 13));
+		lblFinViaje.setBounds(77, 238, 118, 31);
 		contentPane.add(lblFinViaje);
 		
 		lblDuracion = new JLabel("Duracion");
-		lblDuracion.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblDuracion.setBounds(77, 332, 118, 14);
+		lblDuracion.setForeground(new Color(255, 255, 255));
+		lblDuracion.setFont(new Font("Yu Gothic", Font.BOLD, 13));
+		lblDuracion.setBounds(77, 280, 118, 36);
 		contentPane.add(lblDuracion);
 		
 		lblPais = new JLabel("Pais");
-		lblPais.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblPais.setBounds(77, 398, 118, 14);
+		lblPais.setForeground(new Color(255, 255, 255));
+		lblPais.setFont(new Font("Yu Gothic", Font.BOLD, 13));
+		lblPais.setBounds(77, 327, 118, 38);
 		contentPane.add(lblPais);
 		
 		lblDescrip = new JLabel("Descripcion");
-		lblDescrip.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblDescrip.setBounds(77, 467, 118, 14);
+		lblDescrip.setForeground(new Color(255, 255, 255));
+		lblDescrip.setFont(new Font("Yu Gothic", Font.BOLD, 13));
+		lblDescrip.setBounds(77, 376, 118, 41);
 		contentPane.add(lblDescrip);
 		
 		JLabel lblServiciosNoInclu = new JLabel("Servicios no incl.");
-		lblServiciosNoInclu.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblServiciosNoInclu.setBounds(77, 631, 118, 14);
+		lblServiciosNoInclu.setForeground(new Color(255, 255, 255));
+		lblServiciosNoInclu.setFont(new Font("Yu Gothic", Font.BOLD, 13));
+		lblServiciosNoInclu.setBounds(77, 499, 118, 41);
 		contentPane.add(lblServiciosNoInclu);
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnCancelar.setBounds(442, 748, 89, 23);
+		btnCancelar.setFont(new Font("Yu Gothic", Font.BOLD, 16));
+		btnCancelar.setBackground(new Color(0, 0, 0, 100));
+		btnCancelar.setOpaque(false);
+		btnCancelar.setForeground(new Color(255, 255, 255));
+		btnCancelar.setBorder(null);
+		btnCancelar.setBorder(new LineBorder(new Color(255, 255, 255, 255), 3, true));
+		btnCancelar.setBounds(391, 638, 102, 38);
 		contentPane.add(btnCancelar);
 		
 		textDescrip = new JTextPane();
-		textDescrip.setBounds(250, 440, 281, 103);
+		textDescrip.setBounds(212, 376, 281, 103);
 		contentPane.add(textDescrip);
 		
 		textServicios = new JTextPane();
-		textServicios.setBounds(250, 604, 281, 96);
+		textServicios.setBounds(212, 499, 281, 96);
 		contentPane.add(textServicios);
 		
 		cbPais = new JComboBox();
 		cbPais.setModel(new DefaultComboBoxModel(new String[] {"",}));
-		cbPais.setBounds(250, 395, 179, 22);
+		cbPais.setBounds(212, 332, 179, 22);
 		contentPane.add(cbPais);
 		
 		dcInicioViaje = new JDateChooser();
-		dcInicioViaje.setBounds(250, 207, 179, 20);
+		dcInicioViaje.setBounds(212, 195, 179, 20);
 		contentPane.add(dcInicioViaje);
 		
 		dcFinViaje = new JDateChooser();
-		dcFinViaje.setBounds(250, 269, 179, 20);
+		dcFinViaje.setBounds(212, 238, 179, 20);
 		contentPane.add(dcFinViaje);
 		
 		txtDuracion = new JTextField();
-		txtDuracion.setBounds(250, 330, 179, 20);
+		txtDuracion.setBounds(212, 285, 179, 20);
 		contentPane.add(txtDuracion);
 		txtDuracion.setColumns(10);
 		
@@ -175,8 +202,13 @@ public class nuevoViaje extends JFrame {
 				
 			}
 		});
-		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnGuardar.setBounds(212, 749, 89, 23);
+		btnGuardar.setFont(new Font("Yu Gothic", Font.BOLD, 16));
+		btnGuardar.setBackground(new Color(0, 0, 0, 100));
+		btnGuardar.setOpaque(false);
+		btnGuardar.setForeground(new Color(255, 255, 255));
+		btnGuardar.setBorder(null);
+		btnGuardar.setBorder(new LineBorder(new Color(255, 255, 255, 255), 3, true));
+		btnGuardar.setBounds(77, 638, 102, 38);
 		contentPane.add(btnGuardar);
 
 		btnCancelar.addActionListener(new ActionListener() {
@@ -192,8 +224,31 @@ public class nuevoViaje extends JFrame {
 		
 		cbTipoViaje = new JComboBox();
 		cbTipoViaje.setModel(new DefaultComboBoxModel(new String[] {"", "Novios", "Senior", "Grupos", "Grandes viajes", "Combinado", "Escapadas", "Familias con niños menores"}));
-		cbTipoViaje.setBounds(250, 141, 179, 22);
+		cbTipoViaje.setBounds(212, 151, 179, 22);
 		contentPane.add(cbTipoViaje);
+		
+		coloreablePanel = new JPanel();
+		coloreablePanel.setBounds(0, 0, 540, 60);
+		contentPane.add(coloreablePanel);
+		coloreablePanel.setLayout(null);
+		coloreablePanel.setBackground(rellenarColor(agencia));
+		
+		String logoUrl = agencia.getLogo();
+        URL imgUrl = null;
+        try {
+            imgUrl = new URL(logoUrl);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        
+		ImageIcon image = new ImageIcon(imgUrl);
+        Image img = image.getImage();  
+        Image resizedImg = img.getScaledInstance(55, 55, Image.SCALE_SMOOTH);
+        
+        JLabel lblLogo = new JLabel(new ImageIcon(resizedImg));  
+		lblLogo.setBounds(0, 0, 60, 60);
+        coloreablePanel.add(lblLogo);
+
 	}
 	
 	
@@ -277,16 +332,14 @@ public class nuevoViaje extends JFrame {
 	
 		 return valido;
 	}
-	
-	public  void llenarComboBoxPaises(JComboBox<String> cbPais) {
+	public void llenarComboBoxPaises(JComboBox<String> cbPais) {
 		cbPais.removeAllItems();
 		Gestor gestorViajes = new Gestor();
 		ArrayList<Pais> paises = gestorViajes.mostrarPais();
-        for (Pais pais : paises) {
-        	cbPais.addItem(pais.getDescripPais()); 
-        }
-    }
-	
+		for (Pais pais : paises) {
+			cbPais.addItem(pais.getDescripPais());
+		}
+	}
 	private String convertirFechaADatabaseFormat(java.util.Date date) {
         if (date != null) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -294,6 +347,14 @@ public class nuevoViaje extends JFrame {
         }
         return null; 
     }
+	public Color rellenarColor(Agencia agencia) {
+		String colorMarca = agencia.getColorMarca();
+		try {
+			return Color.decode(colorMarca);
+		} catch (NumberFormatException e) {
+			return Color.BLACK; 
+		}
+	}
 }
 
 
