@@ -5,6 +5,7 @@ public class SQLQuerys {
 	
 	//INSERT
 		public static final String INSERT_NUEVA_AGENCIA = "insert into agencia(nombre,colorMarca,numeroEmpleados,tipoAgencia,logo,clave) VALUES('";
+		public static final String INSERT_NUEVO_VIAJE = "insert into viajes(nombre,descripcion,tipoViaje,fechaIda,fechaVuelta,duracion,descripcionServicio,idAgencia,codigoPais) VALUES('";
 		public static final String SEPARATOR = "', '";
 		public static final String ENDBLOCK = "')";
 	

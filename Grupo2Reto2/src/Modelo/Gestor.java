@@ -594,4 +594,45 @@ return aeropuertos;
 	}
 	
 	
+	public boolean crearViaje(Viaje viaje) {
+        boolean valido= false;
+        Connection conexion = null;
+        Statement sentencia = null;
+        
+        try {
+            Class.forName(DBUtils.DRIVER);
+            conexion = DriverManager.getConnection(DBUtils.URL, DBUtils.USER, DBUtils.PASSWORD);
+            sentencia=conexion.createStatement();
+            String sql = SQLQuerys.INSERT_NUEVO_VIAJE + viaje.getNombreViaje()+ SQLQuerys.SEPARATOR +viaje.getDescripcion()
+                    + SQLQuerys.SEPARATOR + viaje.getTipoViaje()+ SQLQuerys.SEPARATOR
+                    + viaje.getFechaIda()+ SQLQuerys.SEPARATOR
+                    +viaje.getFechaVuelta() + SQLQuerys.SEPARATOR
+                    + viaje.getDuracion() + SQLQuerys.SEPARATOR
+                    + viaje.getDescServicio()
+                    + SQLQuerys.SEPARATOR + viaje.getAgencia().getIdAgencia()
+                    + SQLQuerys.SEPARATOR + viaje.getPais().getCodigoPais()+ SQLQuerys.ENDBLOCK;
+            sentencia.executeUpdate(sql);
+            if (sentencia != null) {
+            	valido=true;
+            }
+        } catch (SQLException sqle) {
+            System.out.println("Error con la base de datos" + sqle.getMessage());
+        }
+        catch (Exception e) {
+        System.out.println("Error genérico" + e.getMessage());
+        }
+        
+        try {
+            sentencia.close();
+        } catch (SQLException e) {
+            System.out.println("Error al cerrar sentencia");
+        }
+        try {
+            conexion.close();
+        } catch (SQLException e) {
+            System.out.println("Error al cerrar conexión");
+        }
+        return valido;
+    }
+	
 }

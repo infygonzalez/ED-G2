@@ -26,6 +26,11 @@ public class Controlador {
 		gestorAgencia.crearAgencia(agencia);
 	}
 	
+	public void crearViaje(Viaje viaje) {
+		Gestor gestor = new Gestor();
+		gestor.crearViaje(viaje);
+	}
+	
 	public ArrayList<Viaje> mostrarViajes(Agencia agencia,ArrayList<Pais> paises) {
 		ArrayList<Viaje>viajes= new ArrayList<Viaje>();
 		Gestor gestor = new Gestor();
