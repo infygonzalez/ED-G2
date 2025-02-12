@@ -12,7 +12,7 @@ public class Alojamiento {
 	private String tipoHab="Doble";
 	private Viaje viaje;
 
-	Alojamiento(){
+	public Alojamiento(){
 		idEvento="";
 		nombreEvento="";
 		precio="";

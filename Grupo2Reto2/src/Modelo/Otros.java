@@ -8,7 +8,7 @@ public class Otros {
 	private String fecha;
 	private String descripcion;
 	private Viaje viaje;
-	Otros(){
+	public Otros(){
 		idEvento="";
 		nombreEvento="";
 		precio="";

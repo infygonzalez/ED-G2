@@ -1,12 +1,11 @@
 package Vista;
 
-import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -15,29 +14,31 @@ import com.toedter.calendar.JCalendar;
 import Modelo.Aerolinea;
 import Modelo.Aeropuerto;
 import Modelo.Agencia;
+import Modelo.Alojamiento;
 import Modelo.Gestor;
+import Modelo.Otros;
 import Modelo.Pais;
 import Modelo.Viaje;
+import Modelo.Vuelo;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Image;
-
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.net.URI;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.awt.event.ActionEvent;
 import com.toedter.components.JLocaleChooser;
+
+import Controlador.Controlador;
+
 import com.toedter.calendar.JDayChooser;
 import com.toedter.calendar.JDateChooser;
 
@@ -60,8 +61,6 @@ public class nuevoEvento extends JFrame {
 	private JComboBox cbTipoEvento;
 	private JComboBox cbAropuertoO;
 	private JComboBox cbAeropuertoD;
-	private JComboBox cbAeropuertoDV;
-	private JComboBox cbAropuertoOV;
 	private JPanel vuelo_1;
 	private JComboBox cbTrayecto;
 	private JDateChooser dcVuelo;
@@ -71,13 +70,16 @@ public class nuevoEvento extends JFrame {
 	private JDateChooser dcFechaOtros;
 	private JComboBox cbAerolineaV_1;
 	private JComboBox cbAerolinea;
-	private JPanel coloreablePanel;
+	private Controlador controlador = new Controlador();
+	private JDateChooser dcFechaAlojamientoSalida;
 
 
 	/**
 	 * Create the frame.
 	 */
-	public nuevoEvento(Agencia agencia) {
+	public nuevoEvento(Agencia agencia,Viaje viaje) {
+			
+			
 		
 		   JCalendar calendar = new JCalendar();
            int año = calendar.getCalendar().get(Calendar.YEAR);
@@ -87,70 +89,59 @@ public class nuevoEvento extends JFrame {
 
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 774, 696);
-		contentPane = new JPanel() {
-		 private Image backgroundImage = new ImageIcon(getClass().getResource("/img/nuevaagencia.jpg")).getImage();
-		    protected void paintComponent(Graphics g) {
-	            super.paintComponent(g);
-	            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
-	        }
-	    };
+		setBounds(100, 100, 792, 696);
+		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNombreEvento = new JLabel("Nombre del evento");
-		lblNombreEvento.setForeground(new Color(255, 255, 255));
-		lblNombreEvento.setFont(new Font("Yu Gothic", Font.BOLD, 13));
-		lblNombreEvento.setBounds(20, 68, 141, 28);
-		contentPane.add(lblNombreEvento);
-		
-		txtNombreEvento = new JTextField();
-		txtNombreEvento.setBounds(161, 69, 118, 20);
-		contentPane.add(txtNombreEvento);
-		txtNombreEvento.setColumns(10);
-		
-		JLabel lblTipoEvento = new JLabel("Tipo del evento");
-		lblTipoEvento.setForeground(new Color(255, 255, 255));
-		lblTipoEvento.setFont(new Font("Yu Gothic", Font.BOLD, 13));
-		lblTipoEvento.setBounds(20, 100, 131, 28);
-		contentPane.add(lblTipoEvento);
-		
-		cbTipoEvento = new JComboBox();
-		cbTipoEvento.setModel(new DefaultComboBoxModel(new String[] {"", "Vuelo", "Alojamiento", "Otros"}));
-		cbTipoEvento.setBounds(161, 100, 118, 22);
-		contentPane.add(cbTipoEvento);
-		
 		
 		JPanel Alojamiento = new JPanel();
-		Alojamiento.setBounds(0, 147, 758, 432);
+		Alojamiento.setBounds(0, 147, 776, 432);
 		contentPane.add(Alojamiento);
 		Alojamiento.setLayout(null);
-		
-		JPanel otros = new JPanel();
-		otros.setBounds(0, 133, 776, 443);
-		contentPane.add(otros);
-		otros.setLayout(null);
 		
 		JPanel vuelo = new JPanel();
 		vuelo.setBounds(0, 132, 766, 411);
 		contentPane.add(vuelo);
 		vuelo.setLayout(null);
 		
+		
+		
+		
+		
+		JLabel lblNombreEvento = new JLabel("Nombre del evento");
+		lblNombreEvento.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNombreEvento.setBounds(61, 40, 118, 28);
+		contentPane.add(lblNombreEvento);
+		
+		txtNombreEvento = new JTextField();
+		txtNombreEvento.setBounds(223, 45, 118, 20);
+		contentPane.add(txtNombreEvento);
+		txtNombreEvento.setColumns(10);
+		
+		JLabel lblTipoEvento = new JLabel("Tipo del evento");
+		lblTipoEvento.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTipoEvento.setBounds(61, 94, 118, 28);
+		contentPane.add(lblTipoEvento);
+		
+		cbTipoEvento = new JComboBox();
+		cbTipoEvento.setModel(new DefaultComboBoxModel(new String[] {"", "Vuelo", "Alojamiento", "Otros"}));
+		cbTipoEvento.setBounds(223, 98, 118, 22);
+		contentPane.add(cbTipoEvento);
+		
+		JPanel otros = new JPanel();
+		otros.setBounds(0, 133, 776, 443);
+		contentPane.add(otros);
+		otros.setLayout(null);
+		
 		JButton btnGuardar = new JButton("Guardar");
-		btnGuardar.setFont(new Font("Yu Gothic", Font.BOLD, 16));
-		btnGuardar.setBackground(new Color(0, 0, 0, 100));
-		btnGuardar.setOpaque(false);
-		btnGuardar.setForeground(new Color(255, 255, 255));
-		btnGuardar.setBorder(null);
-		btnGuardar.setBorder(new LineBorder(new Color(255, 255, 255, 255), 3, true));
-		btnGuardar.setBounds(33, 614, 89, 33);
+		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnGuardar.setBounds(252, 624, 89, 23);
 		contentPane.add(btnGuardar);
 		
-		
-		
-		
+
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -160,37 +151,9 @@ public class nuevoEvento extends JFrame {
 				
 			}
 		});
-		btnCancelar.setFont(new Font("Yu Gothic", Font.BOLD, 16));
-		btnCancelar.setBackground(new Color(0, 0, 0, 100));
-		btnCancelar.setOpaque(false);
-		btnCancelar.setForeground(new Color(255, 255, 255));
-		btnCancelar.setBorder(null);
-		btnCancelar.setBorder(new LineBorder(new Color(255, 255, 255, 255), 3, true));
-		btnCancelar.setBounds(161, 614, 89, 33);
+		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnCancelar.setBounds(421, 624, 89, 23);
 		contentPane.add(btnCancelar);
-		
-		coloreablePanel = new JPanel();
-		coloreablePanel.setBounds(0, 0, 776, 53);
-		contentPane.add(coloreablePanel);
-		coloreablePanel.setLayout(null);
-		coloreablePanel.setBackground(rellenarColor(agencia));
-				
-		String logoUrl = agencia.getLogo();
-        URL imgUrl = null;
-        try {
-            imgUrl = new URL(logoUrl);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        
-		ImageIcon image = new ImageIcon(imgUrl);
-        Image img = image.getImage();  
-        Image resizedImg = img.getScaledInstance(55, 55, Image.SCALE_SMOOTH);
-        
-        JLabel lblLogo = new JLabel(new ImageIcon(resizedImg));  
-        lblLogo.setBounds(0, 0, 53, 53);
-		coloreablePanel.add(lblLogo);
-		
 		
 		cbTipoEvento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -224,19 +187,7 @@ public class nuevoEvento extends JFrame {
 		
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				validarEvento();
-				if(cbTipoEvento.getSelectedItem()=="Vuelo") {
-					validarVuelo(vuelo);
-					if(cbTrayecto.getSelectedItem()=="Ida y vuelta") {
-						validarVueloV();
-					}
-				}
-				else if(cbTipoEvento.getSelectedItem()=="Alojamiento") {
-					validarAlojamiento();	
-				}
-				else if(cbTipoEvento.getSelectedItem()=="Otros") {
-					validarOtros();
-				}
+				validarEvento(viaje,agencia);
 				
 			}
 		});
@@ -282,21 +233,43 @@ public class nuevoEvento extends JFrame {
 		Alojamiento.add(txtPrecioAlo);
 		
 		JButton btnBuscarAlojamiento = new JButton("Buscar alojamiento");
+		btnBuscarAlojamiento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+                    Desktop desktop = Desktop.getDesktop();
+                    desktop.browse(new URI("https://www.booking.com/"));
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Error al abrir el enlace", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+				
+			}
+		});
 		btnBuscarAlojamiento.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnBuscarAlojamiento.setBounds(60, 211, 282, 23);
+		btnBuscarAlojamiento.setBounds(463, 28, 285, 43);
 		Alojamiento.add(btnBuscarAlojamiento);
 		
 		dcFechaAlojamiento = new JDateChooser();
 		dcFechaAlojamiento.setBounds(224, 142, 118, 20);
 		Alojamiento.add(dcFechaAlojamiento);
+		
+
+		JLabel lblFechaSalida = new JLabel("Fecha de entrada");
+		lblFechaSalida.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblFechaSalida.setBounds(60, 181, 118, 28);
+		Alojamiento.add(lblFechaSalida);
+		
+		dcFechaAlojamientoSalida = new JDateChooser();
+		dcFechaAlojamientoSalida.setBounds(224, 181, 118, 20);
+		Alojamiento.add(dcFechaAlojamientoSalida);
 	
 		
 		
 	}
 	
 	public void verVuelo(JPanel vuelo) {
-		
-		
+	
 		JLabel lblTrayecto = new JLabel("Trayecto");
 		lblTrayecto.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblTrayecto.setBounds(61, 11, 118, 28);
@@ -391,22 +364,19 @@ public class nuevoEvento extends JFrame {
 		btnBuscarViaje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				try {
+                    Desktop desktop = Desktop.getDesktop();
+                    desktop.browse(new URI("https://www.skyscanner.es/"));
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Error al abrir el enlace", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            
 				
 			}
 		});
-		btnBuscarViaje.setBounds(397, 15, 210, 23);
+		btnBuscarViaje.setBounds(397, 41, 222, 46);
 		vuelo.add(btnBuscarViaje);
-		
-		JLabel lblAeropuertoOV = new JLabel("Aeropuerto Origen");
-		lblAeropuertoOV.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblAeropuertoOV.setBounds(397, 59, 118, 28);
-		vuelo.add(lblAeropuertoOV);
-		
-		
-		JLabel lblAeropuertoDV = new JLabel("Aeropuerto Destino");
-		lblAeropuertoDV.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblAeropuertoDV.setBounds(397, 110, 118, 28);
-		vuelo.add(lblAeropuertoDV);
 		
 		
 		JLabel lblFechaVuelta = new JLabel("Fecha ida");
@@ -436,19 +406,6 @@ public class nuevoEvento extends JFrame {
 		lblDuracionV.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblDuracionV.setBounds(397, 356, 118, 28);
 		vuelo.add(lblDuracionV);
-		
-		
-		
-		cbAropuertoOV = new JComboBox();
-		cbAropuertoOV.setBounds(576, 63, 118, 22);
-		vuelo.add(cbAropuertoOV);
-		rellenarAeropuerto(cbAropuertoOV);
-		
-		
-		cbAeropuertoDV = new JComboBox();
-		cbAeropuertoDV.setBounds(576, 114, 118, 22);
-		vuelo.add(cbAeropuertoDV);
-		rellenarAeropuerto(cbAeropuertoDV);
 		
 		txtCodigoVueloV = new JTextField();
 		txtCodigoVueloV.setColumns(10);
@@ -480,15 +437,7 @@ public class nuevoEvento extends JFrame {
 		dcVueloVuelta = new JDateChooser();
 		dcVueloVuelta.setBounds(576, 161, 118, 20);
 		vuelo.add(dcVueloVuelta);
-		
-
-		cbAropuertoOV.setSelectedItem(cbAeropuertoD);
-		cbAeropuertoDV.setSelectedItem(cbAropuertoO);
-		
-		
-		lblAeropuertoOV.setVisible(false);
 		lblFechaVuelta.setVisible(false);
-		lblAeropuertoDV.setVisible(false);
 		lblCodigoVueloV.setVisible(false);
 		lblAerolineaV.setVisible(false);
 		lblDuracionV.setVisible(false);
@@ -497,16 +446,12 @@ public class nuevoEvento extends JFrame {
 		txtDuracionV.setVisible(false);
 		txtCodigoVueloV.setVisible(false);
 		txtHorarioV.setVisible(false);
-		cbAropuertoOV.setVisible(false);
-		cbAeropuertoDV.setVisible(false);
 		cbAerolineaV_1.setVisible(false);
 		dcVueloVuelta.setVisible(false);
 		cbTrayecto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(cbTrayecto.getSelectedItem().equals("Ida y vuelta")) {
-					lblAeropuertoOV.setVisible(true);
 					lblFechaVuelta.setVisible(true);
-					lblAeropuertoDV.setVisible(true);
 					lblCodigoVueloV.setVisible(true);
 					lblAerolineaV.setVisible(true);
 					lblDuracionV.setVisible(true);
@@ -514,16 +459,12 @@ public class nuevoEvento extends JFrame {
 					txtCodigoVueloV.setVisible(true);
 					txtDuracionV.setVisible(true);
 					txtHorarioV.setVisible(true);
-					cbAropuertoOV.setVisible(true);
-					cbAeropuertoDV.setVisible(true);
 					cbAerolineaV_1.setVisible(true);
 					dcVueloVuelta.setVisible(true);
 					
 				}
 				else {
-					lblAeropuertoOV.setVisible(false);
 					lblFechaVuelta.setVisible(false);
-					lblAeropuertoDV.setVisible(false);
 					lblCodigoVueloV.setVisible(false);
 					lblAerolineaV.setVisible(false);
 					lblDuracionV.setVisible(false);
@@ -532,15 +473,12 @@ public class nuevoEvento extends JFrame {
 					txtDuracionV.setVisible(false);
 					txtCodigoVueloV.setVisible(false);
 					txtHorarioV.setVisible(false);
-					cbAropuertoOV.setVisible(false);
-					cbAeropuertoDV.setVisible(false);
 					cbAerolineaV_1.setVisible(false);
 					dcVueloVuelta.setVisible(false);
 				}
 				
 			}
 		});
-		
 		
 	}
 	
@@ -572,13 +510,13 @@ public class nuevoEvento extends JFrame {
 		 otros.add(lblFecha);
 		 
 		 dcFechaOtros = new JDateChooser();
-			dcFechaOtros.setBounds(224, 201, 118, 20);
-			otros.add(dcFechaOtros);
+		 dcFechaOtros.setBounds(224, 201, 118, 20);
+		 otros.add(dcFechaOtros);
 }
 	
 	
 	
-	public boolean validarEvento() {
+	public boolean validarEvento(Viaje viaje,Agencia agencia) {
 		boolean valido = true;
 		  if (txtNombreEvento.getText().length() < 1 || txtNombreEvento.getText().length() > 255  == true) {
 	            JOptionPane.showMessageDialog(null, "El nombre del evento no puede estar vacío","ERROR", JOptionPane.ERROR_MESSAGE);
@@ -589,12 +527,34 @@ public class nuevoEvento extends JFrame {
 	            valido = false;
 	        }
 	        
+	        if(valido==true) {
+	        	if(cbTipoEvento.getSelectedItem().equals("Vuelo")) {
+	        		Vuelo vueloida=validarVuelo(viaje,agencia);
+	        		if(cbTrayecto.getSelectedItem().equals("Ida y vuelta")) {
+	        			validarVueloV(viaje,vueloida);
+					}
+	        	}
+	        	
+	        	else if(cbTipoEvento.getSelectedItem().equals("Alojamiento")) {
+	        		validarAlojamiento(viaje, agencia);
+	        	}
+	        	
+	        	else if(cbTipoEvento.getSelectedItem().equals("Otros")) {
+	        		validarOtros(viaje, agencia);
+	        	}
+	        	
+	        }
+	        
 		
 	return valido;	
 	}
 	
-	public boolean validarVuelo(JPanel vuelo) {
+	public Vuelo validarVuelo(Viaje viaje, Agencia agencia) {
 		boolean valido = true;
+		Vuelo vuelo = new Vuelo();
+		String fechaVuelo;
+		ArrayList<Aerolinea>aerolineas = controlador.mostrarAerolineas();
+		ArrayList<Aeropuerto>aeropuertos = controlador.mostrarAeropuertos();
 	
 		if (cbTrayecto.getSelectedItem() == "" ) {
 		    JOptionPane.showMessageDialog(this, "Seleccione el tipo trayecto", "Error", JOptionPane.ERROR_MESSAGE);
@@ -608,7 +568,7 @@ public class nuevoEvento extends JFrame {
 			JOptionPane.showMessageDialog(this, "Seleccione el aeropuerto de destino", "Error", JOptionPane.ERROR_MESSAGE);
 		    valido = false;
 		}
-		    if(cbAropuertoO.getSelectedItem() == cbAeropuertoD.getSelectedItem() ) {
+		  if(cbAropuertoO.getSelectedItem() == cbAeropuertoD.getSelectedItem() ) {
 				JOptionPane.showMessageDialog(this, "Selecciona aeropuertos diferentes", "Error", JOptionPane.ERROR_MESSAGE);
 			    valido = false;
 			}
@@ -617,7 +577,7 @@ public class nuevoEvento extends JFrame {
 		    valido = false;
 		}
 		
-		if(txtCodigoVuelo.getText().length() < 1 && txtCodigoVueloV.getText().length()<25  == true) {
+		if(txtCodigoVuelo.getText().length() < 1 && txtCodigoVuelo.getText().length()<25  == true) {
 			JOptionPane.showMessageDialog(this, "Codigo de vuelo no valido", "Error", JOptionPane.ERROR_MESSAGE);
 		    valido = false;
 		}
@@ -641,23 +601,52 @@ public class nuevoEvento extends JFrame {
             JOptionPane.showMessageDialog(null, "Debe seleccionar la fecha del vuelo.", "ERROR", JOptionPane.ERROR_MESSAGE);
             valido=false;
         }
+		
+		if(valido==true) {
+			fechaVuelo=convertirFechaADatabaseFormat(dcVuelo.getDate());
+			vuelo.setCodigoVuelo(txtCodigoVuelo.getText());
+			vuelo.setPrecio(txtPrecio.getText());
+			vuelo.setFecha(fechaVuelo);
+			vuelo.setHora(txtHorario.getText());
+			vuelo.setDuracion(txtDuracion.getText());
+			
+			
+			
+			for(Aerolinea aero : aerolineas) {
+    			if(aero.getDescripcionAerolinea().equals(cbAerolinea.getSelectedItem())) {
+		    		vuelo.setAerolinea(aero);
+		    		
+    			}
+			}
+			for(Aeropuerto aeropuert : aeropuertos) {
+    			if(aeropuert.getLugarAero().equals(cbAropuertoO.getSelectedItem())) {
+		    		vuelo.setAeropuertoOrigen(aeropuert);
+		    		
+    			}
+			}
+			for(Aeropuerto aeropuer : aeropuertos) {
+    			if(aeropuer.getLugarAero().equals(cbAeropuertoD.getSelectedItem())) {
+		    		vuelo.setAeropuertoDestino(aeropuer);
+		    		
+    			}
+			}
+			vuelo.setVueloIda(null);
+    			vuelo.setViaje(viaje);
+    			controlador.crearVuelo(vuelo);
+		}
 
-		return valido;	
+		return vuelo;
 	
 	}
 	
-	public boolean validarVueloV() {
+	public boolean validarVueloV(Viaje viaje,Vuelo vuelo) {
+		ArrayList<Aerolinea>aerolineas = controlador.mostrarAerolineas();
+		ArrayList<Aeropuerto>aeropuertos = controlador.mostrarAeropuertos();
+		Vuelo vueloV = new Vuelo();
 		boolean valido = true;
+		String fechaVueloV;
 	
 		
-		if(cbAropuertoOV.getSelectedItem() == "" ) {
-			JOptionPane.showMessageDialog(this, "Seleccione el aeropuerto", "Error", JOptionPane.ERROR_MESSAGE);
-		    valido = false;
-		}
-		if(cbAeropuertoDV.getSelectedItem() == "" ) {
-			JOptionPane.showMessageDialog(this, "Seleccione el aeropuerto", "Error", JOptionPane.ERROR_MESSAGE);
-		    valido = false;
-		}
 		
 		if(cbAerolineaV_1.getSelectedItem()=="") {
 			JOptionPane.showMessageDialog(this, "Seleccione la aerolinea de vuelta", "Error", JOptionPane.ERROR_MESSAGE);
@@ -679,15 +668,57 @@ public class nuevoEvento extends JFrame {
 		    valido = false;
 		}
 			
-        if (dcVuelo.getDate().before(dcVueloVuelta.getDate())) {
+        if (dcVuelo.getDate().before(dcVueloVuelta.getDate())!=true) {
             JOptionPane.showMessageDialog(null, "La fecha de vuelta no puede ser antes de la fecha de ida.", "ERROR", JOptionPane.ERROR_MESSAGE);
            valido=false;
         }
+		
+		
+        if(valido==true) {
+			fechaVueloV=convertirFechaADatabaseFormat(dcVueloVuelta.getDate());
+			vueloV.setCodigoVuelo(txtCodigoVueloV.getText());
+			vueloV.setPrecio(txtPrecio.getText());
+			vueloV.setFecha(fechaVueloV);
+			vueloV.setHora(txtHorarioV.getText());
+			vueloV.setDuracion(txtDuracionV.getText());
+			
+			for(Aerolinea aero : aerolineas) {
+    			if(aero.getDescripcionAerolinea().equals(cbAerolinea.getSelectedItem())) {
+    				vueloV.setAerolinea(aero);
+    				
+    				}
+				}
+			}
+ 
+		for(Aeropuerto aeropuert : aeropuertos) {
+			if(aeropuert.getLugarAero().equals(cbAropuertoO.getSelectedItem())) {
+	    		vueloV.setAeropuertoDestino(aeropuert);
+			}
+			}
+			
+		for(Aeropuerto aeropuer : aeropuertos) {
+			if(aeropuer.getLugarAero().equals(cbAeropuertoD.getSelectedItem())) {
+		    	vueloV.setAeropuertoOrigen(aeropuer);
+				}
+		}
+			vuelo.setIdEvento(controlador.maximoEvento());
+			System.out.println(controlador.maximoEvento());
+			vueloV.setVueloIda(vuelo);
+    		vueloV.setViaje(viaje);
+    		controlador.crearVuelo(vueloV);
+        
+        if(valido==true) {
+			JOptionPane.showMessageDialog(null, "Vuelo creado correctamente");
+		}
 		return valido;	
-	
 	}
 	
-	public boolean validarAlojamiento(){
+	
+	
+	public boolean validarAlojamiento(Viaje viaje,Agencia agencia){
+		
+		Alojamiento alojamiento = new Alojamiento();
+		String fechaAlo;
 		boolean valido = true;
 		
 		if(cbTipoHabitacion.getSelectedItem()=="") {
@@ -709,11 +740,38 @@ public class nuevoEvento extends JFrame {
 	           valido=false;
 	        }
 		
+		if (dcFechaAlojamientoSalida.getDate().before(dcFechaAlojamiento.getDate())) {
+            JOptionPane.showMessageDialog(null, "La fecha de vuelta no puede ser antes de la fecha de ida.", "ERROR", JOptionPane.ERROR_MESSAGE);
+           valido=false;
+        }
+		
+		if(valido == true) {
+			fechaAlo=convertirFechaADatabaseFormat(dcFechaAlojamiento.getDate());
+			alojamiento.setNombreHotel(txtNombreEvento.getText());
+			alojamiento.setCiudad(txtCiudad.getText());
+			alojamiento.setPrecio(txtPrecioAlo.getText());
+			alojamiento.setFecha(fechaAlo);
+			alojamiento.setTipoHab(cbTipoHabitacion.getSelectedItem()+"");
+			alojamiento.setViaje(viaje);
+			controlador.crearAlojamiento(alojamiento);
+			
+			
+		}
+		
+		if(valido==true) {
+			JOptionPane.showMessageDialog(null, "Viaje creado correctamente");
+		}
+		
+		
 		
 		return valido;
 	}
 	
-	public boolean validarOtros(){
+	public boolean validarOtros(Viaje viaje,Agencia agencia){
+		
+		Otros otros = new Otros();
+		String fechaOtr;
+		
 		boolean valido = true;
 		
 		if(txtDescripcionOtros.getText().length()<1 || txtDescripcionOtros.getText().length()>255  == true) {
@@ -728,6 +786,23 @@ public class nuevoEvento extends JFrame {
 		if(dcFechaOtros.getDate()==null) {
 			JOptionPane.showMessageDialog(this, "Introduce una fecha", "Error", JOptionPane.ERROR_MESSAGE);
 		    valido = false;
+		}
+		
+		if(valido==true) {
+			fechaOtr=convertirFechaADatabaseFormat(dcFechaOtros.getDate());
+			otros.setNombreEvento(txtNombreEvento.getText());
+			otros.setDescripcion(txtDescripcionOtros.getText());
+			otros.setPrecio(txtPrecioOtros.getText());
+			otros.setFecha(fechaOtr);
+			otros.setViaje(viaje);
+			controlador.crearOtros(otros);
+		}
+		
+		if(valido==true) {
+			JOptionPane.showMessageDialog(null, "Viaje creado correctamente");
+			MenuPrincipal menuPrincipal = new MenuPrincipal(agencia);
+			 menuPrincipal.setVisible(true);
+			 dispose();
 		}
 		
 		return valido;
@@ -751,13 +826,16 @@ public class nuevoEvento extends JFrame {
         for (Aeropuerto aeropuerto : aeropuertos) {
         	cbAeropuerto.addItem(aeropuerto.getLugarAero()); 
         }
+       
 }
-	public Color rellenarColor(Agencia agencia) {
-		String colorMarca = agencia.getColorMarca();
-		try {
-			return Color.decode(colorMarca);
-		} catch (NumberFormatException e) {
-			return Color.BLACK; 
-		}
-	}
+	
+	public String convertirFechaADatabaseFormat(java.util.Date date) {
+        if (date != null) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            return sdf.format(date);
+        }
+        return null; 
+    }
+	
+	
 }

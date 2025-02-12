@@ -15,7 +15,7 @@ public class Vuelo {
 	private Aeropuerto aeropuertoDestino;
 	private Aerolinea aerolinea;
 
-	Vuelo(){
+	public Vuelo(){
 		idEvento="";
 		nombreEvento="";
 		precio="";

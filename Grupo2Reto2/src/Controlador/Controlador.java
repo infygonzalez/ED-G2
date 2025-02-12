@@ -26,6 +26,26 @@ public class Controlador {
 		gestorAgencia.crearAgencia(agencia);
 	}
 	
+	public void crearVuelo(Vuelo vuelo) {
+		Gestor gestor = new Gestor();
+		gestor.crearVuelo(vuelo);
+	}
+	
+	public void crearVueloVuelta(Vuelo vuelo) {
+		Gestor gestor = new Gestor();
+		gestor.crearVueloVuelta(vuelo);
+	}
+	
+	public void crearAlojamiento(Alojamiento alojamiento) {
+		Gestor gestor = new Gestor();
+		gestor.crearAlojamiento(alojamiento);
+	}
+	
+	public void crearOtros(Otros otros) {
+		Gestor gestor = new Gestor();
+		gestor.crearOtros(otros);
+	}
+	
 	public void crearViaje(Viaje viaje) {
 		Gestor gestor = new Gestor();
 		gestor.crearViaje(viaje);
@@ -135,6 +155,12 @@ public class Controlador {
 	public boolean eliminarOtros(Otros otro){
 		Gestor gestorOtros = new Gestor();
 		return gestorOtros.eliminarOtros(otro);
+	}
+	
+	public String maximoEvento() {
+		
+		Gestor gestorMaxEvento = new Gestor();
+		return gestorMaxEvento.maximoIdEvento();
 	}
 	
 }

@@ -107,7 +107,7 @@ public class MenuPrincipal extends JFrame {
 		
 		
 		 modelo = new DefaultTableModel();
-		 modelo.addColumn("Nombre");;
+		 modelo.addColumn("Nombre");
 		 modelo.addColumn("Descripcion");
 		 modelo.addColumn("Tipo");
 		 modelo.addColumn("Fecha ida");
@@ -122,6 +122,7 @@ public class MenuPrincipal extends JFrame {
 		
 			
 		 modelo1 = new DefaultTableModel();
+		 modelo1.addColumn("IdEvento");
 		 modelo1.addColumn("Nombre");
 		 modelo1.addColumn("Tipo");
 		 modelo1.addColumn("Fecha");
@@ -158,10 +159,12 @@ public class MenuPrincipal extends JFrame {
 		btnNuevoEvento = new JButton("Nuevo Evento");
 		btnNuevoEvento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Viaje viajeSeleccionado = viajeSeleccionado(agencia);
+                if (viajeSeleccionado != null) {
 				dispose();
-				nuevoEvento nuevoEvento = new nuevoEvento(agencia);
+				nuevoEvento nuevoEvento = new nuevoEvento(agencia,viajeSeleccionado);
 				nuevoEvento.setVisible(true);
-
+                }
 			}
 		});
 		btnNuevoEvento.setBounds(645, 366, 128, 48);
@@ -364,28 +367,31 @@ public class MenuPrincipal extends JFrame {
 			 ArrayList<Alojamiento> alojamientos = viaje.getAlojamiento();
 			 ArrayList<Otros> otros = viaje.getOtros();
 			 for(int i=0;i<vuelos.size();i++) {
-				 String[] fila= new String[4];
+				 String[] fila= new String[5];
 				 fila[0]= vuelos.get(i).getIdEvento();
-				 fila[1]= "Vuelo";
-				 fila[2]= vuelos.get(i).getFecha();
-				 fila[3]= vuelos.get(i).getPrecio();
+				 fila[1]= vuelos.get(i).getCodigoVuelo();
+				 fila[2]= "Vuelo";
+				 fila[3]= vuelos.get(i).getFecha();
+				 fila[4]= vuelos.get(i).getPrecio();
 				 modelo1.addRow(fila);
 			 }
 			 
 			 for(int i=0;i<alojamientos.size();i++) {
-				 String[] fila= new String[4];
+				 String[] fila= new String[5];
 				 fila[0]= alojamientos.get(i).getIdEvento();
-				 fila[1]= "Alojamiento";
-				 fila[2]= alojamientos.get(i).getFecha();
-				 fila[3]= alojamientos.get(i).getPrecio();
+				 fila[1]= alojamientos.get(i).getNombreEvento();
+				 fila[2]= "Alojamiento";
+				 fila[3]= alojamientos.get(i).getFecha();
+				 fila[4]= alojamientos.get(i).getPrecio();
 				 modelo1.addRow(fila);
 			 }
 			 for(int i=0;i<otros.size();i++) {
-				 String[] fila= new String[4];
+				 String[] fila= new String[5];
 				 fila[0]= otros.get(i).getIdEvento();
-				 fila[1]= "Otros";
-				 fila[2]= otros.get(i).getFecha();
-				 fila[3]= otros.get(i).getPrecio();
+				 fila[1]= otros.get(i).getNombreEvento();
+				 fila[2]= "Otros";
+				 fila[3]= otros.get(i).getFecha();
+				 fila[4]= otros.get(i).getPrecio();
 				 modelo1.addRow(fila);
 			 }
 		 }
@@ -473,4 +479,4 @@ public class MenuPrincipal extends JFrame {
 			        return Color.BLACK;  
 			    }
 		 }
- }
+}
