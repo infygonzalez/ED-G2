@@ -35,7 +35,7 @@ public class GestorTest {
 		paises = gestor.mostrarPais();
 
 		agencia = new Agencia();
-		agencia.setNombre("p");
+		agencia.setNombre("AgenciaPrueba");
 		agencia.setColorMarca("colorMarca");
 		agencia.setNumeroEmpleados("Entre 2 y 10 empleados");
 		agencia.setTipoAgencia("minorista");
@@ -44,12 +44,12 @@ public class GestorTest {
 
 		viaje = new Viaje();
 		viaje.setNombreViaje("Viaje");
-		viaje.setDescripcion("pp");
+		viaje.setDescripcion("Prueba del viaje");
 		viaje.setTipoViaje("Novios");
 		viaje.setFechaIda("2025-02-02");
 		viaje.setFechaVuelta("2025-03-03");
 		viaje.setDuracion("9");
-		viaje.setDescServicio("aa");
+		viaje.setDescServicio("Desayuno");
 
 		for (Pais pais : paises) {
 			if (pais.getDescripPais().equals("Argentina")) {
@@ -69,14 +69,14 @@ public class GestorTest {
 	@Test
 	public void test02_Login() {
 
-		agencia = gestor.login("p", "JUnit");
+		agencia = gestor.login("AgenciaPrueba", "JUnit");
 		assertTrue("Login correcto", agencia instanceof Agencia);
 
 	}
 
 	@Test
 	public void test03_CrearViaje() {
-		agencia = gestor.login("p", "JUnit");
+		agencia = gestor.login("AgenciaPrueba", "JUnit");
 		viaje.setAgencia(agencia);
 		boolean crearViaje = gestor.crearViaje(viaje);
 		assertNotNull("La agencia no se crea correctamente", crearViaje);
@@ -86,7 +86,7 @@ public class GestorTest {
 	@Test
 	public void test04_CrearVuelo() {
 		boolean crearVuelo = false;
-		agencia = gestor.login("p", "JUnit");
+		agencia = gestor.login("AgenciaPrueba", "JUnit");
 		viaje.setAgencia(agencia);
 		Vuelo vuelo = new Vuelo();
 		ArrayList<Viaje> viajes = gestor.mostrarViajes(agencia, paises);
@@ -122,7 +122,7 @@ public class GestorTest {
 
 	@Test
 	public void test04_CrearAlojamiento() {
-		agencia = gestor.login("p", "JUnit");
+		agencia = gestor.login("AgenciaPrueba", "JUnit");
 		viaje.setAgencia(agencia);
 		Alojamiento alojamiento = new Alojamiento();
 		ArrayList<Viaje> viajes = gestor.mostrarViajes(agencia, paises);
@@ -144,7 +144,7 @@ public class GestorTest {
 	@Test
 	public void test04_CrearOtros() {
 		boolean crearOtros = false;
-		agencia = gestor.login("p", "JUnit");
+		agencia = gestor.login("AgenciaPrueba", "JUnit");
 		viaje.setAgencia(agencia);
 		Otros otro = new Otros();
 		ArrayList<Viaje> viajes = gestor.mostrarViajes(agencia, paises);
@@ -153,7 +153,7 @@ public class GestorTest {
 			otro.setViaje(viajes.get(0));
 			otro.setNombreEvento("Prueba");
 			otro.setFecha("2025-02-19");
-			otro.setPrecio("123");
+			otro.setPrecio("12");
 			otro.setDescripcion("Divertido");
 
 			crearOtros = gestor.crearOtros(otro);
@@ -164,7 +164,7 @@ public class GestorTest {
 
 	@Test
 	public void test05_MostrarVuelos() {
-		agencia = gestor.login("p", "JUnit");
+		agencia = gestor.login("AgenciaPrueba", "JUnit");
 		viaje.setAgencia(agencia);
 		ArrayList<Viaje> viajes = gestor.mostrarViajes(agencia, paises);
 		boolean mostrar = false;
@@ -179,7 +179,7 @@ public class GestorTest {
 
 	@Test
 	public void test05_MostrarAlojamientos() {
-		agencia = gestor.login("p", "JUnit");
+		agencia = gestor.login("AgenciaPrueba", "JUnit");
 		viaje.setAgencia(agencia);
 		ArrayList<Viaje> viajes = gestor.mostrarViajes(agencia, paises);
 		boolean mostrar = false;
@@ -194,7 +194,7 @@ public class GestorTest {
 
 	@Test
 	public void test05_MostrarOtros() {
-		agencia = gestor.login("p", "JUnit");
+		agencia = gestor.login("AgenciaPrueba", "JUnit");
 		viaje.setAgencia(agencia);
 		ArrayList<Viaje> viajes = gestor.mostrarViajes(agencia, paises);
 		boolean mostrar = false;
@@ -209,7 +209,7 @@ public class GestorTest {
 
 	@Test
 	public void test05_MostrarViajes() {
-		agencia = gestor.login("p", "JUnit");
+		agencia = gestor.login("AgenciaPrueba", "JUnit");
 		viaje.setAgencia(agencia);
 		ArrayList<Viaje> viajes = gestor.mostrarViajes(agencia, paises);
 		assertTrue("No se carga lista de viajes", viajes.size() != 0);
@@ -218,7 +218,7 @@ public class GestorTest {
 
 	@Test
 	public void test06_EliminarVuelo() {
-		agencia = gestor.login("p", "JUnit");
+		agencia = gestor.login("AgenciaPrueba", "JUnit");
 		viaje.setAgencia(agencia);
 		ArrayList<Viaje> viajes = gestor.mostrarViajes(agencia, paises);
 		boolean borrar = false;
@@ -237,7 +237,7 @@ public class GestorTest {
 
 	@Test
 	public void test06_EliminarAlojamiento() {
-		agencia = gestor.login("p", "JUnit");
+		agencia = gestor.login("AgenciaPrueba", "JUnit");
 		viaje.setAgencia(agencia);
 		ArrayList<Viaje> viajes = gestor.mostrarViajes(agencia, paises);
 		boolean borrar = false;
@@ -255,7 +255,7 @@ public class GestorTest {
 
 	@Test
 	public void test06_EliminarOtros() {
-		agencia = gestor.login("p", "JUnit");
+		agencia = gestor.login("AgenciaPrueba", "JUnit");
 		viaje.setAgencia(agencia);
 		ArrayList<Viaje> viajes = gestor.mostrarViajes(agencia, paises);
 		boolean borrar = false;
@@ -288,7 +288,7 @@ public class GestorTest {
 
 	@Test
 	public void test07_BorrarViaje() {
-		agencia = gestor.login("p", "JUnit");
+		agencia = gestor.login("AgenciaPrueba", "JUnit");
 		viaje.setAgencia(agencia);
 		ArrayList<Viaje> viajes = gestor.mostrarViajes(agencia, paises);
 		boolean borrar = false;
