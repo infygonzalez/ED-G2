@@ -162,9 +162,12 @@ public class Gestor {
 				Alojamiento alojamiento = new Alojamiento();
 				alojamiento.setViaje(viaje);
 				alojamiento.setIdEvento(resultSet.getString("idEvento"));
-				alojamiento.setNombreEvento(resultSet.getString("nombreHotel"));
-				alojamiento.setFecha(resultSet.getString("fecSalida"));
+				alojamiento.setNombreHotel(resultSet.getString("nombreHotel"));
+				alojamiento.setFecEntrada(resultSet.getString("fecEntrada"));
+				alojamiento.setFecSalida(resultSet.getString("fecSalida"));
 				alojamiento.setPrecio(resultSet.getString("precio"));
+				alojamiento.setTipoHab(resultSet.getString("tipoHab"));
+				alojamiento.setCiudad(resultSet.getString("ciudad"));
 				alojamientos.add(alojamiento);
 			}
 		} catch (SQLException sqle) {
@@ -668,14 +671,6 @@ public class Gestor {
 					+ vuelo.getAeropuertoDestino().getCodigoAero() + SQLQuerys.SEPARATOR
 					+ vuelo.getAerolinea().getCodigoAerolinea() + SQLQuerys.SEPARATOR + maximoIdEvento()
 					+ SQLQuerys.SEPARATOR + vuelo.getViaje().getIdViaje() + SQLQuerys.ENDBLOCK;
-			System.out.println(SQLQuerys.INSERT_NUEVO_VUELO_VUELTA + vuelo.getNombreEvento() + SQLQuerys.SEPARATOR
-					+ vuelo.getPrecio() + SQLQuerys.SEPARATOR + vuelo.getFecha() + SQLQuerys.SEPARATOR + vuelo.getHora()
-					+ SQLQuerys.SEPARATOR + vuelo.getDuracion() + SQLQuerys.SEPARATOR
-					+ vuelo.getAeropuertoOrigen().getCodigoAero() + SQLQuerys.SEPARATOR
-					+ vuelo.getAeropuertoDestino().getCodigoAero() + SQLQuerys.SEPARATOR
-					+ vuelo.getAerolinea().getCodigoAerolinea() + SQLQuerys.SEPARATOR
-					+ vuelo.getVueloIda().getIdEvento() + SQLQuerys.SEPARATOR + vuelo.getViaje().getIdViaje()
-					+ SQLQuerys.ENDBLOCK);
 
 			sentencia.executeUpdate(sql);
 			if (sentencia != null) {
@@ -709,9 +704,10 @@ public class Gestor {
 			Class.forName(DBUtils.DRIVER);
 			conexion = DriverManager.getConnection(DBUtils.URL, DBUtils.USER, DBUtils.PASSWORD);
 			sentencia = conexion.createStatement();
-			String sql = SQLQuerys.INSERT_NUEVO_ALOJAMIENTO + alojamiento.getNombreEvento() + SQLQuerys.SEPARATOR
+			String sql = SQLQuerys.INSERT_NUEVO_ALOJAMIENTO + alojamiento.getNombreHotel() + SQLQuerys.SEPARATOR
 					+ alojamiento.getCiudad() + SQLQuerys.SEPARATOR + alojamiento.getPrecio() + SQLQuerys.SEPARATOR
-					+ alojamiento.getFecha() + SQLQuerys.SEPARATOR + alojamiento.getTipoHab() + SQLQuerys.SEPARATOR
+					+ alojamiento.getFecEntrada() + SQLQuerys.SEPARATOR + alojamiento.getFecSalida()
+					+ SQLQuerys.SEPARATOR + alojamiento.getTipoHab() + SQLQuerys.SEPARATOR
 					+ alojamiento.getViaje().getIdViaje() + SQLQuerys.ENDBLOCK;
 			sentencia.executeUpdate(sql);
 			if (sentencia != null) {
@@ -740,23 +736,24 @@ public class Gestor {
 		boolean valido = false;
 		Connection conexion = null;
 		Statement sentencia = null;
-
+		
 		try {
 			Class.forName(DBUtils.DRIVER);
 			conexion = DriverManager.getConnection(DBUtils.URL, DBUtils.USER, DBUtils.PASSWORD);
 			sentencia = conexion.createStatement();
-			String sql = SQLQuerys.INSERT_NUEVO_OTROS + otros.getNombreEvento() + SQLQuerys.SEPARATOR
+			String sql = SQLQuerys.INSERT_NUEVO_OTROS  + otros.getNombreEvento() + SQLQuerys.SEPARATOR
 					+ otros.getDescripcion() + SQLQuerys.SEPARATOR + otros.getPrecio() + SQLQuerys.SEPARATOR
 					+ otros.getFecha() + SQLQuerys.SEPARATOR + otros.getViaje().getIdViaje() + SQLQuerys.ENDBLOCK;
-
 			sentencia.executeUpdate(sql);
+
 			if (sentencia != null) {
 				valido = true;
 			}
 		} catch (SQLException sqle) {
 			System.out.println("Error con la base de datos" + sqle.getMessage());
 		} catch (Exception e) {
-			System.out.println("Error genérico" + e.getMessage());
+			System.out.println("Err"
+					+ "or genérico" + e.getMessage());
 		}
 
 		try {

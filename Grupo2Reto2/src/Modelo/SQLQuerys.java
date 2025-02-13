@@ -8,7 +8,7 @@ public class SQLQuerys {
 		public static final String INSERT_NUEVO_VIAJE = "insert into viajes(nombre,descripcion,tipoViaje,fechaIda,fechaVuelta,duracion,descripcionServicio,idAgencia,codigoPais) VALUES('";
 		public static final String INSERT_NUEVO_VUELO = "insert into vuelo(codigoVuelo,precio,fecSalida,horaSalida,vueloDuracion,codigoAeropuertoOrigen,codigoAeropuertoDestino,codigoAerolinea,idViajes) VALUES('";
 		public static final String INSERT_NUEVO_VUELO_VUELTA = "insert into vuelo(codigoVuelo,precio,fecSalida,horaSalida,vueloDuracion,codigoAeropuertoOrigen,codigoAeropuertoDestino,codigoAerolinea,vueloIda,idViajes) VALUES('";
-		public static final String INSERT_NUEVO_ALOJAMIENTO = "insert into alojamiento(nombreHotel,ciudad,precio,fecSalida,tipoHab,idViajes) VALUES('";
+		public static final String INSERT_NUEVO_ALOJAMIENTO = "insert into alojamiento(nombreHotel,ciudad,precio,fecEntrada,fecSalida,tipoHab,idViajes) VALUES('";
 		public static final String INSERT_NUEVO_OTROS = "insert into otros(nombre,descripcion,precio,fecSalida,idViajes) VALUES('";
 		public static final String SEPARATOR = "', '";
 		public static final String ENDBLOCK = "')";

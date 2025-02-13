@@ -96,12 +96,6 @@ public class nuevoEvento extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		
-		JPanel Alojamiento = new JPanel();
-		Alojamiento.setBounds(0, 147, 776, 432);
-		contentPane.add(Alojamiento);
-		Alojamiento.setLayout(null);
-		
 		JPanel vuelo = new JPanel();
 		vuelo.setBounds(0, 132, 766, 411);
 		contentPane.add(vuelo);
@@ -109,6 +103,13 @@ public class nuevoEvento extends JFrame {
 		
 		
 		
+			
+		
+		
+		JPanel Alojamiento = new JPanel();
+		Alojamiento.setBounds(0, 147, 776, 432);
+		contentPane.add(Alojamiento);
+		Alojamiento.setLayout(null);
 		
 		
 		JLabel lblNombreEvento = new JLabel("Nombre del evento");
@@ -269,7 +270,7 @@ public class nuevoEvento extends JFrame {
 	}
 	
 	public void verVuelo(JPanel vuelo) {
-	
+		
 		JLabel lblTrayecto = new JLabel("Trayecto");
 		lblTrayecto.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblTrayecto.setBounds(61, 11, 118, 28);
@@ -365,13 +366,13 @@ public class nuevoEvento extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
-                    Desktop desktop = Desktop.getDesktop();
-                    desktop.browse(new URI("https://www.skyscanner.es/"));
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                    JOptionPane.showMessageDialog(null, "Error al abrir el enlace", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            
+                Desktop desktop = Desktop.getDesktop();
+                desktop.browse(new URI("https://www.skyscanner.es/"));
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error al abrir el enlace", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        
 				
 			}
 		});
@@ -718,7 +719,7 @@ public class nuevoEvento extends JFrame {
 	public boolean validarAlojamiento(Viaje viaje,Agencia agencia){
 		
 		Alojamiento alojamiento = new Alojamiento();
-		String fechaAlo;
+		String fechaAlo,fechaAlo1;
 		boolean valido = true;
 		
 		if(cbTipoHabitacion.getSelectedItem()=="") {
@@ -747,10 +748,12 @@ public class nuevoEvento extends JFrame {
 		
 		if(valido == true) {
 			fechaAlo=convertirFechaADatabaseFormat(dcFechaAlojamiento.getDate());
+			fechaAlo1=convertirFechaADatabaseFormat(dcFechaAlojamientoSalida.getDate());
 			alojamiento.setNombreHotel(txtNombreEvento.getText());
 			alojamiento.setCiudad(txtCiudad.getText());
 			alojamiento.setPrecio(txtPrecioAlo.getText());
-			alojamiento.setFecha(fechaAlo);
+			alojamiento.setFecEntrada(fechaAlo);
+			alojamiento.setFecSalida(fechaAlo1);
 			alojamiento.setTipoHab(cbTipoHabitacion.getSelectedItem()+"");
 			alojamiento.setViaje(viaje);
 			controlador.crearAlojamiento(alojamiento);
@@ -836,6 +839,4 @@ public class nuevoEvento extends JFrame {
         }
         return null; 
     }
-	
-	
 }

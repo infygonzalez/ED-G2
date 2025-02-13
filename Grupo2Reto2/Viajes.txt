@@ -1,0 +1,61 @@
+
+ Id del viaje: 3
+ Nombre del viaje: 
+ Descripcion del viaje: dsasda
+ Tipo del viaje: Novios
+ Fecha ida del viaje: 2025-02-13
+ Fecha vuelta del viaje: 2025-02-13
+ Duracion del viaje: 2.0 dias
+ Servicios no incluidos del viaje: 
+ Id de la agencia  del viaje: 1
+ Pais del viaje: Bélgica
+
+ Id del alojamiento: 7
+ El tipo del evento es: Alojamiento
+ Nombre del alojamiento: Bakio
+ Precio del alojamiento: 12.0
+ Fecha de la entrada alojamiento: 2025-02-07
+ Fecha de la salida alojamiento: 2025-02-22
+ Ciudad del alojamiento: bilv
+ Tipo de habitacion: DUI
+ id del viaje: 3
+
+ Id del vuelo: 49
+ El tipo del evento es: Vuelo
+ Precio del vuelo: 12.0
+ Fecha del vuelo: 2025-02-01
+ Codigo del vuelo: dsa
+ Hora del vuelo: 00:45:58
+ Duracion del vuelo: 00:45:58
+ Id del viaje: 3
+ Aeropuerto de origen: 
+ Aeropuerto destino: 
+ Aerolinea del vuelo: 
+
+ Id del vuelo: 50
+ El tipo del evento es: Vuelo
+ Precio del vuelo: 12.0
+ Fecha del vuelo: 2025-02-06
+ Codigo del vuelo: yea
+ Hora del vuelo: 00:45:58
+ Duracion del vuelo: 00:45:58
+ Id del viaje: 3
+ Aeropuerto de origen: 
+ Aeropuerto destino: 
+ Aerolinea del vuelo: 
+
+ Id de la actividad: 4
+ El tipo del evento es: Actividad
+ Nombre del evento: siq
+ Precio de la actividad: 23.0
+ Fecha de la actividad: 2025-02-08
+ Descripcion de la actividad: sdadsa
+ id del viaje: 3
+
+ Id de la actividad: 5
+ El tipo del evento es: Actividad
+ Nombre del evento: dsa
+ Precio de la actividad: 123.0
+ Fecha de la actividad: 2025-02-01
+ Descripcion de la actividad: sdads
+ id del viaje: 3

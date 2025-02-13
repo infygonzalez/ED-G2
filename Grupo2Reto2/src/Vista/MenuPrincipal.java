@@ -379,7 +379,7 @@ public class MenuPrincipal extends JFrame {
 			fila[0] = alojamientos.get(i).getIdEvento();
 			fila[1] = alojamientos.get(i).getNombreHotel();
 			fila[2] = "Alojamiento";
-			fila[3] = alojamientos.get(i).getFecha();
+			fila[3] = alojamientos.get(i).getFecEntrada();
 			fila[4] = alojamientos.get(i).getPrecio();
 			modelo1.addRow(fila);
 		}
@@ -499,13 +499,12 @@ public class MenuPrincipal extends JFrame {
 			}
 			for (Alojamiento alojameinto : alojamientos) {
 				writer.write("\n Id del alojamiento: " + alojameinto.getIdEvento()
-						+ "\n Nombre del evento: " + alojameinto.getNombreEvento() 
-						+ "\n Precio del alojamiento: " + alojameinto.getPrecio()
-						+ "\n Fecha del alojamiento: " + alojameinto.getFecha()
+						+ "\n El tipo del evento es: Alojamiento"
 						+ "\n Nombre del alojamiento: "+ alojameinto.getNombreHotel() 
+						+ "\n Precio del alojamiento: " + alojameinto.getPrecio()
+						+ "\n Fecha de la entrada alojamiento: " + alojameinto.getFecEntrada()
+						+ "\n Fecha de la salida alojamiento: " + alojameinto.getFecSalida()			
 						+ "\n Ciudad del alojamiento: " + alojameinto.getCiudad()
-						+ "\n Fecha de entrada  del alojamiento: " + alojameinto.getFecSalida()
-						+ "\n Fecha de salida  del alojamiento: " + alojameinto.getFecSalida()
 						+ "\n Tipo de habitacion: " + alojameinto.getTipoHab() 
 						+ "\n id del viaje: " + alojameinto.getViaje().getIdViaje() 
 						+ "\n");
@@ -513,6 +512,7 @@ public class MenuPrincipal extends JFrame {
 
 			for (Vuelo vuelo : vuelos) {
 				writer.write("\n Id del vuelo: " + vuelo.getIdEvento() 
+						+ "\n El tipo del evento es: Vuelo"
 						+ "\n Precio del vuelo: " + vuelo.getPrecio()
 						+ "\n Fecha del vuelo: " + vuelo.getFecha() + 
 						"\n Codigo del vuelo: " + vuelo.getCodigoVuelo()
@@ -527,6 +527,7 @@ public class MenuPrincipal extends JFrame {
 			for (Otros otro : otros) {
 
 				writer.write("\n Id de la actividad: " + otro.getIdEvento() 
+						+ "\n El tipo del evento es: Actividad"
 						+ "\n Nombre del evento: "+ otro.getNombreEvento() 
 						+ "\n Precio de la actividad: " + otro.getPrecio()
 						+ "\n Fecha de la actividad: " + otro.getFecha() 
